@@ -6,11 +6,12 @@
   color: #444444;
   margin-top: 60px;
 }
-  body{
-    margin: 0;
-    background: #eee;
+body{
+  margin: 0;
+  background: #eee;
 
-  }
+}
+
 
 
 form, .result {
@@ -103,4 +104,32 @@ h2{
 }
 .link{
   text-align: center;
+}
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  padding: 20px;
+  margin-top: 20px;
+  margin-left: 30px;
+  margin-right: 30px;
+  background-color: rgb(251, 251, 253);
+}
+.featured-image-left {
+  max-height: 20em;
+  object-fit: cover;
+  object-position: center;
+   float:left;
+  padding-right:1%; /* or top or bottom */
+}
+p {
+  text-align: justify;
+}
+#content {
+  flex: 5;
+  display: flex;
+ flex-flow: column nowrap;
+ gap: 1rem 2rem;
+}
+.subtitle{
+  float:inline-end;
 }

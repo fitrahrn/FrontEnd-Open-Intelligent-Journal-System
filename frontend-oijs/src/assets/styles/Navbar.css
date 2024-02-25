@@ -1,0 +1,87 @@
+
+
+@media screen and (max-width: 1000px) {
+    #content,
+    aside {
+      width: 100%;
+      padding: 0;
+    }
+  }
+ header {
+    display: inline;
+ }
+ 
+ 
+  footer {
+     padding: 20px;
+     color: white;
+     background-color: #00a2c6
+  }
+ 
+  nav a {
+    font-size: 18px;
+    font-weight: 400;
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.8);
+ }
+ 
+ nav li {
+    list-style-type: none;
+    margin-right: 20px;
+  }
+ 
+  .nav_container {
+    background-color: white;
+    padding: 5px;
+    position: sticky;
+    top: 0;
+ }
+ 
+ nav a:hover {
+    font-weight: bold;
+ }
+ 
+ nav ul {
+    padding-inline: 4rem;
+    gap: 2rem;
+    display: flex;
+  }
+ 
+ p {
+    text-align: justify;
+ }
+ .example{
+    float:inline-start;
+ }
+ 
+ .jumbotron {
+    padding: 60px;
+    text-align: center;
+    font-size: 20px;
+    color: white;
+    background-image: linear-gradient(45deg,#224D88 32%,#935893 60%,#E896B8 80%);
+  }
+  .navProfileWrapper{
+    background-color: transparent;
+    padding: 5px;
+    position: absolute;
+    top: 0;
+    left: 80%;
+    
+
+    
+  }
+  ul .navProfile{
+    margin-right: 0;
+    padding-right: 0;
+    width: auto;
+    justify-content: right;
+    color: white;
+  }
+  .profile{
+    
+    text-align: right;
+    line-height: 1.43rem;
+    color: white;
+  }
+
