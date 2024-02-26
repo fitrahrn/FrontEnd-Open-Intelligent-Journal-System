@@ -130,6 +130,6 @@ p {
  flex-flow: column nowrap;
  gap: 1rem 2rem;
 }
-.subtitle{
-  float:inline-end;
+.subtitled{
+  float:left;
 }
