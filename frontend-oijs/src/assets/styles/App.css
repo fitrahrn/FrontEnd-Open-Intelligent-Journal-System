@@ -140,6 +140,7 @@ p {
   color: #007ab2;
   border-color: #007ab2;
   border: 2px solid #007ab2;
+  margin-top: 0;
 }
 #pdf:hover{
   background-color: #007ab2; /* Green */
