@@ -3,10 +3,10 @@ import './assets/styles/App.css';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
-import Journal from './pages/Journal';
 import Archives from './pages/Archives';
 import About from './pages/About';
 import Test from './pages/Test';
+import Journal from './pages/Journal';
 function App() {
   return (
     <BrowserRouter>
@@ -17,7 +17,7 @@ function App() {
         <Route path='/archives' element={<Archives />}/>
         <Route path='/about' element={<About />}/>
         <Route path='/test' elemennt = {<Test/>}/>
-        <Route path='/:journal_name' elemennt = {<Journal/>}/>
+        <Route path='/:journal' element={<Journal/>}/>
       </Routes>
     </BrowserRouter>
   );
