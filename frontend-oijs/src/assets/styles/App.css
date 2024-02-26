@@ -78,8 +78,10 @@ button{
   margin-top: 20px;
   color: white;
   border-radius: 10px;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
 }
-
 .submit{
   display: block;
   margin-left: auto;
@@ -130,6 +132,16 @@ p {
  flex-flow: column nowrap;
  gap: 1rem 2rem;
 }
-.subtitled{
-
+#pdf{
+  padding: 5px 10px;
+  margin-left: 10px;
+  box-sizing: border-box;
+  background: white;
+  color: #007ab2;
+  border-color: #007ab2;
+  border: 2px solid #007ab2;
+}
+#pdf:hover{
+  background-color: #007ab2; /* Green */
+  color: white;
 }
