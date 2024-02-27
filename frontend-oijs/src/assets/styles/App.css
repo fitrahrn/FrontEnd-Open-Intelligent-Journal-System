@@ -146,3 +146,15 @@ p {
   background-color: #007ab2; /* Green */
   color: white;
 }
+.oneLine{
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+}
+.filter{
+  float: none;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  margin-left: auto;
+}

@@ -84,4 +84,20 @@
     line-height: 1.43rem;
     color: white;
   }
+  .featured-image-left {
+   max-height: 20em;
+   object-fit: cover;
+   object-position: center;
+    float:left;
+   padding-right:1%; /* or top or bottom */
+ }
+ #logo{
+   margin-right: 5px;
+   margin-top: 10px;
+   max-height: 7em;
+ }
+ .title{
+   text-align: left;
+
+ }
 

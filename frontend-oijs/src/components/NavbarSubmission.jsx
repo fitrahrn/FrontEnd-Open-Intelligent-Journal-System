@@ -1,13 +1,21 @@
-import React ,{ useState }from 'react';
-import { NavLink } from "react-router-dom";
+import React ,{ useState, useEffect }from 'react';
+import { NavLink, useParams  } from "react-router-dom";
 import "../assets/styles/Navbar.css";
-import logo from "../assets/images/itb.png"
-const Navbar = () => {
+const NavbarSubmission = () => {
+    const {journal} = useParams();
+    console.log(journal);
+    useEffect(() => {
+        getJournal();
+      }, []);
+    
+    const getJournal = async () => {
+
+    };
   return (
     
     <header className="header">
       <div class="jumbotron">
-          <nav>
+          {/* <nav>
             <div class='navProfileWrapper'>
               <ul class='navProfile'>
                 <li class='profile'>
@@ -22,10 +30,9 @@ const Navbar = () => {
                 </li>
               </ul>
             </div>
-          </nav>
-          <img class="featured-image-left" id="logo" src={logo}/>
-          <h1 class="title">Open Intelligent Journal System</h1>
-          <div class="title">Institut Teknologi Bandung</div>
+          </nav> */}
+          <h1 class="title">Journal of ICT Research and Applications</h1>
+          <div class="title">Submission</div>
       </div>
      <nav className="nav_container">
        <div
@@ -34,21 +41,19 @@ const Navbar = () => {
        >
          <ul className="nav__list">
            <li className="nav__item">
-             <NavLink to="/" className="nav__link">
+             <NavLink to={`/${journal}`} className="nav__link">
                Home
              </NavLink>
            </li>
            <li className="nav__item">
-             <NavLink to="/archives" className="nav__link">
-               Archives
+             <NavLink to={`/${journal}/submission`} className="nav__link"
+             >
+               My Queue
              </NavLink>
            </li>
            <li className="nav__item">
-             <NavLink
-               to="/about"
-               className="nav__link"
-             >
-               About
+             <NavLink to={`/${journal}/submission/archives`} className="nav__link">
+               Archieve
              </NavLink>
            </li>
          </ul>
@@ -60,4 +65,4 @@ const Navbar = () => {
   )
 }
 
-export default Navbar
+export default NavbarSubmission

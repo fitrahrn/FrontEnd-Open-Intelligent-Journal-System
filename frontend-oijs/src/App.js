@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './assets/styles/App.css';
 import Home from './pages/Home';
-import Login from './pages/Login';
-import Register from './pages/Register';
+import Login from './pages/authorization/Login';
+import Register from './pages/authorization/Register';
 import Archives from './pages/Archives';
 import About from './pages/About';
 import Journal from './pages/journal/Journal';
@@ -12,6 +12,8 @@ import Ethics from './pages/journal/Ethics';
 import Guidelines from './pages/journal/Guidelines';
 import Issue from './pages/journal/Issue';
 import Subscriptions from './pages/journal/Subscriptions';
+import Submission from './pages/submission/Submission';
+import SubmissionArchives from './pages/submission/SubmissionArchives';
 function App() {
   return (
     <BrowserRouter>
@@ -28,6 +30,8 @@ function App() {
         <Route path='/:journal/guidelines' element={<Guidelines/>}/>
         <Route path='/:journal/issue' element={<Issue/>}/>
         <Route path='/:journal/subscription' element={<Subscriptions/>}/>
+        <Route path='/:journal/submission' element={<Submission/>}/>
+        <Route path='/:journal/submission/archives' element={<SubmissionArchives/>}/>
 
       </Routes>
     </BrowserRouter>
