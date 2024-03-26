@@ -22,6 +22,26 @@ form, .result {
   padding: 40px;
   border-radius: 10px;
 }
+form, .formFiles{
+  max-width: 1080px;
+  margin: 30px auto;
+  background: white;
+  text-align: center;
+  padding: 40px;
+  border-radius: 10px;
+}
+.divFiles{
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 90%;
+  margin-top:10px;
+  margin-left: 30px;
+}
 label {
   color: #494d50;
   display:inline-block;
@@ -88,7 +108,8 @@ button{
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 40%;
+  text-align: right;
+  width: 80%;
 }
 .error {
   color: #ff0062;
@@ -196,6 +217,18 @@ p {
   color: #e08914;
   border-color: #e08914;
   border: 2px solid #e08914;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.cancel{
+  padding: 10px 30px;
+  margin-left: 10px;
+  margin-right: 10px;
+  box-sizing: border-box;
+  background: white;
+  color: #ff0062;
+  border-color: #ff0062;
+  border: 2px solid #ff0062;
   margin-top: 10px;
   margin-bottom: 10px;
 }
