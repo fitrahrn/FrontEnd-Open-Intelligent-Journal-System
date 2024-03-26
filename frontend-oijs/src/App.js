@@ -14,6 +14,7 @@ import Issue from './pages/journal/Issue';
 import Subscriptions from './pages/journal/Subscriptions';
 import Submission from './pages/submission/Submission';
 import SubmissionArchives from './pages/submission/SubmissionArchives';
+import Submit from './pages/submission/Submit';
 function App() {
   return (
     <BrowserRouter>
@@ -32,6 +33,7 @@ function App() {
         <Route path='/:journal/subscription' element={<Subscriptions/>}/>
         <Route path='/:journal/submission' element={<Submission/>}/>
         <Route path='/:journal/submission/archives' element={<SubmissionArchives/>}/>
+        <Route path='/:journal/submission/submit' element={<Submit/>}/>
 
       </Routes>
     </BrowserRouter>

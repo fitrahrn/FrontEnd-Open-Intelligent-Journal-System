@@ -50,6 +50,7 @@ input[type="checkbox"]{
   top: 2px;
   bottom: 2px;
 }
+a {text-decoration: none; }
 input[type="number"]{
   display: inline-block;
   width: 100px;
@@ -72,15 +73,16 @@ input[type="number"]{
 }
 
 button{
-  background: #0b6dff;
-  border:0;
+  background-color: #0b6dff;
   padding: 15px 30px;
-  margin-top: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   color: white;
   border-radius: 10px;
   text-decoration: none;
   display: inline-block;
   cursor: pointer;
+  border:0;
 }
 .submit{
   display: block;
@@ -106,6 +108,7 @@ h2{
 }
 .link{
   text-align: center;
+
 }
 .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -157,4 +160,54 @@ p {
   -webkit-box-align: center;
   align-items: center;
   margin-left: auto;
+}
+
+.headerTitle{
+  margin-right: auto;
+  min-width: 1px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 80%;
+}
+.listSubmission{
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 100%;
+  margin-top:10px;
+}
+.rightSubmission{
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  margin-left: auto;
+}
+.review{
+  padding: 10px 30px;
+  margin-left: 10px;
+  margin-right: 10px;
+  box-sizing: border-box;
+  background: white;
+  color: #e08914;
+  border-color: #e08914;
+  border: 2px solid #e08914;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.view{
+  padding: 10px 30px;
+  margin-left: 10px;
+  margin-right: 10px;
+  box-sizing: border-box;
+  background: white;
+  color: #007ab2;
+  border-color: #007ab2;
+  border: 2px solid #007ab2;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
