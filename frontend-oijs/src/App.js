@@ -13,6 +13,8 @@ import Guidelines from './pages/journal/Guidelines';
 import Issue from './pages/journal/Issue';
 import Subscriptions from './pages/journal/Subscriptions';
 import Submission from './pages/submission/Submission';
+import Review from './pages/review/Review';
+import ReviewArticle from './pages/review/ReviewArticle';
 import SubmissionArchives from './pages/submission/SubmissionArchives';
 import Submit from './pages/submission/Submit';
 function App() {
@@ -34,6 +36,9 @@ function App() {
         <Route path='/:journal/submission' element={<Submission/>}/>
         <Route path='/:journal/submission/archives' element={<SubmissionArchives/>}/>
         <Route path='/:journal/submission/submit' element={<Submit/>}/>
+        <Route path='/:journal/submission' element={<Submission/>}/>
+        <Route path='/:journal/review' element={<Review/>}/>
+        <Route path='/:journal/review/:article' element={<ReviewArticle/>}/>
 
       </Routes>
     </BrowserRouter>
