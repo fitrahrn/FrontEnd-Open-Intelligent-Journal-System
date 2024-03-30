@@ -17,6 +17,11 @@ import Review from './pages/review/Review';
 import ReviewArticle from './pages/review/ReviewArticle';
 import SubmissionArchives from './pages/submission/SubmissionArchives';
 import Submit from './pages/submission/Submit';
+import EditorQueue from './pages/editor/EditorQueue';
+import EditorIssue from './pages/editor/EditorIssue';
+import EditorArchives from './pages/editor/EditorArchive';
+import EditorUnassigned from './pages/editor/EditorUnassigned';
+import EditorSettings from './pages/editor/EditorSettings';
 function App() {
   return (
     <BrowserRouter>
@@ -39,6 +44,12 @@ function App() {
         <Route path='/:journal/submission' element={<Submission/>}/>
         <Route path='/:journal/review' element={<Review/>}/>
         <Route path='/:journal/review/:article' element={<ReviewArticle/>}/>
+        <Route path='/:journal/journal' element={<EditorQueue/>}/>
+        <Route path='/:journal/journal/issue' element={<EditorIssue/>}/>
+        <Route path='/:journal/journal/archives' element={<EditorArchives/>}/>
+        <Route path='/:journal/journal/unassigned' element={<EditorUnassigned/>}/>
+        <Route path='/:journal/journal/settings' element={<EditorSettings/>}/>
+
 
       </Routes>
     </BrowserRouter>
