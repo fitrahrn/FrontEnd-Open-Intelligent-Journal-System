@@ -22,6 +22,11 @@ import EditorIssue from './pages/editor/EditorIssue';
 import EditorArchives from './pages/editor/EditorArchive';
 import EditorUnassigned from './pages/editor/EditorUnassigned';
 import EditorSettings from './pages/editor/EditorSettings';
+import ArticleSubmission from './pages/editor/article/ArticleSubmission';
+import ArticleReview from './pages/editor/article/ArticleReview';
+import ArticleCopyediting from './pages/editor/article/ArticleCopyeditiing';
+import ArticleProduction from './pages/editor/article/ArticleProduction';
+import ArticlePublication from './pages/editor/article/ArticlePublication';
 function App() {
   return (
     <BrowserRouter>
@@ -49,6 +54,12 @@ function App() {
         <Route path='/:journal/journal/archives' element={<EditorArchives/>}/>
         <Route path='/:journal/journal/unassigned' element={<EditorUnassigned/>}/>
         <Route path='/:journal/journal/settings' element={<EditorSettings/>}/>
+        <Route path='/:journal/journal/:article' element={<ArticleSubmission/>}/>
+        <Route path='/:journal/journal/:article/review' element={<ArticleReview/>}/>
+        <Route path='/:journal/journal/:article/copyediting' element={<ArticleCopyediting/>}/>
+        <Route path='/:journal/journal/:article/production' element={<ArticleProduction/>}/>
+        <Route path='/:journal/journal/:article/publication' element={<ArticlePublication/>}/>
+        
 
 
       </Routes>

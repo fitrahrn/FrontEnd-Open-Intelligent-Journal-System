@@ -22,7 +22,7 @@ const EditorQueue = () => {
                                 <div class="rightSubmission">
                                     <span>1/1</span>
                                     <button class="review">Review</button>
-                                    <button class="view">View</button>
+                                    <Link to={`1`}><button class="view">View</button></Link>
                                 </div>                    
                             </div>
                         </li>
@@ -35,7 +35,7 @@ const EditorQueue = () => {
                                 <div class="rightSubmission">
                                     <span>1/2</span>
                                     <button class="review">Review</button>
-                                    <button class="view">View</button>
+                                    <Link to={`/2`}><button class="view">View</button></Link>
                                 </div>                    
                             </div>
                         </li>
