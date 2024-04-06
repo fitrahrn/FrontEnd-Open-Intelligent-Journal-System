@@ -47,7 +47,7 @@ const NavbarArticle= () => {
            </li>
            <li className="nav__item">
              <NavLink to={`/${journal}/journal/${article}`} className="nav__link">
-               Submssion
+               Submission
              </NavLink>
            </li>
            <li className="nav__item">

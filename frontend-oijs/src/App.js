@@ -24,7 +24,7 @@ import EditorUnassigned from './pages/editor/EditorUnassigned';
 import EditorSettings from './pages/editor/EditorSettings';
 import ArticleSubmission from './pages/editor/article/ArticleSubmission';
 import ArticleReview from './pages/editor/article/ArticleReview';
-import ArticleCopyediting from './pages/editor/article/ArticleCopyeditiing';
+import ArticleCopyediting from './pages/editor/article/ArticleCopyediting';
 import ArticleProduction from './pages/editor/article/ArticleProduction';
 import ArticlePublication from './pages/editor/article/ArticlePublication';
 function App() {

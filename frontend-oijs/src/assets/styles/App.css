@@ -247,3 +247,12 @@ p {
 .formFiles h4{
   text-align: left;
 }
+.tablesReviewer{
+  width: 100%;
+  text-align: left;
+}
+td, th{
+  border:0;
+  padding:20px ;
+  border-spacing:0;
+}

@@ -1,16 +1,16 @@
 import React from 'react';
 import LayoutArticle from '../../../components/LayoutArticle';
-const ArticleProduction = () => {
+const ArticleCopyediting = () => {
     return (
         <LayoutArticle>
             <div className="App">
             <article class="card">
                 <div className="content-container">
-                    <h1>Production</h1>
+                    <h1>Copyediting</h1>
                     <div class='formFiles'>
                         <div class="divFiles">
-                            <h3>Production Ready Files</h3>
-                            <button class="filter">Upload File</button>
+                            <h3>Draft Files</h3>
+                            <button class="filter">Upload/Select Files</button>
                         </div>
                         <div class="divFiles">
                             <span>Title.pdf</span>
@@ -19,12 +19,18 @@ const ArticleProduction = () => {
                     </div>
                     <form class='formFiles'>
                         <div class="divFiles">
-                            <h3>Production Discussion</h3>
+                            <h3>Copyediting Discussion</h3>
                             <button class="filter">Add Discusiion</button>
                         </div>
                     </form>
+                    <form class='formFiles'>
+                        <div class="divFiles">
+                            <h3>Copyedited</h3>
+                            <button class="filter">Upload/Select Files</button>
+                        </div>
+                    </form>
                     <div class="submit">
-                        <button>Schedule For Publication</button>
+                        <button>Send to Production</button>
                     </div>
                     
                 </div>
@@ -35,4 +41,4 @@ const ArticleProduction = () => {
     );
 }
 
-export default ArticleProduction;
+export default ArticleCopyediting;

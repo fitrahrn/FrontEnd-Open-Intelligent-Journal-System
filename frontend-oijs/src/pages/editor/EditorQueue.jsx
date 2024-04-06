@@ -33,8 +33,7 @@ const EditorQueue = () => {
                                     <div>The Bangkit Final report: Bangkit </div>
                                 </div>
                                 <div class="rightSubmission">
-                                    <span>1/2</span>
-                                    <button class="review">Review</button>
+                                    <button class="cancel">Submission</button>
                                     <Link to={`/2`}><button class="view">View</button></Link>
                                 </div>                    
                             </div>
