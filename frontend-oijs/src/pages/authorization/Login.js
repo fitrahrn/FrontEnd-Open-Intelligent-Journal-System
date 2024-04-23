@@ -1,18 +1,33 @@
 import React, {useState, useEffect} from 'react';
 import {NavLink, useNavigate} from "react-router-dom";
+import axios from "axios";
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [msg, setMsg] = useState("");
-    const [isAdmin, setIsAdmin] = useState("");
-    const [user_id, setUserId] = useState("");
+    const navigate = useNavigate();
+    const Login = async (e) => {
+        e.preventDefault();
+        try {
+            await axios.post('http://localhost:3001/login', {
+                email: email,
+                password: password
+            });
+            navigate(`/home`);
+        } catch (error) {
+            if (error.response) {
+                setMsg(error.response.data.msg);
+            }
+        }
+    }
     return (
         <section>
         <div >
             <div >
                 <div >
                     <div >
-                        <form  >
+                        <form  onSubmit={Login} className="box">
+                        <p className="error" style={{color: "red"}}>{msg}</p>
                             <h1>Log In</h1>
                             <div className="field">
                                 <label className="label">Email</label>
