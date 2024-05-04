@@ -21,7 +21,7 @@ const Journal = () => {
                         <Link to={`/`} className="button is-success">
                         <h2 >{article.title}</h2>
                         </Link>
-                        <p >{article.writer}</p>
+                        <p >{article.authors}</p>
                         <p >Year: {article.year} | Volume: {article.volume} | Issue: {article.issue}</p> 
                         <p >Abstract <button id='pdf'>PDF</button></p>  
                         <p >DOI: <a href= {article.doi}>{article.doi}</a> </p>
