@@ -26,7 +26,7 @@ const Home = () => {
                     <img class="featured-image-left" src={journal.image_path} alt = {cover}/>
                     <p class="text"> {journal.description}</p>
                     <p class="subtitled">ISSN: {journal.issn}</p> 
-                    <p class="subtitled">E-ISSN: {journal.e_isssn}</p> 
+                    <p class="subtitled">E-ISSN: {journal.e_issn}</p> 
                     <p class="subtitled">{journal.reg_number}</p> 
                     <p class="subtitled">Published by the {journal.publisher}</p> 
                 </article>
