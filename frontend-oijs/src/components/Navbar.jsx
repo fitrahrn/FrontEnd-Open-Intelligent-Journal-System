@@ -1,62 +1,41 @@
 import React ,{ useState }from 'react';
 import { NavLink } from "react-router-dom";
-import "../assets/styles/Navbar.css";
 import logo from "../assets/images/itb.png"
 const Navbar = () => {
   return (
     
-    <header className="header">
-      <div class="jumbotron">
-          <nav>
-            <div class='navProfileWrapper'>
-              <ul class='navProfile'>
-                <li class='profile'>
-                  <NavLink to="/register" className="profile">
-                    Register   
-                  </NavLink>
-                </li>
-                <li class='profile'>
-                  <NavLink to="/login" className="profile">
-                    Login  
-                  </NavLink>
-                </li>
-              </ul>
-            </div>
-          </nav>
-          <img class="featured-image-left" id="logo" src={logo}/>
-          <h1 class="title">Open Intelligent Journal System</h1>
-          <div class="title">Institut Teknologi Bandung</div>
+  <nav class="navbar navbar-expand-lg text-bg-primary">
+    <div class="container-fluid">
+      <a class="navbar-brand text-white" href="/">
+        
+        OIJS
+      </a>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+          <li class="nav-item">
+            <a class="nav-link active text-white" aria-current="page" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/archives">Archives</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/about">About</a>
+          </li>
+        </ul>
+        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+          <input class="form-control" type="search" placeholder="Search..." aria-label="Search"/>
+        </form>
+        <div class="col-md-3 text-end">
+          <button class="btn btn-outline-light me-2">
+            Login
+          </button>
+          <button class="btn btn-light text-primary">
+            Sign-Up
+          </button>
+        </div>
       </div>
-     <nav className="nav_container">
-       <div
-         className={"nav__menu"}
-         id="nav-menu"
-       >
-         <ul className="nav__list">
-           <li className="nav__item">
-             <NavLink to="/" className="nav__link">
-               Home
-             </NavLink>
-           </li>
-           <li className="nav__item">
-             <NavLink to="/archives" className="nav__link">
-               Archives
-             </NavLink>
-           </li>
-           <li className="nav__item">
-             <NavLink
-               to="/about"
-               className="nav__link"
-             >
-               About
-             </NavLink>
-           </li>
-         </ul>
-       </div>
-      
-     </nav>
-     
-   </header>
+    </div>
+  </nav>
   )
 }
 
