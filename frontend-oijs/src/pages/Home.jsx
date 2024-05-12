@@ -17,24 +17,33 @@ const Home = () => {
     console.log(listJournal)
     return (
         <Layout>
-            <div id="content">
+        <div id="container-fluid">
             {listJournal.map((journal) => (
-                <article class="card">
-                    <Link to={`/${journal.path}`} className="button is-success">
-                    <h2 > {journal.title}</h2>
-                    </Link>
-                    <img class="featured-image-left" src={journal.image_path} alt = {cover}/>
-                    <p class="text"> {journal.description}</p>
-                    <p class="subtitled">ISSN: {journal.issn}</p> 
-                    <p class="subtitled">E-ISSN: {journal.e_issn}</p> 
-                    <p class="subtitled">{journal.reg_number}</p> 
-                    <p class="subtitled">Published by the {journal.publisher}</p> 
-                </article>
-            ))}
-            
-
-
-
+                <div class="card m-3 p-3 w-75 mx-auto" >
+                    <div class="row g-0">
+                        <div class="col-md-2 pt-4">
+                            <img class="img-fluid rounded-start" src={journal.image_path} alt = {cover}/>
+                        </div>
+                        <div class="col-md-10">
+                            <div class="card-body">
+                                <a href={`/${journal.path}`} class="card-title">
+                                    <h2 class="card-title"> {journal.title}</h2>
+                                </a>
+                                <p class="card-text"> {journal.description}</p>
+                                <p class="subtitled">ISSN: {journal.issn}</p> 
+                                <p class="subtitled">E-ISSN: {journal.e_issn}</p> 
+                                <p class="subtitled">{journal.reg_number}</p> 
+                                <p class="subtitled">Published by the {journal.publisher}</p> 
+                            </div>
+                        
+                            
+                        </div>
+                    </div>
+                    
+                </div>
+                    )
+                )
+            }
         </div>
         </Layout>
     );
