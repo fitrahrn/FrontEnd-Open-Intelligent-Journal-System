@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {NavLink, useNavigate} from "react-router-dom";
 import axios from "axios";
+import Layout from '../../components/Layout';
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -21,44 +22,45 @@ const Login = () => {
         }
     }
     return (
-        <section>
-        <div >
-            <div >
-                <div >
-                    <div >
-                        <form  onSubmit={Login} className="box">
-                        <p className="error" style={{color: "red"}}>{msg}</p>
-                            <h1>Log In</h1>
-                            <div className="field">
-                                <label className="label">Email</label>
-                                <div className="control">
-                                    <input type="text" className="input" placeholder='Email' value={email} onChange={(e) => setEmail(e.target.value)}/>
-                                </div>
-                            </div>
-                            <div className="field">
-                                <label className="label">Password</label>
-                                <div className="control">
-                                    <input type="password" className="input" placeholder='******' value={password} onChange={(e) => setPassword(e.target.value)}/>
-                                </div>
-                            </div>
-                            <div>
-                                <input type="checkbox" />
-                                <label htmlFor="plaintext">Keep me Logged</label>
-                            </div>
-                            <div className="field mt-5">
-                                <button className="submit">Login</button>
-                            </div>
+        <Layout>
 
-                            <div className="link" >
-                                <p to="/register">Don't have an account?</p>
-                                <NavLink to="/register">Sign Up</NavLink>
+            <body class="d-flex align-items-center justify-content-center ">
+                <div class="form-signin container w-25 m-auto" >
+                    <form  onSubmit={Login}>
+                        <p class="error" style={{color: "red"}}>{msg}</p>
+                        <h1 class="h3 mb-3 fw-normal text-center">Log In</h1>
+                        <div >
+                            <label class="form-label">Email</label>
+                            <div class="control">
+                                <input type="text" class="form-control" placeholder='Email' value={email} onChange={(e) => setEmail(e.target.value)}/>
                             </div>
-                        </form>
-                    </div>
+                        </div>
+                        <div >
+                            <label class="form-label">Password</label>
+                            <div class="control">
+                                <input type="password" class="form-control" placeholder='******' value={password} onChange={(e) => setPassword(e.target.value)}/>
+                            </div>
+                        </div>
+                        <div class="d-flex flex-row justify-content-between">
+                            <div class="form-check text-start my-3">
+                                <input id="remember-me" class="form-check-input" type="checkbox" />
+                                <label for="remember-me" class="form-check-label">Remember me</label>
+                            </div>
+                            <NavLink to="/" class="align-items-center link-dark mt-3 link-opacity-50-hover">Forget Password?</NavLink>
+                        </div>
+                            
+                        <button class="w-100 btn btn-primary btn-lg">Login</button>
+
+                        <div class="link" >
+                            <p class="fw-light mt-3" to="/register">Don't have an account?</p>
+                            <NavLink to="/register" class=" fw-light mt-3 link-opacity-50-hover">Sign Up</NavLink>
+                        </div>
+                    </form>
                 </div>
-            </div>
-        </div>
-        </section>
+            </body>
+                        
+        </Layout>
+        
     );
 }
 

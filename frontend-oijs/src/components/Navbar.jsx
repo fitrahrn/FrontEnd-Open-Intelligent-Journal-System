@@ -2,7 +2,7 @@ import React ,{ useState }from 'react';
 import { NavLink } from "react-router-dom";
 import logo from "../assets/images/itb.png"
 const Navbar = () => {
-  let isLogin = true;
+  let isLogin = false;
   return (
     
   <nav class="navbar navbar-expand-lg text-bg-primary border-bottom">
@@ -47,12 +47,16 @@ const Navbar = () => {
             
            :
             <div class="col-md-3 text-end">
-              <button class="btn btn-outline-light me-2">
-                Login
-              </button>
-              <button class="btn btn-light text-primary">
-                Sign-Up
-              </button>
+              <NavLink to="/login">
+                <button class="btn btn-outline-light me-2">
+                  Login
+                </button>
+              </NavLink>
+              <NavLink to="/register">
+                <button class="btn btn-light text-primary">
+                  Sign-Up
+                </button>
+              </NavLink>
             </div>
         }
         

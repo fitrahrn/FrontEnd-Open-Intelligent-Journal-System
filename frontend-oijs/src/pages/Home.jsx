@@ -11,7 +11,7 @@ const Home = () => {
       }, []);
     
     const getJournals = async () => {
-        const response = await axios.get(`http://localhost:3001/allJournals`)
+        const response = await axios.get(`http://localhost:3001/journals`)
         setJournal(response.data);
     };
     console.log(listJournal)
@@ -26,14 +26,14 @@ const Home = () => {
                         </div>
                         <div class="col-md-10">
                             <div class="card-body">
-                                <a href={`/${journal.path}`} class="card-title">
+                                <a href={`/${journal.path}`} class="card-title text-decoration-none">
                                     <h2 class="card-title"> {journal.title}</h2>
                                 </a>
                                 <p class="card-text"> {journal.description}</p>
-                                <p class="subtitled">ISSN: {journal.issn}</p> 
-                                <p class="subtitled">E-ISSN: {journal.e_issn}</p> 
-                                <p class="subtitled">{journal.reg_number}</p> 
-                                <p class="subtitled">Published by the {journal.publisher}</p> 
+                                <p class="card-text">ISSN: {journal.issn}</p> 
+                                <p class="card-text">E-ISSN: {journal.e_issn}</p> 
+                                <p class="card-text">{journal.reg_number}</p> 
+                                <p class="card-text">Published by the {journal.publisher}</p> 
                             </div>
                         
                             

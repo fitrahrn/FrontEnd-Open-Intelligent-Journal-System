@@ -27,6 +27,9 @@ import ArticleReview from './pages/editor/article/ArticleReview';
 import ArticleCopyediting from './pages/editor/article/ArticleCopyediting';
 import ArticleProduction from './pages/editor/article/ArticleProduction';
 import ArticlePublication from './pages/editor/article/ArticlePublication';
+import HostJournal from './pages/admin/HostJournal';
+import RequestUser from './pages/admin/RequestUser';
+import Setting from './pages/admin/Setting';
 function App() {
   return (
     <BrowserRouter>
@@ -36,6 +39,9 @@ function App() {
         <Route path='/register' element = {<Register/>}/>
         <Route path='/archives' element={<Archives />}/>
         <Route path='/about' element={<About />}/>
+        <Route path='/admin/journal' element={<HostJournal/>}/>
+        <Route path='/admin/user' element={<RequestUser/>}/>
+        <Route path='/admin/setting' element={<Setting/>}/>
         <Route path='/:journal' element={<Journal/>}/>
         <Route path='/:journal/about' element={<AboutJournal/>}/>
         <Route path='/:journal/editorial' element={<Editorial/>}/>

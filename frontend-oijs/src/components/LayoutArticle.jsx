@@ -4,8 +4,8 @@ const LayoutArticle = ({children}) => {
     return (
         <React.Fragment>
             <NavbarArticle/>
-            <div className="columns mt-6">
-                <div className="column has-background-light">
+            <div >
+                <div >
                     <main>{children}</main>
                 </div>
             </div>
