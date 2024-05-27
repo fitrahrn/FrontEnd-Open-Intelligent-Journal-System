@@ -4,8 +4,8 @@ const LayoutAdmin = ({children}) => {
     return (
         <React.Fragment>
             <Sidebar/>
-            <div className="columns mt-6">
-                <div className="column has-background-light">
+            <div>
+                <div >
                     <main>{children}</main>
                 </div>
             </div>

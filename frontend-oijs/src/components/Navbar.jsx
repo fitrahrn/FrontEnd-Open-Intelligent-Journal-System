@@ -2,7 +2,7 @@ import React ,{ useState }from 'react';
 import { NavLink } from "react-router-dom";
 import logo from "../assets/images/itb.png"
 const Navbar = () => {
-  let isLogin = false;
+  let isLogin = true;
   return (
     
   <nav class="navbar navbar-expand-lg text-bg-primary border-bottom">

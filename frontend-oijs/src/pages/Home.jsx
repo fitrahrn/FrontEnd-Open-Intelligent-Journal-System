@@ -17,7 +17,7 @@ const Home = () => {
     console.log(listJournal)
     return (
         <Layout>
-        <div id="container-fluid">
+        <div class="container-fluid">
             {listJournal.map((journal) => (
                 <div class="card m-3 p-3 w-75 mx-auto" >
                     <div class="row g-0">

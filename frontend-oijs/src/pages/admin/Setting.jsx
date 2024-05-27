@@ -1,14 +1,14 @@
 import React from 'react';
-import Layout from '../../components/Layout';
+import LayoutAdmin from '../../components/LayoutAdmin';
 const Setting = () => {
     return (
-        <Layout>
+        <LayoutAdmin>
             <div className="App">
                 <div className="content-container">
                     <h1>Setting</h1>
                 </div>
             </div>
-        </Layout>
+        </LayoutAdmin>
     );
 }
 
