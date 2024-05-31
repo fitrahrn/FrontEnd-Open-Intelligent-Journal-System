@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import LayoutAdmin from '../../components/LayoutAdmin';
 import axios from "axios";
+import {Link, } from "react-router-dom";
 const HostJournal = () => {
     const [listJournal,setJournal] = useState([]);
     
@@ -29,7 +30,7 @@ const HostJournal = () => {
                     <div class="card m-3 p-3" >
                         <div class="row card-body  ">
                             <h5 class="card-title col">Hosted Journals</h5>
-                            <button class="btn btn-outline-primary col-2">Create Journal</button>
+                            <Link class="col-2" to={`create`}><button class="btn btn-outline-primary w-100" >Create Journal</button></Link>
                         </div>
                         <div class="row card-body">
                             <p class="card-subtitle mb-2 text-body-secondary col-4">Name</p>
