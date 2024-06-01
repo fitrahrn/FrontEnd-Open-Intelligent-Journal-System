@@ -31,6 +31,7 @@ import HostJournal from './pages/admin/HostJournal';
 import RequestUser from './pages/admin/RequestUser';
 import Setting from './pages/admin/Setting';
 import CreateJournal from './pages/admin/CreateJournal';
+import EditJournal from './pages/admin/EditJournal';
 function App() {
   return (
     <BrowserRouter>
@@ -42,6 +43,7 @@ function App() {
         <Route path='/about' element={<About />}/>
         <Route path='/admin/journal' element={<HostJournal/>}/>
         <Route path='/admin/journal/create' element={<CreateJournal/>}/>
+        <Route path='/admin/journal/edit/:path' element={<EditJournal/>}/>
         <Route path='/admin/user' element={<RequestUser/>}/>
         <Route path='/admin/setting' element={<Setting/>}/>
         <Route path='/:journal' element={<Journal/>}/>

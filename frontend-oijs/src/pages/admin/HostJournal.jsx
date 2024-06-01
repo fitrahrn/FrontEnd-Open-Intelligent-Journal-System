@@ -4,11 +4,9 @@ import axios from "axios";
 import {Link, } from "react-router-dom";
 const HostJournal = () => {
     const [listJournal,setJournal] = useState([]);
-    
     useEffect(() => {
         getJournals();
       }, []);
-    
     const getJournals = async () => {
         const response = await axios.get(`http://localhost:3001/journals`)
         setJournal(response.data);
@@ -27,8 +25,8 @@ const HostJournal = () => {
         <LayoutAdmin>
             <div class="container-fluid">
                 <div class="content-container">
-                    <div class="card m-3 p-3" >
-                        <div class="row card-body  ">
+                    <div class="card m-3 p-3">
+                        <div class="row card-body">
                             <h5 class="card-title col">Hosted Journals</h5>
                             <Link class="col-2" to={`create`}><button class="btn btn-outline-primary w-100" >Create Journal</button></Link>
                         </div>
@@ -44,7 +42,7 @@ const HostJournal = () => {
                                         <p class="card-text col-4">{journal.path}</p>
                                         <div class="btn-group col-4 ">
                                             <button onClick={() => deleteJournal(journal.path)} class="btn btn-outline-danger">Delete</button>
-                                            <button href="#" class="btn btn-outline-warning">Edit</button>
+                                            <Link to={`edit/${journal.path}`} class="btn btn-outline-warning">Edit</Link>    
                                             <button href="#" class="btn btn-outline-primary">Setting</button>
                                         </div>
                                     </div>

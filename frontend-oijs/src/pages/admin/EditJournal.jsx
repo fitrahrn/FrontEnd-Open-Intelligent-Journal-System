@@ -1,50 +1,81 @@
-import React, {useState} from 'react';
-import {useNavigate} from "react-router-dom";
-import LayoutAdmin from '../../components/LayoutAdmin';
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-const CreateJournal = () => {
+import { useNavigate, useParams } from "react-router-dom";
+import LayoutAdmin from '../../components/LayoutAdmin';
+const EditJournal = () => {
     const [msg, setMsg] = useState("");
     const [title,setTitle] = useState("");
     const [initials,setInitials] = useState("");
     const [abbreviation, setAbbreviation] = useState("");
-    const [path, setPath] = useState("");
+    const [imagePath,setImagePath] = useState("");
     const [description,setDescription] = useState("");
     const [language,setLanguage] = useState("Indonesia");
     const [publisher,setPublisher] = useState("");
-    const [issn,setIssn] = useState("");
-    const [eissn,setEissn] = useState("");
-    const [regNumber,setRegNumber] = useState("");
-    const [appear,setAppear] = useState(false);
+    const [issn,setIssn] = useState("")
+    const [eissn,setEissn] = useState("")
+    const [regNumber,setRegNumber] = useState("")
+    const [appear,setAppear] = useState(false)
+    const [newPath, setNewPath] = useState("");
+    const { path } = useParams();
+    const [id,setId] = useState("");
     const [imageName,setImageName] = useState("No Image Selected");
     const [file,setFile] = useState("");
     const [preview,setPreview] = useState("");
     const navigate = useNavigate();
-    const addJournal = async (e) => {
-        e.preventDefault();
-        const formData = new FormData();
-        formData.append("title",title);
-        formData.append("initials",initials);
-        formData.append("abbreviation",abbreviation);
-        formData.append("description",description);
-        formData.append("journal_path", path);
-        formData.append("languages",language);
-        formData.append("appear",appear);
-        formData.append("publisher",publisher);
-        formData.append("issn",issn);
-        formData.append("e_issn",eissn);
-        formData.append("reg_number",regNumber);
-        formData.append("file",file)
-        try {
-            await axios.post('http://localhost:3001/journal',formData, {
-                "Content-type" : "multipart/form-data"
-              });
-            navigate("/admin/journal");
-        } catch (error) {
-            if (error.response) {
-                setMsg(error.response.data.msg);
-            }
-        }
+
+  useEffect(() => {
+    getJournalById();
+    // eslint-disable-next-line
+  }, []);
+
+  const getJournalById = async () => {
+    const journal = await axios.get(`http://localhost:3001/journal/${path}`);
+    
+    setId(journal.data.id);
+    setTitle(journal.data.title);
+    setInitials(journal.data.initials);
+    setAbbreviation(journal.data.abbreviation);
+    setImagePath(journal.data.imagePath);
+    setDescription(journal.data.description);
+    setLanguage(journal.data.languages);
+    setPublisher(journal.data.publisher);
+    setIssn(journal.data.issn);
+    setEissn(journal.data.e_issn);
+    setRegNumber(journal.data.reg_number);
+    setAppear(journal.data.appear);
+    setFile(journal.data.journal);
+    setPreview(journal.data.image_path)
+    setNewPath(journal.data.path)
+    console.log(appear)
+  };
+
+  const updateJournal = async (event) => {
+    event.preventDefault(); // ketika disubmit, page tidak reload
+    const formData = new FormData();
+    formData.append("journal_id",id);
+    formData.append("title",title);
+    formData.append("initials",initials);
+    formData.append("abbreviation",abbreviation);
+    formData.append("description",description);
+    formData.append("path", newPath);
+    formData.append("image_path", imagePath);
+    formData.append("languages",language);
+    formData.append("appear",appear);
+    formData.append("publisher",publisher);
+    formData.append("issn",issn);
+    formData.append("e_issn",eissn);
+    formData.append("reg_number",regNumber);
+    formData.append("file",file)
+    console.log(appear)
+    try {
+      await axios.patch(`http://localhost:3001/journal/${path}`, formData, {
+        "Content-type": "multipart/form-data",
+      });
+      navigate(`/admin/journal`);
+    } catch (error) {
+      console.log(error);
     }
+  };
     const loadImage = (event) => {
         const image = event.target.files[0];
         if (image) {
@@ -55,14 +86,15 @@ const CreateJournal = () => {
             setImageName("No File Selected");
             setFile("");
         }
-      };
-    return (
-        <LayoutAdmin>
+    };
+
+  return (
+    <LayoutAdmin>
             <div class="form-signin container w-75 m-auto">
                     <main>
-                        <form onSubmit={addJournal} class="box">
+                        <form onSubmit={updateJournal} class="box">
                             <p class="has-text-centered">{msg}</p>
-                            <h2 class='h2 mb-3 fw-normal text-center'>Create New Journal</h2>
+                            <h2 class='h2 mb-3 fw-normal text-center'>Update Journal</h2>
                             <div class= "mb-3">
                                 <label class="form-label">Journal Title*</label>
                                 <div class="controls">
@@ -84,12 +116,13 @@ const CreateJournal = () => {
                             <div class= "mb-3">
                                 <label class="form-label">Journal Path*</label>
                                 <div class="controls">
-                                    <input type="text" class="form-control" placeholder="Path" value={path} onChange={(e) => setPath(e.target.value)}/>
+                                    <input type="text" class="form-control" placeholder="Path" value={newPath} onChange={(e) => setNewPath(e.target.value)}/>
                                 </div>
                             </div>
 
                             <label for="image" class="form-label">Upload Cover Image</label>
                             <input class="form-control" type="file" id="image" name="image" accept="image/png, image/jpeg"  onChange={loadImage} onClick={() =>setPreview("")}/>
+
                             {preview ? (
                                     <img id="image"class="m-4 img-fluid rounded-start" src={preview} alt="" />
                             ) : (
@@ -136,18 +169,18 @@ const CreateJournal = () => {
                                 </div>
                             </div>
                             <div class="form-check text-start my-3">
-                                <input id="appear" class="form-check-input" type="checkbox" value={appear} onChange={(e) => setAppear(e.target.value)} />
+                                <input id="appear" class="form-check-input" type="checkbox" value={appear} checked={appear} onChange={(e) => setAppear(e.target.checked)} />
                                 <label for="appear" class="form-check-label">Enable this journal to appear publicly on the site</label>
                             </div>
                             <div >
-                                <button class="w-100 btn btn-primary btn-lg">Submit</button>
+                                <button class="w-100 btn btn-primary btn-lg">Update</button>
                             </div>
                         </form>
                         <br/>
                     </main>
                 </div>
         </LayoutAdmin>
-    );
-}
+  );
+};
 
-export default CreateJournal;
+export default EditJournal;
