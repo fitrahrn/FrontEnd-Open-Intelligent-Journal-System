@@ -14,7 +14,6 @@ const Home = () => {
         const response = await axios.get(`http://localhost:3001/journals`)
         setJournal(response.data);
     };
-    console.log(listJournal)
     return (
         <Layout>
         <div class="container-fluid">
