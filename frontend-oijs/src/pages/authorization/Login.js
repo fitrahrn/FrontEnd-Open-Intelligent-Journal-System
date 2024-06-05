@@ -9,6 +9,7 @@ const Login = () => {
     const navigate = useNavigate();
     const Login = async (e) => {
         e.preventDefault();
+        axios.defaults.withCredentials=true;
         try {
             await axios.post('http://localhost:3001/login', {
                 email: email,
