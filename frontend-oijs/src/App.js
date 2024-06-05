@@ -56,7 +56,6 @@ function App() {
         <Route path='/submission' element={<Submission/>}/>
         <Route path='/submission/archives' element={<SubmissionArchives/>}/>
         <Route path='/submission/submit' element={<Submit/>}/>
-        <Route path='/submission' element={<Submission/>}/>
         <Route path='/:journal/review' element={<Review/>}/>
         <Route path='/:journal/review/:article' element={<ReviewArticle/>}/>
         <Route path='/:journal/journal' element={<EditorQueue/>}/>

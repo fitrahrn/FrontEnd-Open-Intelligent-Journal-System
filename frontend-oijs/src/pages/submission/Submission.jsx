@@ -30,7 +30,7 @@ const Submission = () => {
                     <div class="card m-3 p-3">
                         <div class="row card-body">
                             <h5 class="card-title col">Hosted Journals</h5>
-                            <Link class="col-2" to={`create`}><button class="btn btn-outline-primary w-100" >Create Journal</button></Link>
+                            <Link class="col-2" to={`submit`}><button class="btn btn-outline-primary w-100" >Create Article</button></Link>
                         </div>
                         <div class="row card-body justify-content-between">
                         <p class="card-subtitle mb-2 text-body-secondary col-3">Journal</p>
