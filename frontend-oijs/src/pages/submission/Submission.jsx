@@ -10,9 +10,7 @@ const Submission = () => {
     const getArticles = async () => {
         axios.defaults.withCredentials=true;
         const response = await axios.get(`http://localhost:3001/articles/submission`)
-        console.log(response.data)
         setArticle(response.data);
-        console.log(listArticle)
     };
     const deleteJournal = async (path) => {
         try {
@@ -49,7 +47,7 @@ const Submission = () => {
                                         <p class="card-text col-2">{article.article.workflow_phase}</p>
                                         <div class="btn-group col-2" role="group">
                                             <button  class="btn btn-outline-danger">Delete</button>
-                                            <button href='#' class="btn btn-outline-warning align-middle">Edit</button>    
+                                            <button class="btn btn-outline-warning align-middle"><Link class="link-underline-opacity-0 link-warning" to={`edit/${article.article.article_id}`} >Edit</Link></button>    
                                             <button href="#" class="btn btn-outline-primary">View</button>
                                             
                                         </div>

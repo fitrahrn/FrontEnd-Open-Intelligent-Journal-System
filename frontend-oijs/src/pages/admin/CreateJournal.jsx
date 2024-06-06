@@ -66,25 +66,25 @@ const CreateJournal = () => {
                             <div class= "mb-3">
                                 <label class="form-label">Journal Title*</label>
                                 <div class="controls">
-                                    <input type="text" class="form-control" placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)}/>
+                                    <input type="text" class="form-control" placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)} required/>
                                 </div>
                             </div>
                             <div class= "mb-3">
                                 <label class="form-label">Journal Initials*</label>
                                 <div class="controls">
-                                    <input type="text" class="form-control" placeholder="Initials" value={initials} onChange={(e) => setInitials(e.target.value)}/>
+                                    <input type="text" class="form-control" placeholder="Initials" value={initials} onChange={(e) => setInitials(e.target.value)} required/>
                                 </div>
                             </div>
                             <div class= "mb-3">
                                 <label class="form-label">Journal Abbreviation*</label>
                                 <div class="controls">
-                                    <input type="text" class="form-control" placeholder="Abbreviation" value={abbreviation} onChange={(e) => setAbbreviation(e.target.value)}/>
+                                    <input type="text" class="form-control" placeholder="Abbreviation" value={abbreviation} onChange={(e) => setAbbreviation(e.target.value)} required/>
                                 </div>
                             </div>
                             <div class= "mb-3">
                                 <label class="form-label">Journal Path*</label>
                                 <div class="controls">
-                                    <input type="text" class="form-control" placeholder="Path" value={path} onChange={(e) => setPath(e.target.value)}/>
+                                    <input type="text" class="form-control" placeholder="Path" value={path} onChange={(e) => setPath(e.target.value)} required/>
                                 </div>
                             </div>
 

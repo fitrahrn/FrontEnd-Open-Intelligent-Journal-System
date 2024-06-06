@@ -17,6 +17,7 @@ import Review from './pages/review/Review';
 import ReviewArticle from './pages/review/ReviewArticle';
 import SubmissionArchives from './pages/submission/SubmissionArchives';
 import Submit from './pages/submission/Submit';
+import EditSubmission from './pages/submission/EditSubmission';
 import EditorQueue from './pages/editor/EditorQueue';
 import EditorIssue from './pages/editor/EditorIssue';
 import EditorArchives from './pages/editor/EditorArchive';
@@ -56,6 +57,7 @@ function App() {
         <Route path='/submission' element={<Submission/>}/>
         <Route path='/submission/archives' element={<SubmissionArchives/>}/>
         <Route path='/submission/submit' element={<Submit/>}/>
+        <Route path='/submission/edit/:id' element={<EditSubmission/>}/>
         <Route path='/:journal/review' element={<Review/>}/>
         <Route path='/:journal/review/:article' element={<ReviewArticle/>}/>
         <Route path='/:journal/journal' element={<EditorQueue/>}/>
