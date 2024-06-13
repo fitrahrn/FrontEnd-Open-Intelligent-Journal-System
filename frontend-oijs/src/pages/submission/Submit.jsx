@@ -33,6 +33,7 @@ const Submit = () => {
         axios.defaults.withCredentials=true;
         const response = await axios.get(`http://localhost:3001/journal`)
         setListJournal(response.data);
+        setJournal(response.data[0].journal.path)
     };
     const getUsers = async () => {
         axios.defaults.withCredentials=true;
@@ -42,6 +43,7 @@ const Submit = () => {
 
     const Submit = async (e) => {
         e.preventDefault();
+        console.log(journal)
         const formData = new FormData();
         formData.append("prefix",prefix);
         formData.append("title",title);
@@ -120,7 +122,7 @@ const Submit = () => {
                             <div className="result">
                                 <div className="mb-3">
                                     <label class="form-select-label">Which journals on this site would you like to submit your submission with? </label>
-                                        <select class="form-select mb-3" onChange={(e) => setJournal(e.target.value)} required>
+                                        <select class="form-select mb-3" onChange={(e) => setJournal(e.target.value)} value={journal} required>
                                         {listJournal.map((option) => (
                                             <option key={option.journal.path} value={option.journal.path}>
                                             {option.journal.title}

@@ -1,11 +1,11 @@
 import React from 'react';
-import NavbarEditor from './NavbarEditor';
+import SidebarEditor from './SidebarEditor';
 const LayoutEditor = ({children}) => {
     return (
         <React.Fragment>
-            <NavbarEditor/>
-            <div className="columns mt-6">
-                <div className="column has-background-light">
+            <SidebarEditor/>
+            <div>
+                <div >
                     <main>{children}</main>
                 </div>
             </div>

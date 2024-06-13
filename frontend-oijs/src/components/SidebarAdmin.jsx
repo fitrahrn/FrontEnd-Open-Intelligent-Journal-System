@@ -1,7 +1,7 @@
 import React ,{ useState }from 'react';
 import { NavLink } from "react-router-dom";
 import logo from "../assets/images/itb.png"
-const Sidebar = () => {
+const SidebarAdmin = () => {
   let isLogin = false;
   return (
     <nav class="navbar  bg-body-primary text-bg-primary border-bottom">
@@ -36,7 +36,7 @@ const Sidebar = () => {
         </nav>
   )
 }
-export default Sidebar
+export default SidebarAdmin
 
 
 

@@ -18,7 +18,6 @@ import ReviewArticle from './pages/review/ReviewArticle';
 import SubmissionArchives from './pages/submission/SubmissionArchives';
 import Submit from './pages/submission/Submit';
 import EditSubmission from './pages/submission/EditSubmission';
-import EditorQueue from './pages/editor/EditorQueue';
 import EditorIssue from './pages/editor/EditorIssue';
 import EditorArchives from './pages/editor/EditorArchive';
 import EditorUnassigned from './pages/editor/EditorUnassigned';
@@ -33,6 +32,7 @@ import RequestUser from './pages/admin/RequestUser';
 import Setting from './pages/admin/Setting';
 import CreateJournal from './pages/admin/CreateJournal';
 import EditJournal from './pages/admin/EditJournal';
+import Editor from './pages/editor/Editor';
 function App() {
   return (
     <BrowserRouter>
@@ -58,18 +58,18 @@ function App() {
         <Route path='/submission/archives' element={<SubmissionArchives/>}/>
         <Route path='/submission/submit' element={<Submit/>}/>
         <Route path='/submission/edit/:id' element={<EditSubmission/>}/>
-        <Route path='/:journal/review' element={<Review/>}/>
-        <Route path='/:journal/review/:article' element={<ReviewArticle/>}/>
-        <Route path='/:journal/journal' element={<EditorQueue/>}/>
-        <Route path='/:journal/journal/issue' element={<EditorIssue/>}/>
-        <Route path='/:journal/journal/archives' element={<EditorArchives/>}/>
-        <Route path='/:journal/journal/unassigned' element={<EditorUnassigned/>}/>
-        <Route path='/:journal/journal/settings' element={<EditorSettings/>}/>
-        <Route path='/:journal/journal/:article' element={<ArticleSubmission/>}/>
-        <Route path='/:journal/journal/:article/review' element={<ArticleReview/>}/>
-        <Route path='/:journal/journal/:article/copyediting' element={<ArticleCopyediting/>}/>
-        <Route path='/:journal/journal/:article/production' element={<ArticleProduction/>}/>
-        <Route path='/:journal/journal/:article/publication' element={<ArticlePublication/>}/>
+        <Route path='/review' element={<Review/>}/>
+        <Route path='/review/:article' element={<ReviewArticle/>}/>
+        <Route path='/:journal/submission' element={<Editor/>}/>
+        <Route path='/:journal/manageIssue' element={<EditorIssue/>}/>
+        <Route path='/:journal/archives' element={<EditorArchives/>}/>
+        <Route path='/:journal/unassigned' element={<EditorUnassigned/>}/>
+        <Route path='/:journal/settings' element={<EditorSettings/>}/>
+        <Route path='/:journal/:article' element={<ArticleSubmission/>}/>
+        <Route path='/:journal/:article/review' element={<ArticleReview/>}/>
+        <Route path='/:journal/:article/copyediting' element={<ArticleCopyediting/>}/>
+        <Route path='/:journal/:article/production' element={<ArticleProduction/>}/>
+        <Route path='/:journal/:article/publication' element={<ArticlePublication/>}/>
         
 
 

@@ -1,9 +1,9 @@
 import React from 'react';
-import Sidebar from './Sidebar';
+import SidebarAdmin from './SidebarAdmin';
 const LayoutAdmin = ({children}) => {
     return (
         <React.Fragment>
-            <Sidebar/>
+            <SidebarAdmin/>
             <div>
                 <div >
                     <main>{children}</main>

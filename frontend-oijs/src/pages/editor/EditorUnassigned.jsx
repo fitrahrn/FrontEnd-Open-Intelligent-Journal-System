@@ -1,48 +1,32 @@
 import React from 'react';
-import LayoutEditor from '../../components/LayoutEditor';
-const EditorUnassigned = () => {
+const EditorUnassigned = ({data}) => {
     return (
-        <LayoutEditor>
-            <div className="App">
-                <article class="card">
-                    <span class="oneLine">
-                        <span class="headerTitle">
-                            <h2 class="title">My Assigned</h2>
-                        </span>
-                        
-                    </span>
-                    <ul>
-                        <li>
-                            <div class="listSubmission">
-                                <div>
-                                    <span>author</span>
-                                    <div>The Title: This is Title</div>
-                                </div>
-                                <div class="rightSubmission">
-                                    <span>1/1</span>
-                                    <button class="review">Review</button>
-                                    <button class="view">View</button>
-                                </div>                    
-                            </div>
-                        </li>
-                        <li>
-                            <div class="listSubmission">
-                                <div>
-                                    <span>penulis</span>
-                                    <div>The Bangkit Final report: Bangkit </div>
-                                </div>
-                                <div class="rightSubmission">
-                                    <span>1/2</span>
-                                    <button class="review">Review</button>
-                                    <button class="view">View</button>
-                                </div>                    
-                            </div>
-                        </li>
-                    </ul>
-                    
-                </article>
+        <div class="tab-pane fade p-3" id="unassigned"  role="tabpanel" aria-labelledby="unassigned-tab" >
+            <div class="row card-body justify-content-between list-group-flush">
+            <p class="card-subtitle mb-2 text-body-secondary col-3">Author</p>
+                <p class="card-subtitle mb-2 text-body-secondary col-3">Title</p>
+                <p class="card-subtitle mb-2 text-body-secondary col-2">Review Status</p>
+                <p class="card-subtitle mb-2 text-body-secondary col-2">Workflow Phase</p>
+                <p class="card-subtitle mb-2 text-body-secondary col-1"></p>
             </div>
-        </LayoutEditor>
+            {data.map((article) => (
+                <ul class="list-group ">
+                    <li class="list-group-item">
+                        <div class="row justify-content-between">
+                            <p class="card-text col-3">{article.authors}</p>
+                            <p class="card-text col-3">{article.title}</p>
+                            <p class="card-text col-2">{article.status}</p>
+                            <p class="card-text col-2">{article.workflow_phase}</p>
+                            <button href="#" class="btn btn-outline-primary btn-sm col-1">View</button>
+                        </div>
+                        
+                    </li>
+
+                </ul>
+                )
+                )
+            }
+        </div> 
     );
 }
 

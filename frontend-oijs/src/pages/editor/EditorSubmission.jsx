@@ -1,7 +1,7 @@
-import React from 'react';
-const EditorArchives = ({data}) => {
+const EditorSubmission = ({data}) => {
+    console.log(data)
     return (
-        <div class="tab-pane fade p-3" id="archives"  role="tabpanel" aria-labelledby="archives-tab" >
+        <div class="tab-pane fade show active p-3" id="queue"  role="tabpanel" aria-labelledby="queue-tab" >
             <div class="row card-body justify-content-between list-group-flush">
             <p class="card-subtitle mb-2 text-body-secondary col-3">Author</p>
                 <p class="card-subtitle mb-2 text-body-secondary col-3">Title</p>
@@ -24,11 +24,10 @@ const EditorArchives = ({data}) => {
 
                 </ul>
                 )
-                )
-            }
+            )}
         </div> 
             
     );
 }
 
-export default EditorArchives;
+export default EditorSubmission;
