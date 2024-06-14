@@ -1,101 +1,31 @@
 import React from 'react';
 import LayoutArticle from '../../../components/LayoutArticle';
-const ArticleReview = () => {
+import {Link,useParams} from "react-router-dom";
+const ArticleReview = ({data}) => {
     return (
-        <LayoutArticle>
-            <div className="App">
-            <article class="card">
-                <div className="content-container">
-                    <h1>Review</h1>
-                    <div class='formFiles'>
-                        <div class="divFiles">
-                            <h3>Review Files</h3>
-                            <button class="filter">Upload/Select Files</button>
+        <div class="tab-pane fade p-3" id="review"  role="tabpanel" aria-labelledby="review-tab" >
+            <div>
+                <div class="card container-fluid mb-3">
+                    <div class="row no-gutters card-header ">
+                            <p class="card-text col">Reviewers</p>
+                            <Link class="col-2 btn btn-outline-primary" to={`submit`}>Add Reviewer</Link>
                         </div>
-                        <div class="divFiles">
-                            <span>Title.pdf</span>
-                            <button class="view">Download</button>
-                        </div>
+                    <div class="card-body row">
+                        <p  class="card-text col">{data.title}.pdf</p>
+                        {/* <Link class="btn btn-outline-primary col-2 me-3" to={data.article_path} target="_blank" download>Download</Link> */}
                     </div>
-                    <form class='formFiles'>
-                        <div class="divFiles">
-                            <h3>Reviewers</h3>
-                            <button class="filter">Add Reviewers</button>
-                        </div>
-                        <table class="tablesReviewer">
-                            <tr>
-                                <td>
-                                    <span>Reviewer</span>
-                                </td>
-                                <td>
-                                    <h4>Request Accepted </h4>
-                                    <span>Review due: 2024-04-26</span>
-                                </td>
-                                <td>
-                                    <span>Anonymous Reviewer/<br/>Anonymous Author </span>
-                                </td>
-                            </tr>
-                        </table>
-                    </form>
-                    <div class='formFiles'>
-                        <div class="divFiles">
-                            <h3>Revisions</h3>
-                            <button class="filter">Upload Files</button>
-                        </div>
-                        <div class="divFiles">
-                            <span>Title.pdf</span>
-                            <button class="view">Download</button>
-                        </div>
-                    </div>
-                    <div class='formFiles'>
-                        <div class="divFiles">
-                            <h3>Review Discussions</h3>
-                            <button class="filter">Add Discussion</button>
-                        </div>
-                        <table class="tablesReviewer">
-                            <th>Name</th>
-                            <th>From</th>
-                            <th>Last Reply</th>
-                            <th>Replies</th>
-                            <th>Closed</th>
-                        </table>
-                    </div>
-                    <form class='formFiles'>
-                        <div class="divFiles">
-                            <h3>Participants</h3>
-                            <button class="filter">Assign</button>
-                        </div>
-                        <div>
-                            <div>
-
-                            </div>
-                            <h4>Journal Editor</h4>
-                            <div class="listSubmission">
-                                <span>Joe Smith</span>
-                                <div class="rightSubmission">
-                                    <button id='pdf'>Remove</button><button id='pdf'>Edit</button><button id='pdf'>Notify</button>
-                                </div> 
-                            </div> 
-                            <h4>Author</h4>
-                            <div class="listSubmission">
-                                <span>Will Smith</span>
-                                <div class="rightSubmission">
-                                    <button id='pdf'>Remove</button><button id='pdf'>Edit</button><button id='pdf'>Notify</button>
-                                </div> 
-                            </div> 
-                        </div>
-                    </form>
-                    <div class="submit">
-                        <button class="view">Request Revisions</button>
-                        <button>Accept Submission</button>
-                        <button class="cancel">Decline Submission</button>
-                    </div>
-                    
                 </div>
-            </article>
-                
+                <div class="card mb-3">
+                    <div class="card-header">
+                        Review File
+                    </div>
+                    <div class="card-body row">
+                        <p  class="card-text col">{data.title}.pdf</p>
+                        <Link class="btn btn-outline-primary col-2 me-3" to={data.article_path} target="_blank" download>Download</Link>
+                    </div>
+                </div>
             </div>
-        </LayoutArticle>
+        </div> 
     );
 }
 

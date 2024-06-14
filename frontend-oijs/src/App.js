@@ -19,14 +19,8 @@ import SubmissionArchives from './pages/submission/SubmissionArchives';
 import Submit from './pages/submission/Submit';
 import EditSubmission from './pages/submission/EditSubmission';
 import EditorIssue from './pages/editor/EditorIssue';
-import EditorArchives from './pages/editor/EditorArchive';
-import EditorUnassigned from './pages/editor/EditorUnassigned';
 import EditorSettings from './pages/editor/EditorSettings';
-import ArticleSubmission from './pages/editor/article/ArticleSubmission';
-import ArticleReview from './pages/editor/article/ArticleReview';
-import ArticleCopyediting from './pages/editor/article/ArticleCopyediting';
-import ArticleProduction from './pages/editor/article/ArticleProduction';
-import ArticlePublication from './pages/editor/article/ArticlePublication';
+import Article from './pages/editor/article/Article';
 import HostJournal from './pages/admin/HostJournal';
 import RequestUser from './pages/admin/RequestUser';
 import Setting from './pages/admin/Setting';
@@ -62,14 +56,8 @@ function App() {
         <Route path='/review/:article' element={<ReviewArticle/>}/>
         <Route path='/:journal/submission' element={<Editor/>}/>
         <Route path='/:journal/manageIssue' element={<EditorIssue/>}/>
-        <Route path='/:journal/archives' element={<EditorArchives/>}/>
-        <Route path='/:journal/unassigned' element={<EditorUnassigned/>}/>
         <Route path='/:journal/settings' element={<EditorSettings/>}/>
-        <Route path='/:journal/:article' element={<ArticleSubmission/>}/>
-        <Route path='/:journal/:article/review' element={<ArticleReview/>}/>
-        <Route path='/:journal/:article/copyediting' element={<ArticleCopyediting/>}/>
-        <Route path='/:journal/:article/production' element={<ArticleProduction/>}/>
-        <Route path='/:journal/:article/publication' element={<ArticlePublication/>}/>
+        <Route path='/:journal/submission/:article_id' element={<Article/>}/>
         
 
 

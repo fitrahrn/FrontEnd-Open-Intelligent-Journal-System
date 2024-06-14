@@ -1,63 +1,73 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import LayoutArticle from '../../../components/LayoutArticle';
-const ArticleSubmission = () => {
-    return (
-        <LayoutArticle>
-            <div className="App">
-            <article class="card">
-                <div className="content-container">
-                    <h1>Submission</h1>
-                    <div class='formFiles'>
-                        <div class="divFiles">
-                            <h3>Submission Files</h3>
-                        </div>
-                        <div class="divFiles">
-                            <span>Title.pdf</span>
-                            <button class="view">Download</button>
-                        </div>
-                    </div>
-                    <form class='formFiles'>
-                        <div class="divFiles">
-                            <h3>Pre-Review Discussions</h3>
-                            <button class="filter">Add Discusiion</button>
-                        </div>
-                    </form>
-                    <form class='formFiles'>
-                        <div class="divFiles">
-                            <h3>Participants</h3>
-                            <button class="filter">Assign</button>
-                        </div>
-                        <div>
-                            <div>
+import {Link,useParams} from "react-router-dom";
+import axios from "axios";
+const ArticleSubmission = ({data}) => {
+    const [listContributors,setContributors] = useState([]);
+    const {article_id} = useParams();
 
-                            </div>
-                            <h4>Journal Editor</h4>
-                            <div class="listSubmission">
-                                <span>Joe Smith</span>
-                                <div class="rightSubmission">
-                                    <button id='pdf'>Remove</button><button id='pdf'>Edit</button><button id='pdf'>Notify</button>
-                                </div> 
-                            </div> 
-                            <h4>Author</h4>
-                            <div class="listSubmission">
-                                <span>Will Smith</span>
-                                <div class="rightSubmission">
-                                    <button id='pdf'>Remove</button><button id='pdf'>Edit</button><button id='pdf'>Notify</button>
-                                </div> 
-                            </div> 
-                        </div>
-                    </form>
-                    <div class="submit">
-                        <button>Send to to Review</button>
-                        <button class="view">Accept and Skip Review</button>
-                        <button class="cancel">Decline Submission</button>
-                    </div>
-                    
-                </div>
-            </article>
+    useEffect(() => {
+        getContributors();
+      }, []);
+    
+    const getContributors = async () => {
+        console.log(data)
+        const response = await axios.get(`http://localhost:3001/contributors/article/${article_id}`)
+        setContributors(response.data);
+    }
+    
+    return (
+        <div class="tab-pane fade show active p-3 row" id="submission"  role="tabpanel" aria-labelledby="submission-tab" >
                 
+            <div>
+                <div class="card mb-3">
+                    <div class="card-header">
+                        Article Information
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">{data.title}</h5>
+                        <p class="card-subtitle mb-2">{data.subtitle}</p>
+                        <p c>{data.abstract}</p>
+                        <p class="card-text">{data.keywords}</p>
+                        <div class="btn-group float-end" role="group">
+                            <button class="btn btn-outline-danger">Decline Submission</button>
+                            <button class="btn btn-outline-primary">Accept and Skip Review</button>    
+                            <button class="btn btn-primary">Send to Review</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card mb-3">
+                    <div class="card-header">
+                        Participants
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Author</h5>
+                        {listContributors.map((user) => (
+                            <ul class="list-group list-group-flush ">
+                                <li class="list-group-item ">
+                                    <div class="row justify-content-between">
+                                        <p class="card-text">{user.user.name}</p>
+                                    </div>
+                                    
+                                </li>
+
+                            </ul>
+                            )
+                        )}
+                    </div>
+                </div>
+                <div class="card mb-3">
+                    <div class="card-header">
+                        Submission File
+                    </div>
+                    <div class="card-body row">
+                        <p  class="card-text col">{data.title}.pdf</p>
+                        <Link class="btn btn-outline-primary col-2 me-3" to={data.article_path} target="_blank" download>Download</Link>
+                    </div>
+                </div>
             </div>
-        </LayoutArticle>
+                
+        </div> 
     );
 }
 
