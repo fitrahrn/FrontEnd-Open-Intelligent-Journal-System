@@ -20,7 +20,6 @@ const Article = () => {
         setArticle(response.data);
         
     };
-    console.log(article)
     return (
         <LayoutEditor>
             <div class="container-fluid">

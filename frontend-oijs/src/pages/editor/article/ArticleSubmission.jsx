@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import LayoutArticle from '../../../components/LayoutArticle';
 import {Link,useParams} from "react-router-dom";
 import axios from "axios";
+import ArticleAddReviews from './ArticleAddReviews';
 const ArticleSubmission = ({data}) => {
     const [listContributors,setContributors] = useState([]);
     const {article_id} = useParams();
@@ -18,7 +19,7 @@ const ArticleSubmission = ({data}) => {
     
     return (
         <div class="tab-pane fade show active p-3 row" id="submission"  role="tabpanel" aria-labelledby="submission-tab" >
-                
+            <ArticleAddReviews/>
             <div>
                 <div class="card mb-3">
                     <div class="card-header">
@@ -32,7 +33,7 @@ const ArticleSubmission = ({data}) => {
                         <div class="btn-group float-end" role="group">
                             <button class="btn btn-outline-danger">Decline Submission</button>
                             <button class="btn btn-outline-primary">Accept and Skip Review</button>    
-                            <button class="btn btn-primary">Send to Review</button>
+                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addReview">Send to Review</button>
                         </div>
                     </div>
                 </div>
