@@ -29,7 +29,7 @@ const Register = () => {
                 phone: phone,
                 ocid_id:"",
                 affiliation:affiliation,
-                mailing_address:"",
+                mailing_address:email,
                 signature:"",
                 country:country,
             });

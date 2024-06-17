@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import LayoutArticle from '../../../components/LayoutArticle';
 import {Link,useParams} from "react-router-dom";
 import axios from "axios";
+import ArticleAddReviewers from './ArticleAddReviewers';
 const ArticleReview = ({data}) => {
     const [listReviews,setReviews] = useState([]);
     const {article_id} = useParams();
@@ -11,7 +12,7 @@ const ArticleReview = ({data}) => {
       }, []);
     
     const getReviews = async () => {
-        console.log(data)
+        
         const response = await axios.get(`http://localhost:3001/reviews/${article_id}`)
         const listFile = response.data
         for(let i=0;i<listFile.length;i++){
@@ -20,10 +21,12 @@ const ArticleReview = ({data}) => {
             let fileName = article_path_split[article_path_split.length - 1]
             listFile[i].file_name = fileName
         }
+        console.log(response.data)
         setReviews(listFile);
     }
     return (
         <div class="tab-pane fade p-3" id="review"  role="tabpanel" aria-labelledby="review-tab" >
+            
             {listReviews.length>0 ?
                 listReviews.map((review) => (
                     <div class="card mb-3">
@@ -34,17 +37,29 @@ const ArticleReview = ({data}) => {
                                     Review File
                                 </div>
                                 <div class="card-body row">
-                                    <p  class="card-text col">{review.file_name}.pdf</p>
+                                    <p  class="card-text col">{review.file_name}</p>
                                 </div>
                             </div>
                             <div class="card container-fluid mb-3">
+                                <ArticleAddReviewers data={review}/>
                                 <div class="row no-gutters card-header ">
-                                        <p class="card-text col">Reviewers</p>
-                                        <button class="col-2 btn btn-primary" data-bs-toggle="modal" data-bs-target="#addReview">Add Reviewers</button>
-                                    </div>
+                                    <p class="card-text col">Reviewers</p>
+                                    <button class="col-2 btn btn-primary" data-bs-toggle="modal" data-bs-target="#addReviewers">Add Reviewers</button>
+                                </div>
+                                
                                 <div class="card-body row">
-                                    <p  class="card-text col"></p>
-                                    {/* <Link class="btn btn-outline-primary col-2 me-3" to={data.article_path} target="_blank" download>Download</Link> */}
+                                    {review.reviewers.map((reviewers) => (
+                                        <ul class="list-group list-group-flush ">
+                                            <li class="list-group-item ">
+                                                <div class="row justify-content-between">
+                                                    <p class="card-text">{reviewers.user.name}</p>
+                                                </div>
+                                                
+                                            </li>
+
+                                        </ul>
+                                        )
+                                    )}
                                 </div>
                             </div>
                         </div>
