@@ -1,46 +1,55 @@
-import React from 'react';
-import LayoutSubmission from '../../components/LayoutSubmission';
+import Layout from '../../components/Layout';
+import axios from "axios";
+import React, { useState, useEffect } from 'react';
 import {Link, } from "react-router-dom";
 const Review = () => {
+    const [listReview,setReview] = useState([]);
+    useEffect(() => {
+        getReviews();
+      }, []);
+    const getReviews = async () => {
+        axios.defaults.withCredentials=true;
+        const response = await axios.get(`http://localhost:3001/reviewers/review`)
+        setReview(response.data);
+        console.log(response.data)
+    };
+    
     return (
-        <LayoutSubmission>
-            <div className="App">
-                <article class="card">
-                    <span class="oneLine">
-                        <span class="headerTitle">
-                            <h2 class="title">My Assigned</h2>
-                        </span>
-                        
-                    </span>
-                    <ul>
-                        <li>
-                            <div class="listSubmission">
-                                <div>
-                                    <span>author</span>
-                                    <div>The Title: This is Title</div>
-                                </div>
-                                <div class="rightSubmission">
-                                    <Link to={`article`}><button class="view">Review</button></Link>
-                                </div>                    
-                            </div>
-                        </li>
-                        <li>
-                            <div class="listSubmission">
-                                <div>
-                                    <span>penulis</span>
-                                    <div>The Bangkit Final report: Bangkit </div>
-                                </div>
-                                <div class="rightSubmission">
-                                    <span>Review Submitted</span>
-                                    <button class="view">Review</button>
-                                </div>                    
-                            </div>
-                        </li>
-                    </ul>
-                    
-                </article>
+        <Layout>
+            <div class="container-fluid">
+                <div class="content-container">
+                    <div class="card m-3 p-3">
+                        <h5 class="card-body card-title">Review Assigned</h5>
+                        <div class="row card-body justify-content-between">
+                            <p class="card-subtitle mb-2 text-body-secondary col-3">Journal</p>
+                            <p class="card-subtitle mb-2 text-body-secondary col-3">Title</p>
+                            <p class="card-subtitle mb-2 text-body-secondary col-2">Review Status</p>
+                            <p class="card-subtitle mb-2 text-body-secondary col-2">Due Date</p>
+                            <p class="card-subtitle mb-2 text-body-secondary col-2"></p>
+                        </div>
+                        {listReview.map((reviewers) => (
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <div class="row justify-content-between">
+                                        <p class="card-text col-3">{reviewers.journal_title}</p>
+                                        <p class="card-text col-3">{reviewers.review.article.title}</p>
+                                        {reviewers.recommendation? <p class="card-text col-2">{reviewers.recommendation}</p> : <p class="card-text col-2">Not Reviewed</p>}
+                                        <p class="card-text col-2">{reviewers.date_due}</p>
+                                        <div class="btn-group col-2" role="group">
+                                            <Link  to={`${reviewers.review.article_id}`}><button class="btn btn-outline-primary" >Review Article</button></Link>
+                                        </div>
+                                    </div>
+                                    
+                                </li>
+
+                            </ul>
+                             )
+                            )
+                        }
+                    </div>
+                </div>
             </div>
-        </LayoutSubmission>
+        </Layout>
     );
 }
 

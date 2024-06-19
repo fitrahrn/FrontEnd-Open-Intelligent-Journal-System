@@ -53,7 +53,7 @@ function App() {
         <Route path='/submission/submit' element={<Submit/>}/>
         <Route path='/submission/edit/:id' element={<EditSubmission/>}/>
         <Route path='/review' element={<Review/>}/>
-        <Route path='/review/:article' element={<ReviewArticle/>}/>
+        <Route path='/review/:article_id' element={<ReviewArticle/>}/>
         <Route path='/:journal/submission' element={<Editor/>}/>
         <Route path='/:journal/manageIssue' element={<EditorIssue/>}/>
         <Route path='/:journal/settings' element={<EditorSettings/>}/>

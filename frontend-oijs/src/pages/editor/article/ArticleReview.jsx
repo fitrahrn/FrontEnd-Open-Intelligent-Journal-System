@@ -3,6 +3,7 @@ import LayoutArticle from '../../../components/LayoutArticle';
 import {Link,useParams} from "react-router-dom";
 import axios from "axios";
 import ArticleAddReviewers from './ArticleAddReviewers';
+import ArticleAddReviews from './ArticleAddReviews';
 const ArticleReview = ({data}) => {
     const [listReviews,setReviews] = useState([]);
     const {article_id} = useParams();
@@ -26,7 +27,7 @@ const ArticleReview = ({data}) => {
     }
     return (
         <div class="tab-pane fade p-3" id="review"  role="tabpanel" aria-labelledby="review-tab" >
-            
+            <ArticleAddReviews/>
             {listReviews.length>0 ?
                 listReviews.map((review) => (
                     <div class="card mb-3">
@@ -70,8 +71,9 @@ const ArticleReview = ({data}) => {
              : 
             <div>
 
-            </div> }
-            
+            </div> 
+            }
+            <button class="btn btn-primary float-end m-3" data-bs-toggle="modal" data-bs-target="#addReview">Add New Review Rounds</button>
         </div> 
     );
 }
