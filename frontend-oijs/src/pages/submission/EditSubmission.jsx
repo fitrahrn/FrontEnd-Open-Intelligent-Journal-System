@@ -3,8 +3,6 @@ import {useNavigate,Link,useParams } from "react-router-dom";
 import axios from "axios";
 import Layout from '../../components/Layout';
 const EditSubmission = () => {
-    const [journal,setJournal] = useState("");
-    const [msg, setMsg] = useState("");
     const { id } = useParams();
     const [prefix, setPrefix] = useState("");
     const [title, setTitle] = useState("");
