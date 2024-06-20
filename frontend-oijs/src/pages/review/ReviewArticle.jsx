@@ -12,6 +12,7 @@ const ReviewArticle = () => {
     const [authorReview,setAuthorReview] = useState("")
     const [preview,setPreview] = useState("");
     const [documentName,setDocumentName] = useState("No Document Selected");
+    const [discusssions,setDiscusssions] = useState([])
     const [file,setFile] = useState("");
     const [recommendation,setRecommendation] = useState("")
     const { article_id } = useParams();
@@ -32,6 +33,9 @@ const ReviewArticle = () => {
         setReview(listFile);
         const responseReviewer = await axios.get(`http://localhost:3001/reviewers/user/${listFile.reviews_id}`)
         setReviewer(responseReviewer.data)
+        const responseDiscussion = await axios.get(`http://localhost:3001/discussion/${listFile.reviews_id}`)
+        setDiscusssions(responseDiscussion.data);
+        console.log(responseDiscussion)
     };
 
     const ReviewArticle = async (e) => {
@@ -144,14 +148,42 @@ const ReviewArticle = () => {
                             <p className='card-subtitle'>Upload files you would like the editor and/or author to consult, including revised versions of the original review file(s).</p>
                             <input class="form-control" type="file" id="document" name="document" accept=".pdf,.doc,.docx,.xml,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"  onChange={loadDocument} onClick={() =>setPreview("")}/>
                             <div class="card mb-3 container-fluid mt-3">
-                                {/* <ReviewAddDiscussion data={review}/> */}
+                                <ReviewAddDiscussion data={review}/>
                                 <div class="row no-gutters card-header ">
                                     <p class="card-text col">Review Discussion</p>
-                                    <button class="col-2 btn btn-primary" data-bs-toggle="modal" data-bs-target="#addDiscussion">Add Reviewers</button>
+                                    <button class="col-2 btn btn-primary" data-bs-toggle="modal" data-bs-target="#addDiscussion">Add Discussion</button>
                                 </div>
-                                <div class="card-body row">
-                                    <p  class="card-text col">No Items</p>
+                                <div class="row card-body justify-content-between">
+                                    <p class="card-subtitle mb-2 text-body-secondary col-3">Subject</p>
+                                    <p class="card-subtitle mb-2 text-body-secondary col-2">Form</p>
+                                    <p class="card-subtitle mb-2 text-body-secondary col-2">Last Reply</p>
+                                    <p class="card-subtitle mb-2 text-body-secondary col-2">Replies</p>
+                                    <p class="card-subtitle mb-2 text-body-secondary col-1">Closed</p>
+                                    <p class="card-subtitle mb-2 text-body-secondary col-2"></p>
                                 </div>
+                                {discusssions.map((discussion) => (
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">
+                                            <div class="row justify-content-between">
+                                                <p class="card-text col-3">{discussion.subject}</p>
+                                                <p class="card-text col-2">{discussion.name_first_send}
+                                                    <br/>{new Date(discussion.time_first_send).toLocaleString("en-US")}</p>
+                                                <p class="card-text col-2">{discussion.name_last_send}
+                                                    <br/>{new Date(discussion.time_last_send).toLocaleString("en-US")}</p>
+                                                <p class="card-text col-2">{discussion.messages.length-1}</p>
+                                                <p class="card-text col-1">{discussion.closed}</p>
+                                                <div class="btn-group col-2" role="group">
+                                                <button class="col-2 btn btn-primary" data-bs-toggle="modal" data-bs-target="#addDiscussion">View</button>   
+                                                    
+                                                </div>
+                                            </div>
+                                            
+                                        </li>
+
+                                    </ul>
+                                    )
+                                    )
+                                }
                             </div>
                             <label className="form-label">Recommendation</label>
                             <p className='card-subtitle form-select-label'>Select a recommendation and submit the review to complete the process. You must enter a review or upload a file before selecting a recommendation.</p>
