@@ -37,7 +37,7 @@ const Navbar = () => {
                 </a>
                 <ul className="dropdown-menu" id="dropdown">
                   <li><a className="dropdown-item" href="/submission">Dashboard</a></li>
-                  <li><a className="dropdown-item" href="#">View Profile</a></li>
+                  <li><a className="dropdown-item" href="/profile">View Profile</a></li>
                   <li><hr className="dropdown-divider"/></li>
                   <li><a className="dropdown-item" href="#">Sign Out</a></li>
                 </ul>

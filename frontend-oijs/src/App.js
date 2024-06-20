@@ -27,6 +27,7 @@ import Setting from './pages/admin/Setting';
 import CreateJournal from './pages/admin/CreateJournal';
 import EditJournal from './pages/admin/EditJournal';
 import Editor from './pages/editor/Editor';
+import Profile from './pages/profile/Profile';
 function App() {
   return (
     <BrowserRouter>
@@ -36,6 +37,7 @@ function App() {
         <Route path='/register' element = {<Register/>}/>
         <Route path='/archives' element={<Archives />}/>
         <Route path='/about' element={<About />}/>
+        <Route path='/profile' element={<Profile />}/>
         <Route path='/admin/journal' element={<HostJournal/>}/>
         <Route path='/admin/journal/create' element={<CreateJournal/>}/>
         <Route path='/admin/journal/edit/:path' element={<EditJournal/>}/>
