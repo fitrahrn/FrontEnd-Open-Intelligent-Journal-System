@@ -82,7 +82,7 @@ const ProfilePassword = () => {
                     </div>
                 </div>
                 <div >
-                    <button class="w-100 btn btn-primary btn-lg">Update</button>
+                <button class="float-end m-2 btn btn-primary btn-lg">Update</button>
                 </div>
             </form>
                 

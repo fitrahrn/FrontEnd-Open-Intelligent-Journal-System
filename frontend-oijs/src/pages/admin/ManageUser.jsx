@@ -1,7 +1,7 @@
 import React , { useState, useEffect }from 'react';
 import LayoutAdmin from '../../components/LayoutAdmin';
 import axios from "axios";
-const RequestUser = () => {
+const ManageUser = () => {
     const [listUser,setUser] = useState([]);
     useEffect(() => {
         getUsers();
@@ -25,6 +25,7 @@ const RequestUser = () => {
                             <p class="card-subtitle mb-2 text-body-secondary col-3">Name</p>
                             <p class="card-subtitle mb-2 text-body-secondary col-3">Username</p>
                             <p class="card-subtitle mb-2 text-body-secondary col-3">Email</p>
+                            
                         </div>
                         
                         {listUser.map((user) => (
@@ -52,4 +53,4 @@ const RequestUser = () => {
     );
 }
 
-export default RequestUser;
+export default ManageUser;

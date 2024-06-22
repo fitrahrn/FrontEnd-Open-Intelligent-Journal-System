@@ -22,12 +22,15 @@ import EditorIssue from './pages/editor/EditorIssue';
 import EditorSettings from './pages/editor/EditorSettings';
 import Article from './pages/editor/article/Article';
 import HostJournal from './pages/admin/HostJournal';
-import RequestUser from './pages/admin/RequestUser';
+import ManageUser from './pages/admin/ManageUser';
+import RoleRequest from './pages/admin/RoleRequest';
 import Setting from './pages/admin/Setting';
 import CreateJournal from './pages/admin/CreateJournal';
 import EditJournal from './pages/admin/EditJournal';
 import Editor from './pages/editor/Editor';
 import Profile from './pages/profile/Profile';
+import ViewArticle from './pages/journal/ViewArticle';
+import ViewPDF from './pages/journal/ViewPDF';
 function App() {
   return (
     <BrowserRouter>
@@ -41,7 +44,8 @@ function App() {
         <Route path='/admin/journal' element={<HostJournal/>}/>
         <Route path='/admin/journal/create' element={<CreateJournal/>}/>
         <Route path='/admin/journal/edit/:path' element={<EditJournal/>}/>
-        <Route path='/admin/user' element={<RequestUser/>}/>
+        <Route path='/admin/user' element={<ManageUser/>}/>
+        <Route path='/admin/request' element={<RoleRequest/>}/>
         <Route path='/admin/setting' element={<Setting/>}/>
         <Route path='/:journal' element={<Journal/>}/>
         <Route path='/:journal/about' element={<AboutJournal/>}/>
@@ -50,6 +54,8 @@ function App() {
         <Route path='/:journal/guidelines' element={<Guidelines/>}/>
         <Route path='/:journal/issue' element={<Issue/>}/>
         <Route path='/:journal/subscription' element={<Subscriptions/>}/>
+        <Route path='/:journal/article/:article_id' element={<ViewArticle/>}/>
+        <Route path='/:journal/article/:article_id/view' element={<ViewPDF/>}/>
         <Route path='/submission' element={<Submission/>}/>
         <Route path='/submission/archives' element={<SubmissionArchives/>}/>
         <Route path='/submission/submit' element={<Submit/>}/>

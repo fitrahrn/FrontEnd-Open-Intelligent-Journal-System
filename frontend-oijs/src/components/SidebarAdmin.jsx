@@ -27,6 +27,9 @@ const SidebarAdmin = () => {
                     <a class="nav-link" href="/admin/user">Users</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="/admin/request">Role Request</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="/admin/setting">Setting</a>
                 </li>
                 </ul>

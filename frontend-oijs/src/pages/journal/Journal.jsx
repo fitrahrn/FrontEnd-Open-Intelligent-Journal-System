@@ -2,6 +2,7 @@ import React,{ useState, useEffect }  from 'react';
 import LayoutJournal from '../../components/LayoutJournal';
 import { Link,useParams  } from "react-router-dom";
 import axios from "axios";
+import Layout from '../../components/Layout';
 const Journal = () => {
     const [listArticle,setArticle] = useState([]);
     const {journal} = useParams();
@@ -9,27 +10,30 @@ const Journal = () => {
         getArticle();
       }, []);
     const getArticle = async () => {
-        const response = await axios.get(`http://localhost:3001/journal/${journal}/article`)
+        const response = await axios.get(`http://localhost:3001/articles/${journal}`)
         setArticle(response.data);
     };
     console.log(listArticle)
     return (
-        <LayoutJournal>
-                <div id="content">
+        <Layout>
+                <div className="container-fluid">
                     {listArticle.map((article) => (
-                        <article class="card">
-                        <Link to={`/`} className="button is-success">
-                        <h2 >{article.title}</h2>
-                        </Link>
-                        <p >{article.authors}</p>
-                        <p >Year: {article.year} | Volume: {article.volume} | Issue: {article.issue}</p> 
-                        <p >Abstract <button id='pdf'>PDF</button></p>  
-                        <p >DOI: <a href= {article.doi}>{article.doi}</a> </p>
-                    </article>
+                        <div class="card m-3 mx-auto">
+                            <Link to={`article/${article.article_id}`} class="card-title text-decoration-none">
+                                <p class="card-header"> {article.title}</p>
+                            </Link>
+                            <div class="card-body p-3">
+                                <p class="card-text">{article.authors}</p>
+                                <p class="card-text">{article.abstract}</p>
+                                <p class="card-text" >Year: {article.year} | Volume: {article.volume} | Issue: {article.issue}</p> 
+                                <button class="btn btn-sm btn-outline-primary col-1 float-start">PDF</button>
+                            </div>
+                              
+                        </div>
                     ))}
                     
                 </div>
-        </LayoutJournal>
+        </Layout>
     );
 }
 

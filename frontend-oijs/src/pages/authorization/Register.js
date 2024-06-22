@@ -1,9 +1,10 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
 import Layout from '../../components/Layout';
 
 const Register = () => {
+    const [listJournal,setListJournal] = useState([]);
     const [name, setName] = useState("");
     const [familyName, setFamilyName] = useState("");
     const [phone, setPhone] = useState("");
@@ -14,8 +15,18 @@ const Register = () => {
     const [username, setUsername] = useState("");
     const [confPassword, setConfPassword] = useState("");
     const [msg, setMsg] = useState("");
+    const [journal,setJournal] = useState("");
     const navigate = useNavigate();
-
+    useEffect(() => {
+        getJournals();
+      }, []);
+    const getJournals = async () => {
+        axios.defaults.withCredentials=true;
+        const response = await axios.get(`http://localhost:3001/journals`)
+        console.log(response.data)
+        setListJournal(response.data);
+        setJournal(response.data[0].path)
+    };
     const Register = async (e) => {
         e.preventDefault();
         try {
@@ -32,6 +43,7 @@ const Register = () => {
                 mailing_address:email,
                 signature:"",
                 country:country,
+                journal_id:journal
             });
             navigate("/login");
         } catch (error) {
@@ -108,14 +120,13 @@ const Register = () => {
                                 </div>
                             </div>
                             <label class="form-select-label">Which journals on this site would you like to register with? </label>
-                                <select class="form-select mb-3">
-                                    <option value="journalICT">Journal of ICT Research and Applications </option>
-                                    <option value="journalETS">Journal of Engineering and Technological Sciences </option>
-                                    <option value="journalMFS">Journal of Mathematical and Fundamental Sciences </option>
-                                    <option value="journalRCP">Journal of Regional and City Planning </option>
-                                    <option value="journalVAD">Journal of Visual Art and Design </option>
-                                    <option value="journalVisual">Wimba : Jurnal Komunikasi Visual </option>
-                                </select>
+                            <select class="form-select mb-3" onChange={(e) => setJournal(e.target.value)} value={journal} required>
+                            {listJournal.map((option) => (
+                                <option key={option.journal_id} value={option.journal_id}>
+                                {option.title}
+                                </option>
+                            ))}
+                            </select>
                             <div >
                                 <button class="w-100 btn btn-primary btn-lg">Register</button>
                             </div>
