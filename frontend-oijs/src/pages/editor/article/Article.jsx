@@ -15,7 +15,7 @@ const Article = () => {
         getArticles();
       }, []);
     const getArticles = async () => {
-        axios.defaults.withCredentials=true;
+        
         const response = await axios.get(`http://localhost:3001/article/${article_id}`)
         setArticle(response.data);
         

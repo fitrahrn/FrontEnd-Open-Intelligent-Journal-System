@@ -1,5 +1,4 @@
 import React,{ useState, useEffect }  from 'react';
-import LayoutJournal from '../../components/LayoutJournal';
 import { Link,useParams  } from "react-router-dom";
 import axios from "axios";
 import { Document, Page } from 'react-pdf';

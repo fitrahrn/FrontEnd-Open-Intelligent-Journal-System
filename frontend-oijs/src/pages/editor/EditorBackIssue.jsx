@@ -8,7 +8,7 @@ const EditorBackIssue = () => {
         getIssue();
       }, []);
     const getIssue = async () => {
-        axios.defaults.withCredentials=true;
+        
         const response = await axios.get(`http://localhost:3001/issue/${journal}`)
         setIssue(response.data);
     };

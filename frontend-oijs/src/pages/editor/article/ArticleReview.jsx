@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import LayoutArticle from '../../../components/LayoutArticle';
 import {Link,useParams} from "react-router-dom";
 import axios from "axios";
 import ArticleAddReviewers from './ArticleAddReviewers';
@@ -24,6 +23,7 @@ const ArticleReview = ({data}) => {
         }
         console.log(response.data)
         setReviews(listFile);
+        
     }
     return (
         <div class="tab-pane fade p-3" id="review"  role="tabpanel" aria-labelledby="review-tab" >
@@ -49,15 +49,24 @@ const ArticleReview = ({data}) => {
                                 </div>
                                 
                                 <div class="card-body row">
+                                    <div class="row card-body justify-content-between">
+                                        <p class="card-subtitle mb-2 text-body-secondary col-3">Name</p>
+                                        <p class="card-subtitle mb-2 text-body-secondary col-2">Review Status</p>
+                                        <p class="card-subtitle mb-2 text-body-secondary col-2">Date Due</p>
+                                        <p class="card-subtitle mb-2 text-body-secondary col-2">Date Completed</p>
+                                    </div>
                                     {review.reviewers.map((reviewers) => (
-                                        <ul class="list-group list-group-flush ">
-                                            <li class="list-group-item ">
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item">
+                                            
                                                 <div class="row justify-content-between">
-                                                    <p class="card-text">{reviewers.user.name}</p>
+                                                    <p class="card-text col-3">{reviewers.user.name}</p>
+                                                    {reviewers.recommendation? <p class="card-text col-2">{reviewers.recommendation}</p> : <p class="card-text col-2">Not Reviewed</p>}
+                                                    <p class="card-text col-2">{reviewers.date_due}</p>
+                                                    <p class="card-text col-2">{reviewers.date_completed}</p>
                                                 </div>
                                                 
                                             </li>
-
                                         </ul>
                                         )
                                     )}

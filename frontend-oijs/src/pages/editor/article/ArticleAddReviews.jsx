@@ -28,7 +28,7 @@ const ArticleAddReviews = ({data}) => {
     }
     const addReviews = async (e) => {
         e.preventDefault();
-        axios.defaults.withCredentials=true;
+        
         try {
             await axios.post('http://localhost:3001/reviews', {
                 article_id: article_id,

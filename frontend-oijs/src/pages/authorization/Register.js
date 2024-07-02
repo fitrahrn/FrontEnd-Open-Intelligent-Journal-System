@@ -6,7 +6,7 @@ import Layout from '../../components/Layout';
 const Register = () => {
     const [listJournal,setListJournal] = useState([]);
     const [name, setName] = useState("");
-    const [familyName, setFamilyName] = useState("");
+    const [publicName, setPublicName] = useState("");
     const [phone, setPhone] = useState("");
     const [affiliation, setAffiliation] = useState("");
     const [country, setCountry] = useState("");
@@ -21,18 +21,17 @@ const Register = () => {
         getJournals();
       }, []);
     const getJournals = async () => {
-        axios.defaults.withCredentials=true;
         const response = await axios.get(`http://localhost:3001/journals`)
         console.log(response.data)
         setListJournal(response.data);
-        setJournal(response.data[0].path)
+        setJournal(response.data[0].journal_id)
     };
     const Register = async (e) => {
         e.preventDefault();
         try {
             await axios.post('http://localhost:3001/register', {
                 name: name,
-                public_name: familyName,
+                public_name: publicName,
                 username: username,
                 email: email,
                 password: password,
@@ -66,25 +65,25 @@ const Register = () => {
                             <div class= "mb-3">
                                 <label class="form-label">Username</label>
                                 <div class="controls">
-                                    <input type="text" class="form-control" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)}/>
+                                    <input type="text" class="form-control" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} required/>
                                 </div>
                             </div>
                             <div class= "mb-3">
                                 <label class="form-label">Email</label>
                                 <div class="controls">
-                                    <input type="text" class="form-control" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)}/>
+                                    <input type="text" class="form-control" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required/>
                                 </div>
                             </div>
                             <div class= "mb-3">
                                 <label class="form-label">Password</label>
                                 <div class="controls">
-                                    <input type="password" class="form-control" placeholder="******" value={password} onChange={(e) => setPassword(e.target.value)}/>
+                                    <input type="password" class="form-control" placeholder="******" value={password} onChange={(e) => setPassword(e.target.value)} required/>
                                 </div>
                             </div>
                             <div class= "mb-3">
                                 <label class="form-label">Confirm Password</label>
                                 <div class="controls">
-                                    <input type="password" class="form-control" placeholder="******" value={confPassword} onChange={(e) => setConfPassword(e.target.value)}/>
+                                    <input type="password" class="form-control" placeholder="******" value={confPassword} onChange={(e) => setConfPassword(e.target.value)}required/>
                                 </div>
                             </div>
                             <br/>
@@ -92,13 +91,13 @@ const Register = () => {
                             <div class= "mb-3">
                                 <label class="form-label">Name</label>
                                 <div class="controls">
-                                    <input type="text" class="form-control" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)}/>
+                                    <input type="text" class="form-control" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} required/>
                                 </div>
                             </div>
                             <div class= "mb-3">
-                                <label class="form-label">Family Name</label>
+                                <label class="form-label">Public Name</label>
                                 <div class="controls">
-                                    <input type="text" class="form-control" placeholder="Family Name" value={familyName} onChange={(e) => setFamilyName(e.target.value)}/>
+                                    <input type="text" class="form-control" placeholder="Public Name" value={publicName} onChange={(e) => setPublicName(e.target.value)} />
                                 </div>
                             </div>
                             <div class= "mb-3">

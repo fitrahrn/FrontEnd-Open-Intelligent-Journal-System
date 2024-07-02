@@ -18,7 +18,7 @@ const ProfilePassword = () => {
         getProfiles();
       }, []);
     const getProfiles = async () => {
-        axios.defaults.withCredentials=true;
+        
         const response = await axios.get(`http://localhost:3001/user/get/username`)
         setName(response.data.name)
         setPublicName(response.data.public_name)

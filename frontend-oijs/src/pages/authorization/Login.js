@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {NavLink, useNavigate} from "react-router-dom";
 import axios from "axios";
 import Layout from '../../components/Layout';
@@ -9,12 +9,11 @@ const Login = () => {
     const navigate = useNavigate();
     const Login = async (e) => {
         e.preventDefault();
-        axios.defaults.withCredentials=true;
         try {
             await axios.post('http://localhost:3001/login', {
                 email: email,
                 password: password
-            });
+            },{ withCredentials: true });
             navigate(`/`);
         } catch (error) {
             if (error.response) {
@@ -33,13 +32,13 @@ const Login = () => {
                         <div >
                             <label className="form-label">Email</label>
                             <div className="control">
-                                <input type="text" className="form-control" placeholder='Email' value={email} onChange={(e) => setEmail(e.target.value)}/>
+                                <input type="text" className="form-control" placeholder='Email' value={email} onChange={(e) => setEmail(e.target.value)} required/>
                             </div>
                         </div>
                         <div >
                             <label className="form-label">Password</label>
                             <div className="control">
-                                <input type="password" className="form-control" placeholder='******' value={password} onChange={(e) => setPassword(e.target.value)}/>
+                                <input type="password" className="form-control" placeholder='******' value={password} onChange={(e) => setPassword(e.target.value)} required/>
                             </div>
                         </div>
                         <div className="d-flex flex-row justify-content-between">

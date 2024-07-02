@@ -24,6 +24,9 @@ const Navbar = () => {
           <li className="nav-item">
             <a className="nav-link text-white" href="/about">About</a>
           </li>
+          <li className="nav-item">
+            <a className="nav-link text-white" href="/journalfinder">Recommend Journal</a>
+          </li>
         </ul>
         <form className="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
           <input className="form-control" type="search" placeholder="Search..." aria-label="Search"/>

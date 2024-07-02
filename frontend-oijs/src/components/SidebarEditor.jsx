@@ -31,15 +31,19 @@ const SidebarAdmin = () => {
             </div>
             <div class="offcanvas-body">
                 <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="submission">Submission</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="manageIssue">Issue</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="submission">Setting</a>
-                </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="submission">Submission</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="manageIssue">Issue</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="request">Role Request</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="submission">Setting</a>
+                    </li>
+                    
                 </ul>
             </div>
             </div>

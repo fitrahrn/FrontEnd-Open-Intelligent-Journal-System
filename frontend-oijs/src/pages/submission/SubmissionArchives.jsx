@@ -1,14 +1,14 @@
 import React from 'react';
-import LayoutSubmission from '../../components/LayoutSubmission';
+import Layout from '../../components/Layout';
 const SubmissionArchives = () => {
     return (
-        <LayoutSubmission>
+        <Layout>
             <div className="App">
                 <div className="content-container">
-                    <h1>SubmissionArchives</h1>
+                    <h1>Archives</h1>
                 </div>
             </div>
-        </LayoutSubmission>
+        </Layout>
     );
 }
 

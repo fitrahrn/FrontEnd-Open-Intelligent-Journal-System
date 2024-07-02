@@ -23,7 +23,6 @@ const ReviewArticle = () => {
         getReviews();
       }, []);
     const getReviews = async () => {
-        axios.defaults.withCredentials=true;
         const response = await axios.get(`http://localhost:3001/reviews/${article_id}`)
         const listFile = response.data[0]
         let article_path = response.data[0].article_file_path

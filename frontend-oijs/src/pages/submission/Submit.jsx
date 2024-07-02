@@ -30,14 +30,12 @@ const Submit = () => {
         getUsers();
       }, []);
     const getJournals = async () => {
-        axios.defaults.withCredentials=true;
         const response = await axios.get(`http://localhost:3001/journal`)
         console.log(response.data)
         setListJournal(response.data);
         setJournal(response.data[0].journal.path)
     };
     const getUsers = async () => {
-        axios.defaults.withCredentials=true;
         const response = await axios.get(`http://localhost:3001/get/contributors`)
         setListUser(response.data);
     };

@@ -26,7 +26,7 @@ const ArticleSelectFilePhase = ({phase}) => {
     }
     const selectArticleFiles = async (e) => {
         e.preventDefault();
-        axios.defaults.withCredentials=true;
+        
         try {
             await axios.patch(`http://localhost:3001/article_file/${article_id}`, {
                 article_id: file.article_id,

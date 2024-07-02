@@ -46,7 +46,6 @@ const EditJournal = () => {
     setFile(journal.data.journal);
     setPreview(journal.data.image_path)
     setNewPath(journal.data.path)
-    console.log(appear)
   };
 
   const updateJournal = async (event) => {
@@ -66,14 +65,14 @@ const EditJournal = () => {
     formData.append("e_issn",eissn);
     formData.append("reg_number",regNumber);
     formData.append("file",file)
-    console.log(appear)
+
     try {
       await axios.patch(`http://localhost:3001/journal/${path}`, formData, {
         "Content-type": "multipart/form-data",
       });
       navigate(`/admin/journal`);
     } catch (error) {
-      console.log(error);
+
     }
   };
     const loadImage = (event) => {

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import LayoutArticle from '../../../components/LayoutArticle';
 import axios from "axios";
-import {Link,useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import ArticleSelectFilePhase from './ArticleSelectFilePhase';
 const ArticleProduction = () => {
     const [listProduction,setProduction] = useState([]);

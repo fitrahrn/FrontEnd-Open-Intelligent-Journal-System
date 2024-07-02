@@ -31,6 +31,8 @@ import Editor from './pages/editor/Editor';
 import Profile from './pages/profile/Profile';
 import ViewArticle from './pages/journal/ViewArticle';
 import ViewPDF from './pages/journal/ViewPDF';
+import Predict from './pages/Predict';
+import AuthorRequest from './pages/editor/AuthorRequest';
 function App() {
   return (
     <BrowserRouter>
@@ -41,6 +43,7 @@ function App() {
         <Route path='/archives' element={<Archives />}/>
         <Route path='/about' element={<About />}/>
         <Route path='/profile' element={<Profile />}/>
+        <Route path='/journalfinder' element={<Predict />}/>
         <Route path='/admin/journal' element={<HostJournal/>}/>
         <Route path='/admin/journal/create' element={<CreateJournal/>}/>
         <Route path='/admin/journal/edit/:path' element={<EditJournal/>}/>
@@ -65,6 +68,7 @@ function App() {
         <Route path='/:journal/submission' element={<Editor/>}/>
         <Route path='/:journal/manageIssue' element={<EditorIssue/>}/>
         <Route path='/:journal/settings' element={<EditorSettings/>}/>
+        <Route path='/:journal/request' element={<AuthorRequest/>}/>
         <Route path='/:journal/submission/:article_id' element={<Article/>}/>
         
 
