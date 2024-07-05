@@ -34,7 +34,7 @@ const Navbar = () => {
         {
           isLogin ? 
             <div className="col-md-2 text-start">
-              <li className="nav-item dropdown">
+              <div className="nav-item dropdown">
                 <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   <img src={profile} alt="mdo" width="32" height="32" className="rounded-circle"/>
                 </a>
@@ -44,7 +44,7 @@ const Navbar = () => {
                   <li><hr className="dropdown-divider"/></li>
                   <li><a className="dropdown-item" href="#">Sign Out</a></li>
                 </ul>
-              </li>
+              </div>
             </div>
               
 

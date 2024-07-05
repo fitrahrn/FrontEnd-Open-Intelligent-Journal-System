@@ -33,6 +33,10 @@ import ViewArticle from './pages/journal/ViewArticle';
 import ViewPDF from './pages/journal/ViewPDF';
 import Predict from './pages/Predict';
 import AuthorRequest from './pages/editor/AuthorRequest';
+import AuthorProfile from './pages/profile/AuthorProfile';
+import Chart from "chart.js/auto";
+import { CategoryScale } from "chart.js";
+Chart.register(CategoryScale);
 function App() {
   return (
     <BrowserRouter>
@@ -70,6 +74,7 @@ function App() {
         <Route path='/:journal/settings' element={<EditorSettings/>}/>
         <Route path='/:journal/request' element={<AuthorRequest/>}/>
         <Route path='/:journal/submission/:article_id' element={<Article/>}/>
+        <Route path='/profile/:username' element={<AuthorProfile/>}/>
         
 
 

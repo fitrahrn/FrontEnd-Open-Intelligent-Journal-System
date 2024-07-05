@@ -1,4 +1,4 @@
-
+import axios from "axios";
 import React from 'react';
 import NavbarCardProfile from "../../components/NavbarCardProfile";
 import Layout from "../../components/Layout"

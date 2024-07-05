@@ -13,11 +13,13 @@ const ProfileRoles = () => {
         getJournals();
       }, []);
     const getRoles = async () => {
+        axios.defaults.withCredentials=true;
         const response = await axios.get(`http://localhost:3001/role/user`)
         setRoles(response.data)
         setJournalId(response.data[0].journal.journal_id)
     };
     const getJournals = async () => {
+        axios.defaults.withCredentials=true;
         const response = await axios.get(`http://localhost:3001/journals`)
         console.log(response.data)
         setListJournal(response.data);
