@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {NavLink, useNavigate} from "react-router-dom";
-import axios from "axios";
+import api from "../../interceptor/axios"
 import Layout from '../../components/Layout';
 const Login = () => {
     const [email, setEmail] = useState("");
@@ -10,10 +10,12 @@ const Login = () => {
     const Login = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('http://localhost:3001/login', {
+            const response = await api.post(`http://localhost:3001/login`, {
                 email: email,
                 password: password
             },{ withCredentials: true });
+            const token = response.data.accessToken;
+            localStorage.setItem('accessToken', token);
             navigate(`/`);
         } catch (error) {
             if (error.response) {

@@ -1,6 +1,6 @@
 import React,{ useState, useEffect }  from 'react';
 import { Link,useParams  } from "react-router-dom";
-import axios from "axios";
+import api from "../../interceptor/axios"
 import Layout from '../../components/Layout';
 const Journal = () => {
     const [listArticle,setArticle] = useState([]);
@@ -9,7 +9,7 @@ const Journal = () => {
         getArticle();
       }, []);
     const getArticle = async () => {
-        const response = await axios.get(`http://localhost:3001/articles/${journal}`)
+        const response = await api.get(`http://localhost:3001/articles/${journal}`)
         setArticle(response.data);
     };
     console.log(listArticle)

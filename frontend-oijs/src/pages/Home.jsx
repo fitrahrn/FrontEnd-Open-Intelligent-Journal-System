@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Layout from '../components/Layout';
 import cover from '../assets/images/cover.png';
-import axios from "axios";
+import api from "../interceptor/axios"
 import { Link, useParams } from "react-router-dom";
 const Home = () => {
     const [listJournal,setJournal] = useState([]);
@@ -11,7 +11,7 @@ const Home = () => {
       }, []);
     
     const getJournals = async () => {
-        const response = await axios.get(`http://localhost:3001/journals`)
+        const response = await api.get(`http://localhost:3001/journals`)
         setJournal(response.data);
     };
     return (

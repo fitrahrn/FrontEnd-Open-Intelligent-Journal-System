@@ -1,6 +1,6 @@
 import {Link,useParams} from "react-router-dom";
 import React, { useState, useEffect } from 'react';
-import axios from "axios";
+import api from "../../interceptor/axios"
 const EditorBackIssue = () => {
     const [listIssue,setIssue] = useState([]);
     const {journal} = useParams();
@@ -9,12 +9,12 @@ const EditorBackIssue = () => {
       }, []);
     const getIssue = async () => {
         
-        const response = await axios.get(`http://localhost:3001/issue/${journal}`)
+        const response = await api.get(`http://localhost:3001/issue/${journal}`)
         setIssue(response.data);
     };
     const deleteIssue = async (path) => {
         try {
-          await axios.delete(`http://localhost:3001/issue/${path}`);
+          await api.delete(`http://localhost:3001/issue/${path}`);
           getIssue();
         } catch (error) {
           console.log(error);

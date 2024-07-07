@@ -1,13 +1,13 @@
 import React , { useState, useEffect }from 'react';
 import LayoutAdmin from '../../components/LayoutAdmin';
-import axios from "axios";
+import api from "../../interceptor/axios"
 const ManageUser = () => {
     const [listUser,setUser] = useState([]);
     useEffect(() => {
         getUsers();
       }, []);
     const getUsers = async () => {
-        const response = await axios.get(`http://localhost:3001/users`)
+        const response = await api.get(`http://localhost:3001/users`)
         setUser(response.data);
     };
     

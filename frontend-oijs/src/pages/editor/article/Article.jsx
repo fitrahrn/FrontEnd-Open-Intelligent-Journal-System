@@ -1,4 +1,4 @@
-import axios from "axios";
+import api from "../../../interceptor/axios"
 import React, { useState, useEffect } from 'react';
 import {Link,useParams} from "react-router-dom";
 import NavbarCardArticle from "../../../components/NavbarCardArticle";
@@ -16,7 +16,7 @@ const Article = () => {
       }, []);
     const getArticles = async () => {
         
-        const response = await axios.get(`http://localhost:3001/article/${article_id}`)
+        const response = await api.get(`http://localhost:3001/article/${article_id}`)
         setArticle(response.data);
         
     };
@@ -27,11 +27,11 @@ const Article = () => {
                     <div class="card m-3 ">
                         <NavbarCardArticle/>
                         <div class="tab-content" id="myTabContent">
-                            <ArticleSubmission  data={article}/>
-                            <ArticleReview data={article}/>
-                            <ArticleCopyediting  data={article}/>
-                            <ArticleProduction  data={article}/>
-                            <ArticlePublication  data={article}/>
+                            <ArticleSubmission  data={article} role={"editor"}/>
+                            <ArticleReview data={article} role={"editor"}/>
+                            <ArticleCopyediting  data={article} role={"editor"}/>
+                            <ArticleProduction  data={article} role={"editor"}/>
+                            <ArticlePublication  data={article} role={"editor"}/>
                         </div>
                     </div>
                 </div>

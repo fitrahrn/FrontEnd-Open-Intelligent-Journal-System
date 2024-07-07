@@ -1,6 +1,6 @@
 import React,{ useState, useEffect }  from 'react';
 import { Link,useParams  } from "react-router-dom";
-import axios from "axios";
+import api from "../../interceptor/axios"
 import { Document, Page } from 'react-pdf';
 import Layout from '../../components/Layout';
 import { pdfjs } from 'react-pdf';
@@ -19,7 +19,7 @@ const ViewPDF = () => {
         getArticle();
       }, []);
     const getArticle = async () => {
-        const response = await axios.get(`http://localhost:3001/article/${article_id}`)
+        const response = await api.get(`http://localhost:3001/article/${article_id}`)
         setArticle(response.data);
     };
     const nextPages = () =>{

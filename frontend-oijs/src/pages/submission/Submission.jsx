@@ -1,20 +1,24 @@
 import Layout from '../../components/Layout';
-import axios from "axios";
 import React, { useState, useEffect } from 'react';
 import {Link, } from "react-router-dom";
+import api from "../../interceptor/axios"
 const Submission = () => {
     const [listArticle,setArticle] = useState([]);
+    const [msg,setMsg] = useState([])
     useEffect(() => {
         getArticles();
       }, []);
     const getArticles = async () => {
-        axios.defaults.withCredentials=true;
-        const response = await axios.get(`http://localhost:3001/articles/submission`)
-        setArticle(response.data);
+        try {
+            const response = await api.get(`http://localhost:3001/articles/submission`)
+            setArticle(response.data);
+          } catch (error) {
+            setMsg('Error fetching protected data:', error);
+          }
     };
     const deleteArticle = async (id) => {
         try {
-          await axios.delete(`http://localhost:3001/article/${id}`);
+          await api.delete(`http://localhost:3001/article/${id}`);
           getArticles();
         } catch (error) {
           console.log(error);
@@ -48,7 +52,7 @@ const Submission = () => {
                                         <div class="btn-group col-2" role="group">
                                             <button onClick={() => deleteArticle(article.article.id)} class="btn btn-outline-danger">Delete</button>
                                             <button class="btn btn-outline-warning align-middle"><Link class="link-underline-opacity-0 link-warning" to={`edit/${article.article.article_id}`} >Edit</Link></button>    
-                                            <button href="#" class="btn btn-outline-primary">View</button>
+                                            <button class="btn btn-outline-primary align-middle"><Link class="link-underline-opacity-0 link-primary" to={`article/${article.article.article_id}`} >View</Link></button>   
                                             
                                         </div>
                                     </div>

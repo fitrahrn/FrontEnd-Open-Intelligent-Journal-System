@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import axios from "axios";
+import api from "../../interceptor/axios"
+import axios from "axios"
 const ProfileContact = () => {
     const [name, setName] = useState("");
     const [publicName, setPublicName] = useState("");
@@ -15,8 +16,8 @@ const ProfileContact = () => {
         getProfiles();
       }, []);
     const getProfiles = async () => {
-        axios.defaults.withCredentials=true;
-        const response = await axios.get(`http://localhost:3001/user/get/username`)
+        api.defaults.withCredentials=true;
+        const response = await api.get(`http://localhost:3001/user/get/username`)
         setName(response.data.name)
         setPublicName(response.data.public_name)
         setEmail(response.data.email)
@@ -45,7 +46,7 @@ const ProfileContact = () => {
         formData.append("country",country);
         formData.append("file","")
         try {
-            await axios.patch(`http://localhost:3001/user/update`, formData, {
+            await api.patch(`http://localhost:3001/user/update`, formData, {
             "Content-type": "multipart/form-data",
             });
         } catch (error) {

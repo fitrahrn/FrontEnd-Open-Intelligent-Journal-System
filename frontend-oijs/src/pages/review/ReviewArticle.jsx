@@ -1,7 +1,8 @@
 import React, {useState , useEffect } from 'react';
 import {useNavigate,Link,useParams } from "react-router-dom";
-import axios from "axios";
+import api from "../../interceptor/axios"
 import Layout from '../../components/Layout';
+import axios from "axios"
 import ReviewAddDiscussion from './ReviewAddDiscussion';
 const ReviewArticle = () => {
     const [review,setReview] = useState([]);
@@ -23,16 +24,16 @@ const ReviewArticle = () => {
         getReviews();
       }, []);
     const getReviews = async () => {
-        const response = await axios.get(`http://localhost:3001/reviews/${article_id}`)
+        const response = await api.get(`http://localhost:3001/reviews/${article_id}`)
         const listFile = response.data[0]
         let article_path = response.data[0].article_file_path
         const article_path_split = article_path.split("/");
         let fileName = article_path_split[article_path_split.length - 1]
         listFile.file_name = fileName
         setReview(listFile);
-        const responseReviewer = await axios.get(`http://localhost:3001/reviewers/user/${listFile.reviews_id}`)
+        const responseReviewer = await api.get(`http://localhost:3001/reviewers/user/${listFile.reviews_id}`)
         setReviewer(responseReviewer.data)
-        const responseDiscussion = await axios.get(`http://localhost:3001/discussion/${listFile.reviews_id}`)
+        const responseDiscussion = await api.get(`http://localhost:3001/discussion/${listFile.reviews_id}`)
         setDiscusssions(responseDiscussion.data);
         console.log(responseDiscussion)
     };
@@ -48,7 +49,7 @@ const ReviewArticle = () => {
         formData.append("file",file)
         console.log(formData)
         try {
-            await axios.patch(`http://localhost:3001/reviewers`,formData, {
+            await api.patch(`http://localhost:3001/reviewers`,formData, {
                 "Content-type" : "multipart/form-data"
             });
             navigate("/review");

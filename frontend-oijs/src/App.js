@@ -36,6 +36,8 @@ import AuthorRequest from './pages/editor/AuthorRequest';
 import AuthorProfile from './pages/profile/AuthorProfile';
 import Chart from "chart.js/auto";
 import { CategoryScale } from "chart.js";
+import SubmissionDetail from './pages/submission/SubmissionDetail';
+import Dashboard from './pages/Dashboard';
 Chart.register(CategoryScale);
 function App() {
   return (
@@ -47,6 +49,7 @@ function App() {
         <Route path='/archives' element={<Archives />}/>
         <Route path='/about' element={<About />}/>
         <Route path='/profile' element={<Profile />}/>
+        <Route path='/dashboard' element={<Dashboard />}/>
         <Route path='/journalfinder' element={<Predict />}/>
         <Route path='/admin/journal' element={<HostJournal/>}/>
         <Route path='/admin/journal/create' element={<CreateJournal/>}/>
@@ -64,6 +67,7 @@ function App() {
         <Route path='/:journal/article/:article_id' element={<ViewArticle/>}/>
         <Route path='/:journal/article/:article_id/view' element={<ViewPDF/>}/>
         <Route path='/submission' element={<Submission/>}/>
+        <Route path='/submission/article/:article_id' element={<SubmissionDetail/>}/>
         <Route path='/submission/archives' element={<SubmissionArchives/>}/>
         <Route path='/submission/submit' element={<Submit/>}/>
         <Route path='/submission/edit/:id' element={<EditSubmission/>}/>

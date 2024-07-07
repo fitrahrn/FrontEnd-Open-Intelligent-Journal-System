@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import api from "../../interceptor/axios"
 import { useNavigate, useParams } from "react-router-dom";
 import LayoutAdmin from '../../components/LayoutAdmin';
 const EditJournal = () => {
@@ -29,7 +29,7 @@ const EditJournal = () => {
   }, []);
 
   const getJournalById = async () => {
-    const journal = await axios.get(`http://localhost:3001/journal/${path}`);
+    const journal = await api.get(`http://localhost:3001/journal/${path}`);
     
     setId(journal.data.id);
     setTitle(journal.data.title);
@@ -67,7 +67,7 @@ const EditJournal = () => {
     formData.append("file",file)
 
     try {
-      await axios.patch(`http://localhost:3001/journal/${path}`, formData, {
+      await api.patch(`http://localhost:3001/journal/${path}`, formData, {
         "Content-type": "multipart/form-data",
       });
       navigate(`/admin/journal`);

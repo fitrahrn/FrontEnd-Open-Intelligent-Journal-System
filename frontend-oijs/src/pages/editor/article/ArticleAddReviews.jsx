@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {Link,useParams} from "react-router-dom";
-import axios from "axios";
+import api from "../../../interceptor/axios"
 const ArticleAddReviews = ({data}) => {
     const [listArticle,setArticle] = useState([]);
     const [file,setFile] = useState("");
@@ -12,7 +12,7 @@ const ArticleAddReviews = ({data}) => {
       }, []);
     
     const getArticles = async () => {
-        const response = await axios.get(`http://localhost:3001/article_file/${article_id}`)
+        const response = await api.get(`http://localhost:3001/article_file/${article_id}`)
         
         const listFile = response.data
         for(let i=0;i<listFile.length;i++){
@@ -28,17 +28,23 @@ const ArticleAddReviews = ({data}) => {
     }
     const addReviews = async (e) => {
         e.preventDefault();
-        
+        const formData = new FormData();
+        formData.append("workflow_phase","reviewing");
+        formData.append("status","reviewers assigned");
         try {
-            await axios.post('http://localhost:3001/reviews', {
+            await api.post('http://localhost:3001/reviews', {
                 article_id: article_id,
                 article_file_path: file
+            });
+            await api.patch(`http://localhost:3001/article/${article_id}`, formData, {
+                "Content-type": "multipart/form-data",
             });
         } catch (error) {
             if (error.response) {
                 setMsg(error.response.data.msg);
             }
         }
+        setMsg("Reviews Round Added")
         setClose("modal")
     }
     return (

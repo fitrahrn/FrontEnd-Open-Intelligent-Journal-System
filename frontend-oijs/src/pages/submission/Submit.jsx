@@ -1,6 +1,7 @@
 import React, {useState , useEffect } from 'react';
 import {useNavigate,Link,useParams } from "react-router-dom";
-import axios from "axios";
+import api from "../../interceptor/axios"
+import axios from "axios"
 import Layout from '../../components/Layout';
 const Submit = () => {
     const [listJournal,setListJournal] = useState([]);
@@ -30,13 +31,13 @@ const Submit = () => {
         getUsers();
       }, []);
     const getJournals = async () => {
-        const response = await axios.get(`http://localhost:3001/journal`)
+        const response = await api.get(`http://localhost:3001/journal`)
         console.log(response.data)
         setListJournal(response.data);
         setJournal(response.data[0].journal.path)
     };
     const getUsers = async () => {
-        const response = await axios.get(`http://localhost:3001/get/contributors`)
+        const response = await api.get(`http://localhost:3001/get/contributors`)
         setListUser(response.data);
     };
 
@@ -52,7 +53,7 @@ const Submit = () => {
         formData.append("contributors",contributors);
         formData.append("file",file)
         try {
-            await axios.post(`http://localhost:3001/article/${journal}`,formData, {
+            await api.post(`http://localhost:3001/article/${journal}`,formData, {
                 "Content-type" : "multipart/form-data"
             });
             navigate("/submission");

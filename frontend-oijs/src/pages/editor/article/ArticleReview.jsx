@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import {Link,useParams} from "react-router-dom";
-import axios from "axios";
+import api from "../../../interceptor/axios"
 import ArticleAddReviewers from './ArticleAddReviewers';
 import ArticleAddReviews from './ArticleAddReviews';
-const ArticleReview = ({data}) => {
+const ArticleReview = ({data,role}) => {
     const [listReviews,setReviews] = useState([]);
     const {article_id} = useParams();
-
+    const [msg,setMsg] = useState("");
     useEffect(() => {
         getReviews();
       }, []);
     
     const getReviews = async () => {
         
-        const response = await axios.get(`http://localhost:3001/reviews/${article_id}`)
+        const response = await api.get(`http://localhost:3001/reviews/${article_id}`)
         const listFile = response.data
         for(let i=0;i<listFile.length;i++){
             let article_path = response.data[i].article_file_path
@@ -23,8 +23,19 @@ const ArticleReview = ({data}) => {
         }
         console.log(response.data)
         setReviews(listFile);
-        
     }
+    const answerReview = async (workflowPhase,status) => {
+        const formData = new FormData();
+        formData.append("workflow_phase",workflowPhase);
+        formData.append("status",status);
+        try {
+            await api.patch(`http://localhost:3001/article/${article_id}`, formData, {
+                "Content-type": "multipart/form-data",
+            });
+        } catch (error) {
+            setMsg(error);
+        }
+    };
     return (
         <div class="tab-pane fade p-3" id="review"  role="tabpanel" aria-labelledby="review-tab" >
             <ArticleAddReviews/>
@@ -42,10 +53,10 @@ const ArticleReview = ({data}) => {
                                 </div>
                             </div>
                             <div class="card container-fluid mb-3">
-                                <ArticleAddReviewers data={review}/>
+                            {role ==="editor"?<ArticleAddReviewers data={review}/> :<div></div>}
                                 <div class="row no-gutters card-header ">
                                     <p class="card-text col">Reviewers</p>
-                                    <button class="col-2 btn btn-primary" data-bs-toggle="modal" data-bs-target="#addReviewers">Add Reviewers</button>
+                                    {role ==="editor"?<button class="col-2 btn btn-primary" data-bs-toggle="modal" data-bs-target="#addReviewers">Add Reviewers</button> :<div></div>}
                                 </div>
                                 
                                 <div class="card-body row">
@@ -78,11 +89,15 @@ const ArticleReview = ({data}) => {
                     )
                 )
              : 
-            <div>
-
-            </div> 
+            <p className='card-text'>The review process has not yet been initiated.</p> 
             }
-            <button class="btn btn-primary float-end m-3" data-bs-toggle="modal" data-bs-target="#addReview">Add New Review Rounds</button>
+            {role ==="editor" && data.workflow_phase === "reviewing"?<div className='row justify-content-end'>
+                <button onClick={()=>answerReview("reviewing","need revisions")} class="btn btn-outline-warning col-2 m-1" >Request Revisions</button>
+                <button onClick={()=>answerReview("declined","declined")} class="btn btn-danger col-2 m-1" >Decline Submission</button>
+                <button onClick={()=>answerReview("copyedited","accepted")} class="btn btn-primary col-2 m-1" >Accept Submission</button>
+                <button class="btn btn-outline-primary col-2 m-1" data-bs-toggle="modal" data-bs-target="#addReview">Add New Review Rounds</button>
+            </div>:<div></div>}
+            
         </div> 
     );
 }

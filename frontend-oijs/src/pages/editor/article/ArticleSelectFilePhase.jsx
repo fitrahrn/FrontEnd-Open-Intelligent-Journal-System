@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {Link,useParams} from "react-router-dom";
-import axios from "axios";
+import api from "../../../interceptor/axios"
 const ArticleSelectFilePhase = ({phase}) => {
     const [ArticleFiles,setArticleFiles] = useState([]);
     const [msg, setMsg] = useState("");
@@ -13,7 +13,7 @@ const ArticleSelectFilePhase = ({phase}) => {
       }, []);
     
     const getArticleFiles = async () => {
-        const response = await axios.get(`http://localhost:3001/article_file/${article_id}`)
+        const response = await api.get(`http://localhost:3001/article_file/${article_id}`)
         const listFile = response.data
         for(let i=0;i<listFile.length;i++){
             let article_path = response.data[i].article_path
@@ -28,7 +28,7 @@ const ArticleSelectFilePhase = ({phase}) => {
         e.preventDefault();
         
         try {
-            await axios.patch(`http://localhost:3001/article_file/${article_id}`, {
+            await api.patch(`http://localhost:3001/article_file/${article_id}`, {
                 article_id: file.article_id,
                 article_path: file.article_path,
                 phase:phase

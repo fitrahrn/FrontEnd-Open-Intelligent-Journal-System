@@ -1,13 +1,13 @@
 import React , { useState, useEffect }from 'react';
 import LayoutEditor from '../../components/LayoutEditor';
-import axios from "axios";
+import api from "../../interceptor/axios"
 const AuthorRequest = () => {
     const [listAuthorRequest,setAuthorRequest] = useState([]);
     useEffect(() => {
         getAuthorRequests();
       }, []);
     const getAuthorRequests = async () => {
-        const response = await axios.get(`http://localhost:3001/role/request`)
+        const response = await api.get(`http://localhost:3001/role/request`)
         const authorOnly = response.data.filter((role) =>  role.request ==="author" || role.request ==="reviewer")
         console.log(authorOnly)
         setAuthorRequest(authorOnly);
@@ -15,7 +15,7 @@ const AuthorRequest = () => {
     
     const acceptRequest = async (role_id) => {
         try {
-            await axios.post('http://localhost:3001/role/request/answer', {
+            await api.post(`http://localhost:3001/role/request/answer`, {
                 role_id: role_id,
                 accept: true
             });
@@ -26,7 +26,7 @@ const AuthorRequest = () => {
     };
     const rejectRequest = async (role_id) => {
         try {
-            await axios.post('http://localhost:3001/role/request/answer', {
+            await api.post(`http://localhost:3001/role/request/answer`, {
                 role_id: role_id,
                 accept: false
             });

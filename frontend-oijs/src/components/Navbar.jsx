@@ -1,9 +1,25 @@
 import React ,{ useState }from 'react';
-import { NavLink } from "react-router-dom";
+import { NavLink,useNavigate } from "react-router-dom";
 import logo from "../assets/images/itb.png"
 import profile from "../assets/images/profile.jpeg"
+import axios from 'axios';
 const Navbar = () => {
-  let isLogin = true;
+  let isLogin = false;
+  const navigate = useNavigate();
+  const token = localStorage.getItem('accessToken');
+  if (token) {
+    isLogin=true;
+  }
+  const Logout = async () => {
+    try {
+        await axios.post('http://localhost:3001/logout');
+        isLogin = false;
+        localStorage.removeItem('accessToken');
+        navigate("/");
+    } catch (error) {
+        console.log(error);
+    }
+  }
   return (
     
   <nav className="navbar navbar-expand-lg text-bg-primary border-bottom">
@@ -39,10 +55,13 @@ const Navbar = () => {
                   <img src={profile} alt="mdo" width="32" height="32" className="rounded-circle"/>
                 </a>
                 <ul className="dropdown-menu" id="dropdown">
-                  <li><a className="dropdown-item" href="/submission">Dashboard</a></li>
+                  <li><a className="dropdown-item" href="/dashboard">Dashboard</a></li>
                   <li><a className="dropdown-item" href="/profile">View Profile</a></li>
                   <li><hr className="dropdown-divider"/></li>
-                  <li><a className="dropdown-item" href="#">Sign Out</a></li>
+                  <li><button onClick={()=>Logout()} className="dropdown-item">
+                        Log Out
+                      </button>
+                  </li>
                 </ul>
               </div>
             </div>

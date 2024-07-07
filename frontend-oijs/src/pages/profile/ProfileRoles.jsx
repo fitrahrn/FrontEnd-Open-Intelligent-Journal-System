@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import axios from "axios";
+import api from "../../interceptor/axios"
+import axios from "axios"
 const ProfileRoles = () => {
     const [roles, setRoles] = useState([]);
     const [listJournal, setListJournal] = useState([]);
@@ -13,14 +14,14 @@ const ProfileRoles = () => {
         getJournals();
       }, []);
     const getRoles = async () => {
-        axios.defaults.withCredentials=true;
-        const response = await axios.get(`http://localhost:3001/role/user`)
+        api.defaults.withCredentials=true;
+        const response = await api.get(`http://localhost:3001/role/user`)
         setRoles(response.data)
         setJournalId(response.data[0].journal.journal_id)
     };
     const getJournals = async () => {
-        axios.defaults.withCredentials=true;
-        const response = await axios.get(`http://localhost:3001/journals`)
+        api.defaults.withCredentials=true;
+        const response = await api.get(`http://localhost:3001/journals`)
         console.log(response.data)
         setListJournal(response.data);
         setJournal(response.data[0].path)
@@ -29,7 +30,7 @@ const ProfileRoles = () => {
         e.preventDefault();
         console.log(journalId)
         try {
-            await axios.post('http://localhost:3001/role/request', {
+            await api.post('http://localhost:3001/role/request', {
                 journal_id: journalId,
                 request: request
             });
@@ -43,7 +44,7 @@ const ProfileRoles = () => {
     const registerToNewJournal = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('http://localhost:3001/role', {
+            await api.post('http://localhost:3001/role', {
                 journal_id: journal
             });
             setMsg("Register to new jurnal has been sucessfull");

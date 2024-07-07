@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {useParams } from "react-router-dom";
-import axios from "axios";
-const ArticlePublication = () => {
+import api from "../../../interceptor/axios"
+const ArticlePublication = ({data}) => {
     const [prefix, setPrefix] = useState("");
     const [title, setTitle] = useState("");
     const [subtitle, setSubtitle] = useState("");
@@ -22,7 +22,7 @@ const ArticlePublication = () => {
     const [urlPath,setUrlPath] = useState("");
     const [datePublished,setDatePublished] = useState();
     const { article_id } = useParams();
-    
+    const [msg,setMsg] = useState("")
     useEffect(() => {
         getArticleById();
         getContributors();
@@ -30,15 +30,15 @@ const ArticlePublication = () => {
       }, []);
     const getIssue = async () => {
         
-        const response = await axios.get(`http://localhost:3001/issue/id/${issueId}`)
+        const response = await api.get(`http://localhost:3001/issue/id/${issueId}`)
         setIssue(response.data);
     };
     const getContributors = async () => {
-        const response = await axios.get(`http://localhost:3001/contributors/article/${article_id}`)
+        const response = await api.get(`http://localhost:3001/contributors/article/${article_id}`)
         setContributors(response.data);
     }
     const getArticleById = async () => {
-        const article = await axios.get(`http://localhost:3001/article/${article_id}`);
+        const article = await api.get(`http://localhost:3001/article/${article_id}`);
         
         setPrefix(article.data.prefix);
         setTitle(article.data.title);
@@ -53,28 +53,52 @@ const ArticlePublication = () => {
         setIssueId(article.data.issue_id)
     };
     
-      const updateArticle = async (event) => {
-        event.preventDefault(); // ketika disubmit, page tidak reload
+    const updateArticle = async (event) => {
+    event.preventDefault(); // ketika disubmit, page tidak reload
+    const formData = new FormData();
+    formData.append("prefix",prefix);
+    formData.append("title",title);
+    formData.append("subtitle",subtitle);
+    formData.append("abstract",abstract);
+    formData.append("comment",comment);
+    formData.append("keywords",keywords);
+    formData.append("workflow_phase",workflowPhase);
+    formData.append("status",status);
+    formData.append("file",file)
+    try {
+        await api.patch(`http://localhost:3001/article/${article_id}`, formData, {
+            "Content-type": "multipart/form-data",
+        });
+        } catch (error) {
+        console.log(error);
+        }
+    };
+    const answerReview = async (workflowPhase,status) => {
         const formData = new FormData();
-        formData.append("prefix",prefix);
-        formData.append("title",title);
-        formData.append("subtitle",subtitle);
-        formData.append("abstract",abstract);
-        formData.append("comment",comment);
-        formData.append("keywords",keywords);
         formData.append("workflow_phase",workflowPhase);
         formData.append("status",status);
-        formData.append("file",file)
         try {
-            await axios.patch(`http://localhost:3001/article/${article_id}`, formData, {
+            await api.patch(`http://localhost:3001/article/${article_id}`, formData, {
               "Content-type": "multipart/form-data",
             });
           } catch (error) {
-            console.log(error);
+            setMsg(error);
           }
-      };
+    };
     return (
         <div class="tab-pane fade p-3" id="publication"  role="tabpanel" aria-labelledby="publication-tab" >
+            <div className='card mb-3'>
+                <div className='card-body row justify-content-between' >
+                    <span className='card-text col-7 fw-bold'>
+                        Status: 
+                        {data.workflow_phase !=="published" || data.workflowPhase==="scheduled" ?
+                            <p className='card-text fw-light'>Unscheduled</p> :
+                            <p  className='card-text fw-light'>Scheduled for Published</p>}
+                    </span>
+                    <button className="btn btn-outline-primary col-2 m-1">Preview</button>
+                    <button onClick={()=>answerReview("published","accepted")}className="btn btn-primary col-2 m-1">Scheduled for Publication</button>
+                </div>
+            </div>
             <div class="card mb-3">
                 <div class="card-header">
                     Title & Abstract

@@ -1,15 +1,16 @@
 import Layout from '../../components/Layout';
-import axios from "axios";
+import api from "../../interceptor/axios"
 import React, { useState, useEffect } from 'react';
 import {Link, } from "react-router-dom";
+import axios from "axios"
 const Review = () => {
     const [listReview,setReview] = useState([]);
     useEffect(() => {
         getReviews();
       }, []);
     const getReviews = async () => {
-        axios.defaults.withCredentials=true;
-        const response = await axios.get(`http://localhost:3001/reviewers/review`)
+        api.defaults.withCredentials=true;
+        const response = await api.get(`http://localhost:3001/reviewers/review`)
         setReview(response.data);
         console.log(response.data)
     };

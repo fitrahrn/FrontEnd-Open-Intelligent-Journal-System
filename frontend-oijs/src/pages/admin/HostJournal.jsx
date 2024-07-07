@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import LayoutAdmin from '../../components/LayoutAdmin';
-import axios from "axios";
+import api from "../../interceptor/axios"
 import {Link, } from "react-router-dom";
 const HostJournal = () => {
     const [listJournal,setJournal] = useState([]);
@@ -8,12 +8,12 @@ const HostJournal = () => {
         getJournals();
       }, []);
     const getJournals = async () => {
-        const response = await axios.get(`http://localhost:3001/journals`)
+        const response = await api.get(`http://localhost:3001/journals`)
         setJournal(response.data);
     };
     const deleteJournal = async (path) => {
         try {
-          await axios.delete(`http://localhost:3001/journal/${path}`);
+          await api.delete(`http://localhost:3001/journal/${path}`);
           getJournals();
         } catch (error) {
           console.log(error);

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {Link,useParams} from "react-router-dom";
-import axios from "axios";
+import api from "../../interceptor/axios"
+import axios from "axios"
 const ReviewAddDiscussion = ({data}) => {
     const [msg, setMsg] = useState("");
     const [success,setSucces] = useState("");
@@ -21,7 +22,7 @@ const ReviewAddDiscussion = ({data}) => {
         formData.append("date_send",new Date());
         formData.append("file",file)
         try {
-            await axios.post(`http://localhost:3001/discussion`,formData, {
+            await api.post(`http://localhost:3001/discussion`,formData, {
                 "Content-type" : "multipart/form-data"
             });
             setClose("modal")

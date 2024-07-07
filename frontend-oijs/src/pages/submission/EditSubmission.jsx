@@ -1,6 +1,7 @@
 import React, {useState , useEffect } from 'react';
 import {useNavigate,Link,useParams } from "react-router-dom";
-import axios from "axios";
+import api from "../../interceptor/axios"
+import axios from "axios"
 import Layout from '../../components/Layout';
 const EditSubmission = () => {
     const { id } = useParams();
@@ -23,7 +24,7 @@ const EditSubmission = () => {
       }, []);
     
       const getArticleById = async () => {
-        const article = await axios.get(`http://localhost:3001/article/${id}`);
+        const article = await api.get(`http://localhost:3001/article/${id}`);
         
         setPrefix(article.data.prefix);
         setTitle(article.data.title);
@@ -50,7 +51,7 @@ const EditSubmission = () => {
         formData.append("status",status);
         formData.append("file",file)
         try {
-            await axios.patch(`http://localhost:3001/article/${id}`, formData, {
+            await api.patch(`http://localhost:3001/article/${id}`, formData, {
               "Content-type": "multipart/form-data",
             });
             navigate(`/submission`);

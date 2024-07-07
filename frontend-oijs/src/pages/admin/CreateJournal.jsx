@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {useNavigate} from "react-router-dom";
 import LayoutAdmin from '../../components/LayoutAdmin';
-import axios from "axios";
+import api from "../../interceptor/axios"
 const CreateJournal = () => {
     const [msg, setMsg] = useState("");
     const [title,setTitle] = useState("");
@@ -35,7 +35,7 @@ const CreateJournal = () => {
         formData.append("reg_number",regNumber);
         formData.append("file",file)
         try {
-            await axios.post('http://localhost:3001/journal',formData, {
+            await api.post('http://localhost:3001/journal',formData, {
                 "Content-type" : "multipart/form-data"
               });
             navigate("/admin/journal");

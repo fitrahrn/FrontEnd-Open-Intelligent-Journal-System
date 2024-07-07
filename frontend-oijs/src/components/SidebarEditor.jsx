@@ -1,7 +1,7 @@
 import React ,{ useState,useEffect }from 'react';
 import { NavLink } from "react-router-dom";
 import logo from "../assets/images/itb.png"
-import axios from "axios";
+import api from "../interceptor/axios"
 import {Link,useParams} from "react-router-dom";
 const SidebarAdmin = () => {
   let isLogin = false;
@@ -11,7 +11,7 @@ const SidebarAdmin = () => {
         getJournal();
       }, []);
     const getJournal = async () => {
-        const response = await axios.get(`http://localhost:3001/journal/${journal}`)
+        const response = await api.get(`http://localhost:3001/journal/${journal}`)
         setJournal(response.data);
     };
   return (
@@ -32,16 +32,16 @@ const SidebarAdmin = () => {
             <div class="offcanvas-body">
                 <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="submission">Submission</a>
+                        <a class="nav-link active" aria-current="page" href={`/${journal}/submission`}>Submission</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="manageIssue">Issue</a>
+                        <a class="nav-link" href={`/${journal}/manageIssue`}>Issue</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="request">Role Request</a>
+                        <a class="nav-link" href={`/${journal}/request`}>Role Request</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="submission">Setting</a>
+                        <a class="nav-link" href="">Setting</a>
                     </li>
                     
                 </ul>

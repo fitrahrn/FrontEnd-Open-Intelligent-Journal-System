@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {Link,useParams} from "react-router-dom";
-import axios from "axios";
+import api from "../../../interceptor/axios"
 const ArticleAddReviewers = ({data}) => {
     const [reviewers,setReviewers] = useState([]);
     const [msg, setMsg] = useState("");
@@ -14,7 +14,7 @@ const ArticleAddReviewers = ({data}) => {
       }, []);
     
     const getReviewers = async () => {
-        const response = await axios.get(`http://localhost:3001/role/reviewers/${journal}`)
+        const response = await api.get(`http://localhost:3001/role/reviewers/${journal}`)
         setReviewers(response.data);
         if(reviewers.length>0) setUserId(reviewers[0].user_id)
     }
@@ -22,7 +22,7 @@ const ArticleAddReviewers = ({data}) => {
         e.preventDefault();
         
         try {
-            await axios.post('http://localhost:3001/reviewers', {
+            await api.post('http://localhost:3001/reviewers', {
                 reviews_id: data.reviews_id,
                 user_id:userId,
                 date_assigned:new Date(),

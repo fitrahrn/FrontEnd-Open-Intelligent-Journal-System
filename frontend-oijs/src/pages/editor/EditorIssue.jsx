@@ -1,6 +1,4 @@
-import axios from "axios";
-import React, { useState, useEffect } from 'react';
-import {Link,useParams} from "react-router-dom";
+import React from 'react';
 import LayoutEditor from '../../components/LayoutEditor';
 import NavbarCardIssue from "../../components/NavbarCardIssue";
 import EditorFutureIssue from './EditorFutureIssue';

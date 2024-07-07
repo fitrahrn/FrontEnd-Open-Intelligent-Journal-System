@@ -1,19 +1,19 @@
 import React , { useState, useEffect }from 'react';
 import LayoutAdmin from '../../components/LayoutAdmin';
-import axios from "axios";
+import api from "../../interceptor/axios"
 const RoleRequest = () => {
     const [listRoleRequest,setRoleRequest] = useState([]);
     useEffect(() => {
         getRoleRequests();
       }, []);
     const getRoleRequests = async () => {
-        const response = await axios.get(`http://localhost:3001/role/request`)
+        const response = await api.get(`http://localhost:3001/role/request`)
         setRoleRequest(response.data);
     };
     
     const acceptRequest = async (role_id) => {
         try {
-            await axios.post('http://localhost:3001/role/request/answer', {
+            await api.post('http://localhost:3001/role/request/answer', {
                 role_id: role_id,
                 accept: true
             });
@@ -24,7 +24,7 @@ const RoleRequest = () => {
     };
     const rejectRequest = async (role_id) => {
         try {
-            await axios.post('http://localhost:3001/role/request/answer', {
+            await api.post('http://localhost:3001/role/request/answer', {
                 role_id: role_id,
                 accept: false
             });

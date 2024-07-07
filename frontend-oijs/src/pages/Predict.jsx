@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {NavLink, useNavigate} from "react-router-dom";
-import axios from "axios";
 import Layout from '../components/Layout';
+import axios from 'axios';
 const Predict = () => {
     const [title, setTitle] = useState("");
     const [abstract, setAbstract] = useState("");

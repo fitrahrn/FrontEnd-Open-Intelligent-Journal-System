@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {useNavigate} from "react-router-dom";
-import axios from "axios";
+import api from "../../interceptor/axios"
 import Layout from '../../components/Layout';
 
 const Register = () => {
@@ -21,7 +21,7 @@ const Register = () => {
         getJournals();
       }, []);
     const getJournals = async () => {
-        const response = await axios.get(`http://localhost:3001/journals`)
+        const response = await api.get(`http://localhost:3001/journals`)
         console.log(response.data)
         setListJournal(response.data);
         setJournal(response.data[0].journal_id)
@@ -29,7 +29,7 @@ const Register = () => {
     const Register = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('http://localhost:3001/register', {
+            await api.post(`http://localhost:3001/register`, {
                 name: name,
                 public_name: publicName,
                 username: username,
