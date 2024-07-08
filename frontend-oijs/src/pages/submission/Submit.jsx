@@ -43,7 +43,6 @@ const Submit = () => {
 
     const Submit = async (e) => {
         e.preventDefault();
-        console.log(journal)
         const formData = new FormData();
         formData.append("prefix",prefix);
         formData.append("title",title);

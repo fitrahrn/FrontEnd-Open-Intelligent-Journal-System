@@ -8,17 +8,8 @@ const EditorBackIssue = () => {
         getIssue();
       }, []);
     const getIssue = async () => {
-        
         const response = await api.get(`http://localhost:3001/issue/${journal}`)
-        setIssue(response.data);
-    };
-    const deleteIssue = async (path) => {
-        try {
-          await api.delete(`http://localhost:3001/issue/${path}`);
-          getIssue();
-        } catch (error) {
-          console.log(error);
-        }
+        setIssue(response.data.filter((issue)=> !issue.appear));
     };
     return (
         <div class="tab-pane fade p-3" id="back"  role="tabpanel" aria-labelledby="back-tab" >
@@ -38,7 +29,6 @@ const EditorBackIssue = () => {
                             <p class="card-text col-2">{issue.year}</p>
                             <p class="card-text col-3">{issue.date_published}</p>
                             <div class="btn-group col-4 ">
-                                <button onClick={() => deleteIssue(issue.id)} class="btn btn-outline-danger">Delete</button>
                                 <Link to={`edit/${issue.id}`} class="btn btn-outline-warning">Edit</Link>    
                                 <button href="#" class="btn btn-outline-primary">Preview</button>
                             </div>

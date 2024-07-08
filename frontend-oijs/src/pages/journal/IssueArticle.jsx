@@ -3,17 +3,23 @@ import { Link,useParams  } from "react-router-dom";
 import api from "../../interceptor/axios"
 import Layout from '../../components/Layout';
 import NavbarJournal from '../../components/NavbarJournal';
-const Journal = () => {
+const IssueArticle = () => {
     const [listArticle,setArticle] = useState([]);
     const [journalData,setJournalData] = useState([]);
-    const {journal} = useParams();
+    const {journal,volume,number} = useParams();
+    const [listIssue,setIssue] = useState([]);
     useEffect(() => {
         getArticle();
+        getIssue();
         getJournal();
       }, []);
     const getArticle = async () => {
-        const response = await api.get(`http://localhost:3001/articles/${journal}`)
+        const response = await api.get(`http://localhost:3001/articles/${journal}/${volume}/${number}`)
         setArticle(response.data);
+    };
+    const getIssue = async () => {
+        const response = await api.get(`http://localhost:3001/issue/${journal}/${volume}/${number}`)
+        setIssue(response.data);
     };
     const getJournal= async () => {
         const response = await api.get(`http://localhost:3001/journal/${journal}`)
@@ -29,10 +35,10 @@ const Journal = () => {
                     </div>
                     
                     <div className='card-body'> 
-                        
+                        <p class="card-title text-primary fw-bold"> Vol. {listIssue.volume} No. {listIssue.number} ({listIssue.year})</p>
                         {listArticle.map((article) => (
                             <div class="card m-3 mx-auto">
-                                <Link to={`article/${article.article_id}`} class="card-title text-decoration-none">
+                                <Link to={`/${journal}/article/${article.article_id}`} class="card-title text-decoration-none">
                                     <p class="card-header"> {article.title}</p>
                                 </Link>
                                 <div class="card-body p-3">
@@ -52,4 +58,4 @@ const Journal = () => {
     );
 }
 
-export default Journal;
+export default IssueArticle;

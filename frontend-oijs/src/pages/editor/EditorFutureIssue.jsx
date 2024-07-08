@@ -9,20 +9,24 @@ const EditorFutureIssue = () => {
         getIssue();
       }, []);
     const getIssue = async () => {
-        
-        const response = await api.get(`http://localhost:3001/issue/${journal}`)
-        setIssue(response.data);
+        const response = await api.get(`http://localhost:3001/issue/${journal}` )
+        setIssue(response.data.filter((issue)=> issue.appear));
     };
-    const deleteIssue = async (path) => {
+    const publishIssue = async (id) => {
         try {
-          await api.delete(`http://localhost:3001/issue/${path}`);
+          await api.patch(`http://localhost:3001/issue/${id}`,{
+            date_published: new Date(),
+            appear: true
+        });
           getIssue();
         } catch (error) {
           console.log(error);
         }
     };
+
     return (
         <div class="tab-pane fade show active p-3" id="future"  role="tabpanel" aria-labelledby="future-tab" >
+            
             <div class="row card-body justify-content-between list-group-flush">
                 <p class="card-subtitle mb-2 text-body-secondary col-1">Volume</p>
                 <p class="card-subtitle mb-2 text-body-secondary col-1">Number</p>
@@ -30,26 +34,24 @@ const EditorFutureIssue = () => {
                 <p class="card-subtitle mb-2 text-body-secondary col-3">Date Published</p>
                 <p class="card-subtitle mb-2 text-body-secondary col-4"></p>
             </div>
-            {listIssue.map((issue) => (
-                <ul class="list-group ">
-                    <li class="list-group-item">
-                        <div class="row justify-content-between">
-                            <p class="card-text col-1">{issue.volume}</p>
-                            <p class="card-text col-1">{issue.number}</p>
-                            <p class="card-text col-2">{issue.year}</p>
-                            <p class="card-text col-3">{issue.date_published}</p>
-                            <div class="btn-group col-4 ">
-                                <button onClick={() => deleteIssue(issue.id)} class="btn btn-outline-danger">Delete</button>
-                                <Link to={`edit/${issue.id}`} class="btn btn-outline-warning">Edit</Link>    
-                                <button href="#" class="btn btn-outline-primary">Preview</button>
+            <ul class="list-group ">
+                {listIssue.map((issue) => (
+                        <li class="list-group-item">
+                            <div class="row justify-content-between">
+                                <p class="card-text col-1">{issue.volume}</p>
+                                <p class="card-text col-1">{issue.number}</p>
+                                <p class="card-text col-2">{issue.year}</p>
+                                <p class="card-text col-3">{issue.date_published}</p>
+                                <div class="btn-group col-4 ">
+                                    <button href="#" class="btn btn-outline-primary">Preview</button>
+                                    <button onClick={() => publishIssue(issue.id)} class="btn btn-primary">Publish</button>
+                                </div>
                             </div>
-                        </div>
-                        
-                    </li>
-
-                </ul>
-                )
-            )}
+                        </li>
+                    )
+                )}
+            </ul>
+            <Link class="col-2" to={`/${journal}/create/issue`}><button class="btn btn-primary float-end m-3" >Create Issue</button></Link>
         </div> 
             
     );

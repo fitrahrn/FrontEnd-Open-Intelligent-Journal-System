@@ -38,6 +38,9 @@ import Chart from "chart.js/auto";
 import { CategoryScale } from "chart.js";
 import SubmissionDetail from './pages/submission/SubmissionDetail';
 import Dashboard from './pages/Dashboard';
+import IssueArticle from './pages/journal/IssueArticle';
+import EditorAddIssue from './pages/editor/EditorAddIssue';
+import IssueCurrent from './pages/journal/IssueCurent';
 Chart.register(CategoryScale);
 function App() {
   return (
@@ -63,6 +66,8 @@ function App() {
         <Route path='/:journal/ethics' element={<Ethics/>}/>
         <Route path='/:journal/guidelines' element={<Guidelines/>}/>
         <Route path='/:journal/issue' element={<Issue/>}/>
+        <Route path='/:journal/issue/current' element={<IssueCurrent/>}/>
+        <Route path='/:journal/issue/:volume/:number' element={<IssueArticle/>}/>
         <Route path='/:journal/subscription' element={<Subscriptions/>}/>
         <Route path='/:journal/article/:article_id' element={<ViewArticle/>}/>
         <Route path='/:journal/article/:article_id/view' element={<ViewPDF/>}/>
@@ -75,6 +80,7 @@ function App() {
         <Route path='/review/:article_id' element={<ReviewArticle/>}/>
         <Route path='/:journal/submission' element={<Editor/>}/>
         <Route path='/:journal/manageIssue' element={<EditorIssue/>}/>
+        <Route path='/:journal/create/issue' element={<EditorAddIssue/>}/>
         <Route path='/:journal/settings' element={<EditorSettings/>}/>
         <Route path='/:journal/request' element={<AuthorRequest/>}/>
         <Route path='/:journal/submission/:article_id' element={<Article/>}/>
