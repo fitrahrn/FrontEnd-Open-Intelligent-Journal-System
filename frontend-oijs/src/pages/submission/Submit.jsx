@@ -50,6 +50,7 @@ const Submit = () => {
         formData.append("abstract",abstract);
         formData.append("keywords",keywords);
         formData.append("contributors",contributors);
+        formData.append("date_published",new Date())
         formData.append("file",file)
         try {
             await api.post(`http://localhost:3001/article/${journal}`,formData, {

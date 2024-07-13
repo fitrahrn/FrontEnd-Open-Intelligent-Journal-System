@@ -4,7 +4,7 @@ import api from "../../../interceptor/axios"
 const ArticleSelectFilePhase = ({phase}) => {
     const [ArticleFiles,setArticleFiles] = useState([]);
     const [msg, setMsg] = useState("");
-    const [file,setFile] = useState("")
+    const [file,setFile] = useState(0)
     const {article_id} = useParams();
     const [success,setSuccess] = useState("")
     const [close,setClose] = useState("")
@@ -21,20 +21,15 @@ const ArticleSelectFilePhase = ({phase}) => {
             let fileName = article_path_split[article_path_split.length - 1]
             listFile[i].file_name = fileName
         }
-        console.log(listFile)
         setArticleFiles(listFile);
     }
     const selectArticleFiles = async (e) => {
         e.preventDefault();
-        
         try {
-            await api.patch(`http://localhost:3001/article_file/${article_id}`, {
-                article_id: file.article_id,
-                article_path: file.article_path,
-                phase:phase
+            await api.patch(`http://localhost:3001/article_file/${file}`, {
+                phase:"copyediting"
             });
-            setSuccess("New ArticleFiles Has Been Added")
-            setClose("modal")
+            setSuccess("New Files Has Been Added")
         } catch (error) {
             if (error.response) {
                 setMsg(error.response.data.msg);
@@ -43,11 +38,11 @@ const ArticleSelectFilePhase = ({phase}) => {
         setFile("modal")
     }
     return (
-        <div class="modal fade" id="selectFile" tabindex="-1" aria-labelledby="selectFileLabel" aria-hidden="true">
+        <div class="modal fade" id="addFile" tabindex="-1" aria-labelledby="addFileLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="selectFileLabel">Add File</h1>
+                        <h1 class="modal-title fs-5" id="addFileLabel">Add File</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <form  onSubmit={selectArticleFiles}>
@@ -59,8 +54,8 @@ const ArticleSelectFilePhase = ({phase}) => {
                                 <ul class="list-group list-group-flush ">
                                     <li class="list-group-item ">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" id={article.article_path} name="select_file" value={article} checked={file===article} onChange={(e) => setFile(e.target.value)}  />
-                                            <label class="form-check-label" for={article.article_path} >
+                                            <input class="form-check-input" type="radio" id={article.article_file_id} name="select_file" value={article.article_file_id} checked={file.toString()===article.article_file_id.toString()} onChange={(e) => setFile(e.target.value)}  />
+                                            <label class="form-check-label" for={article.article_file_id} >
                                                 {article.file_name}
                                             </label>
                                         </div>
@@ -71,7 +66,7 @@ const ArticleSelectFilePhase = ({phase}) => {
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="mx-2 btn btn-lg btn-danger" data-bs-dismiss="modal">Cancel</button>
-                            <button type="submit" class="mx-2 btn btn-lg btn-primary" data-bs-dismiss={close}>Add Reviews Rounds</button>
+                            <button type="submit" class="mx-2 btn btn-lg btn-primary" data-bs-dismiss={close}>Add File</button>
                         </div> 
                     </form>
                 </div>

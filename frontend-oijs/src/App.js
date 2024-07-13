@@ -41,6 +41,7 @@ import Dashboard from './pages/Dashboard';
 import IssueArticle from './pages/journal/IssueArticle';
 import EditorAddIssue from './pages/editor/EditorAddIssue';
 import IssueCurrent from './pages/journal/IssueCurent';
+import Search from './pages/Search';
 Chart.register(CategoryScale);
 function App() {
   return (
@@ -56,7 +57,7 @@ function App() {
         <Route path='/journalfinder' element={<Predict />}/>
         <Route path='/admin/journal' element={<HostJournal/>}/>
         <Route path='/admin/journal/create' element={<CreateJournal/>}/>
-        <Route path='/admin/journal/edit/:path' element={<EditJournal/>}/>
+        <Route path='/admin/journal/edit/:journal' element={<EditJournal/>}/>
         <Route path='/admin/user' element={<ManageUser/>}/>
         <Route path='/admin/request' element={<RoleRequest/>}/>
         <Route path='/admin/setting' element={<Setting/>}/>
@@ -81,10 +82,11 @@ function App() {
         <Route path='/:journal/submission' element={<Editor/>}/>
         <Route path='/:journal/manageIssue' element={<EditorIssue/>}/>
         <Route path='/:journal/create/issue' element={<EditorAddIssue/>}/>
-        <Route path='/:journal/settings' element={<EditorSettings/>}/>
+        <Route path='/:journal/settings' element={<EditJournal/>}/>
         <Route path='/:journal/request' element={<AuthorRequest/>}/>
         <Route path='/:journal/submission/:article_id' element={<Article/>}/>
         <Route path='/profile/:username' element={<AuthorProfile/>}/>
+        <Route path='/search/:title' element={<Search/>}/>
         
 
 

@@ -20,7 +20,7 @@ const ArticleAddReviewers = ({data}) => {
     }
     const addReviewers = async (e) => {
         e.preventDefault();
-        
+        console.log(data.reviews_id)
         try {
             await api.post('http://localhost:3001/reviewers', {
                 reviews_id: data.reviews_id,
@@ -29,6 +29,7 @@ const ArticleAddReviewers = ({data}) => {
                 date_due: dueDate
             });
             setSucces("New Reviewers Has Been Added")
+            
         } catch (error) {
             if (error.response) {
                 setMsg(error.response.data.msg);
@@ -41,7 +42,7 @@ const ArticleAddReviewers = ({data}) => {
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="addReviewersLabel">Add Review Round</h1>
+                        <h1 class="modal-title fs-5" id="addReviewersLabel">Add Reviewers in Review <h1>1</h1></h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <form  onSubmit={addReviewers}>

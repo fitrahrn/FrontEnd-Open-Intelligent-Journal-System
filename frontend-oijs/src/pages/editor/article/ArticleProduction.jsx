@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import api from "../../../interceptor/axios"
-import axios from "axios"
 import {useParams} from "react-router-dom";
-import ArticleSelectFilePhase from './ArticleSelectFilePhase';
+import ArticleSelectFileProduction from './ArticleSelectFileProduction';
 const ArticleProduction = ({data,role}) => {
     const [listProduction,setProduction] = useState([]);
     const {article_id} = useParams();
@@ -13,10 +12,13 @@ const ArticleProduction = ({data,role}) => {
     
     const getProductions = async () => {
         
-        const response = await api.post(`http://localhost:3001/article_file/${article_id}`, {
-            phase: "production",
-        })
-        setProduction(response.data);
+        const response = await api.get(`http://localhost:3001/article/${article_id}`)
+        const listFile = response.data
+        let article_path = response.data.article_path
+        const article_path_split = article_path.split("/");
+        let fileName = article_path_split[article_path_split.length - 1]
+        listFile.file_name = fileName
+        setProduction(listFile);
     }
     const answerReview = async (workflowPhase,status) => {
         const formData = new FormData();
@@ -29,6 +31,7 @@ const ArticleProduction = ({data,role}) => {
           } catch (error) {
             setMsg(error);
           }
+        getProductions();
     };
     return (
         <div class="tab-pane fade p-3" id="production"  role="tabpanel" aria-labelledby="production-tab" >
@@ -37,16 +40,13 @@ const ArticleProduction = ({data,role}) => {
             :
                 <div>
                     <div class="card container-fluid mb-3">
-                        <ArticleSelectFilePhase data="production"/>
+                        <ArticleSelectFileProduction data="production"/>
                         <div class="card-header row">
                             <p class="card-text col">Production Ready Files</p>
-                            <button class="col-2 btn btn-primary" data-bs-toggle="modal" data-bs-target="#selectFile">Select Files</button>
+                            <button class="col-2 btn btn-primary" data-bs-toggle="modal" data-bs-target="#selectFileProduction">Select Files</button>
                         </div>
                         <div class="card-body row">
-                            {listProduction.length>0? listProduction.map((review) => (
-                                <p  class="card-text col">{review.file_name}</p>
-                            )) : 
-                            <p class="card-text">No Files</p>}
+                            <p  class="card-text col">{listProduction.file_name}</p>
                             
                         </div>
                         

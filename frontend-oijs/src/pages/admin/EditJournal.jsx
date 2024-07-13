@@ -16,7 +16,7 @@ const EditJournal = () => {
     const [regNumber,setRegNumber] = useState("")
     const [appear,setAppear] = useState(false)
     const [newPath, setNewPath] = useState("");
-    const { path } = useParams();
+    const { journal } = useParams();
     const [id,setId] = useState("");
     const [imageName,setImageName] = useState("No Image Selected");
     const [file,setFile] = useState("");
@@ -29,23 +29,23 @@ const EditJournal = () => {
   }, []);
 
   const getJournalById = async () => {
-    const journal = await api.get(`http://localhost:3001/journal/${path}`);
+    const journalData = await api.get(`http://localhost:3001/journal/${journal}`);
     
-    setId(journal.data.id);
-    setTitle(journal.data.title);
-    setInitials(journal.data.initials);
-    setAbbreviation(journal.data.abbreviation);
-    setImagePath(journal.data.imagePath);
-    setDescription(journal.data.description);
-    setLanguage(journal.data.languages);
-    setPublisher(journal.data.publisher);
-    setIssn(journal.data.issn);
-    setEissn(journal.data.e_issn);
-    setRegNumber(journal.data.reg_number);
-    setAppear(journal.data.appear);
-    setFile(journal.data.journal);
-    setPreview(journal.data.image_path)
-    setNewPath(journal.data.path)
+    setId(journalData.data.id);
+    setTitle(journalData.data.title);
+    setInitials(journalData.data.initials);
+    setAbbreviation(journalData.data.abbreviation);
+    setImagePath(journalData.data.imagePath);
+    setDescription(journalData.data.description);
+    setLanguage(journalData.data.languages);
+    setPublisher(journalData.data.publisher);
+    setIssn(journalData.data.issn);
+    setEissn(journalData.data.e_issn);
+    setRegNumber(journalData.data.reg_number);
+    setAppear(journalData.data.appear);
+    setFile(journalData.data.journalData);
+    setPreview(journalData.data.image_path)
+    setNewPath(journalData.data.path)
   };
 
   const updateJournal = async (event) => {
@@ -67,7 +67,7 @@ const EditJournal = () => {
     formData.append("file",file)
 
     try {
-      await api.patch(`http://localhost:3001/journal/${path}`, formData, {
+      await api.patch(`http://localhost:3001/journal/${journal}`, formData, {
         "Content-type": "multipart/form-data",
       });
       navigate(`/admin/journal`);

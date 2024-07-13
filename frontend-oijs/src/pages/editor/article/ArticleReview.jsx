@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import {Link,useParams} from "react-router-dom";
 import api from "../../../interceptor/axios"
 import ArticleAddReviewers from './ArticleAddReviewers';
-import ArticleAddReviews from './ArticleAddReviews';
+import ArticleAddNewReviews from './ArticleAddNewReviews';
+import ArticleDetailReviews from './ArticleDetailReview';
 const ArticleReview = ({data,role}) => {
     const [listReviews,setReviews] = useState([]);
     const {article_id} = useParams();
@@ -21,7 +22,6 @@ const ArticleReview = ({data,role}) => {
             let fileName = article_path_split[article_path_split.length - 1]
             listFile[i].file_name = fileName
         }
-        console.log(response.data)
         setReviews(listFile);
     }
     const answerReview = async (workflowPhase,status) => {
@@ -35,10 +35,29 @@ const ArticleReview = ({data,role}) => {
         } catch (error) {
             setMsg(error);
         }
+        getReviews()
     };
+    const detailReviews = document.getElementById('detailReviews')
+    if (detailReviews) {
+    detailReviews.addEventListener('show.bs.modal', event => {
+        // Button that triggered the modal
+        const button = event.relatedTarget
+        // Extract info from data-bs-* attributes
+        const recipient1 = button.getAttribute('data-bs-review-author')
+        const recipient2= button.getAttribute('data-bs-review-editor')
+        // If necessary, you could initiate an Ajax request here
+        // and then do the updating in a callback.
+
+        // Update the modal's content.
+        const authorReview = detailReviews.querySelector('#authorReview')
+        const editorReview = detailReviews.querySelector('#editorReview')
+        authorReview.textContent = `${recipient1}`
+        editorReview.textContent = `${recipient2}`
+    })
+    }
     return (
         <div class="tab-pane fade p-3" id="review"  role="tabpanel" aria-labelledby="review-tab" >
-            <ArticleAddReviews/>
+            
             {listReviews.length>0 ?
                 listReviews.map((review) => (
                     <div class="card mb-3">
@@ -53,10 +72,10 @@ const ArticleReview = ({data,role}) => {
                                 </div>
                             </div>
                             <div class="card container-fluid mb-3">
-                            {role ==="editor"?<ArticleAddReviewers data={review}/> :<div></div>}
+                            {role ==="editor" && review.review_rounds===listReviews.length?<ArticleAddReviewers data={review}/> :<div></div>}
                                 <div class="row no-gutters card-header ">
                                     <p class="card-text col">Reviewers</p>
-                                    {role ==="editor"?<button class="col-2 btn btn-primary" data-bs-toggle="modal" data-bs-target="#addReviewers">Add Reviewers</button> :<div></div>}
+                                    {role ==="editor"  && review.review_rounds===listReviews.length?<button class="col-2 btn btn-primary" data-bs-toggle="modal" data-bs-target="#addReviewers">Add Reviewers</button> :<div></div>}
                                 </div>
                                 
                                 <div class="card-body row">
@@ -65,18 +84,19 @@ const ArticleReview = ({data,role}) => {
                                         <p class="card-subtitle mb-2 text-body-secondary col-2">Review Status</p>
                                         <p class="card-subtitle mb-2 text-body-secondary col-2">Date Due</p>
                                         <p class="card-subtitle mb-2 text-body-secondary col-2">Date Completed</p>
+                                        <p class="card-subtitle mb-2 text-body-secondary col-2"></p>
                                     </div>
                                     {review.reviewers.map((reviewers) => (
                                         <ul class="list-group list-group-flush">
+                                            <ArticleDetailReviews data={reviewers}/>
                                             <li class="list-group-item">
-                                            
                                                 <div class="row justify-content-between">
                                                     <p class="card-text col-3">{reviewers.user.name}</p>
                                                     {reviewers.recommendation? <p class="card-text col-2">{reviewers.recommendation}</p> : <p class="card-text col-2">Not Reviewed</p>}
                                                     <p class="card-text col-2">{reviewers.date_due}</p>
                                                     <p class="card-text col-2">{reviewers.date_completed}</p>
+                                                    {reviewers.author_review ? <button className='btn btn-primary col-2'data-bs-toggle="modal" data-bs-target="#detailReviews" data-bs-review-author={reviewers.author_review} data-bs-review-editor={reviewers.editor_review}>Reviews Detail</button>:<div></div>}
                                                 </div>
-                                                
                                             </li>
                                         </ul>
                                         )
@@ -91,11 +111,13 @@ const ArticleReview = ({data,role}) => {
              : 
             <p className='card-text'>The review process has not yet been initiated.</p> 
             }
+            <ArticleAddNewReviews/>
             {role ==="editor" && data.workflow_phase === "reviewing"?<div className='row justify-content-end'>
+                
                 <button onClick={()=>answerReview("reviewing","need revisions")} class="btn btn-outline-warning col-2 m-1" >Request Revisions</button>
                 <button onClick={()=>answerReview("declined","declined")} class="btn btn-danger col-2 m-1" >Decline Submission</button>
                 <button onClick={()=>answerReview("copyedited","accepted")} class="btn btn-primary col-2 m-1" >Accept Submission</button>
-                <button class="btn btn-outline-primary col-2 m-1" data-bs-toggle="modal" data-bs-target="#addReview">Add New Review Rounds</button>
+                <button class="btn btn-outline-primary col-2 m-1" data-bs-toggle="modal" data-bs-target="#addNewReview">Add New Review Rounds</button>
             </div>:<div></div>}
             
         </div> 

@@ -7,6 +7,7 @@ import ReviewAddDiscussion from './ReviewAddDiscussion';
 const ReviewArticle = () => {
     const [review,setReview] = useState([]);
     const [reviewer,setReviewer] = useState([]);
+    const [article,setArticle] = useState([]);
     const [msg, setMsg] = useState("");
     const [check, setCheck] = useState(false);
     const [editorReview,setEditorReview] = useState("")
@@ -15,13 +16,14 @@ const ReviewArticle = () => {
     const [documentName,setDocumentName] = useState("No Document Selected");
     const [discusssions,setDiscusssions] = useState([])
     const [file,setFile] = useState("");
-    const [recommendation,setRecommendation] = useState("")
+    const [recommendation,setRecommendation] = useState("accepted")
     const { article_id } = useParams();
     const navigate = useNavigate();
 
 
     useEffect(() => {
         getReviews();
+        getArticles();
       }, []);
     const getReviews = async () => {
         const response = await api.get(`http://localhost:3001/reviews/${article_id}`)
@@ -35,11 +37,16 @@ const ReviewArticle = () => {
         setReviewer(responseReviewer.data)
         const responseDiscussion = await api.get(`http://localhost:3001/discussion/${listFile.reviews_id}`)
         setDiscusssions(responseDiscussion.data);
-        console.log(responseDiscussion)
+        console.log(listFile)
     };
+    const getArticles = async() =>{
+        const response = await api.get(`http://localhost:3001/article/${article_id}`)
+        setArticle(response.data)
+    }
 
     const ReviewArticle = async (e) => {
         e.preventDefault();
+        console.log(recommendation)
         const formData = new FormData();
         formData.append("reviewers_id",reviewer.reviewers_id);
         formData.append("editor_review",editorReview);
@@ -83,9 +90,9 @@ const ReviewArticle = () => {
                             <p className='card-text'>You have been selected as a potential reviewer of the following submission. Below is an overview of the submission, as well as the timeline for this review. We hope that you are able to participate.</p>
                             
                             <h5 class="card-title fw-bold mt-2">Article Title</h5>
-                            {review.article !== undefined ? <p class="card-text mb-2">{review.article.title}</p>: <div></div>}
+                            {article !== undefined ? <p class="card-text mb-2">{article.title}</p>: <div></div>}
                             <h5 class="card-title fw-bold mt-2">Abstract</h5>
-                            {review.article !== undefined ? <p class="card-text mb-2">{review.article.abstract}</p>: <div></div>}
+                            {article !== undefined ? <p class="card-text mb-2">{article.abstract}</p>: <div></div>}
                             <h5 class="card-title fw-bold mt-2">Review Type</h5>
                             <p class="card-text mb-2">Anonymous Reviewer/Anonymous Author</p>
 

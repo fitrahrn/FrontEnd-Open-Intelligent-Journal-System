@@ -41,7 +41,7 @@ const SidebarAdmin = () => {
                         <a class="nav-link" href={`/${journal}/request`}>Role Request</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="">Setting</a>
+                        <a class="nav-link" href={`/${journal}/settings`}>Setting</a>
                     </li>
                     
                 </ul>

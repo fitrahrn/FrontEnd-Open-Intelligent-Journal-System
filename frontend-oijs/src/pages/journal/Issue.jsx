@@ -10,6 +10,7 @@ const Issue = () => {
     useEffect(() => {
         getIssue();
         getJournal();
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       }, []);
     const getIssue = async () => {
         const response = await api.get(`http://localhost:3001/issue/${journal}`)

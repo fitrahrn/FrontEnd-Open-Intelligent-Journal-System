@@ -84,6 +84,7 @@ const ArticlePublication = ({data}) => {
           } catch (error) {
             setMsg(error);
           }
+        getArticleById();
     };
     return (
         <div class="tab-pane fade p-3" id="publication"  role="tabpanel" aria-labelledby="publication-tab" >

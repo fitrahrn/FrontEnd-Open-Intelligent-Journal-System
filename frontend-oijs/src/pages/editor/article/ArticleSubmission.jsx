@@ -2,18 +2,33 @@ import React, { useState, useEffect } from 'react';
 import {Link,useParams} from "react-router-dom";
 import api from "../../../interceptor/axios"
 import ArticleAddReviews from './ArticleAddReviews';
+import ArticleAddContributors from './ArticleAddContributors';
+import ArticleUploadFile from './ArticleUploadFile';
 const ArticleSubmission = ({data,role}) => {
     const [listContributors,setContributors] = useState([]);
     const {article_id} = useParams();
+    const [articleFile,setArticleFile] = useState([])
     const [msg,setMsg] = useState([])
     useEffect(() => {
         getContributors();
+        getArticleFiles();
       }, []);
     
     const getContributors = async () => {
-        console.log(data)
         const response = await api.get(`http://localhost:3001/contributors/article/${article_id}`)
         setContributors(response.data);
+    }
+    const getArticleFiles = async () => {
+        
+        const response = await api.get(`http://localhost:3001/article_file/${article_id}`)
+        const listFile = response.data
+        for(let i=0;i<listFile.length;i++){
+            let article_path = response.data[i].article_path
+            const article_path_split = article_path.split("/");
+            let fileName = article_path_split[article_path_split.length - 1]
+            listFile[i].file_name = fileName
+        }
+        setArticleFile(listFile);
     }
     const answerReview = async (workflowPhase,status) => {
         const formData = new FormData();
@@ -48,9 +63,11 @@ const ArticleSubmission = ({data,role}) => {
                         
                     </div>
                 </div>
-                <div class="card mb-3">
-                    <div class="card-header">
-                        Participants
+                <div class="card container-fluid mb-3">
+                    <ArticleAddContributors/>
+                    <div class="card-header row">
+                        <p class="card-text col">Contributors</p>
+                        <button class="col-2 btn btn-primary" data-bs-toggle="modal" data-bs-target="#addContributors">Add Contributors</button>
                     </div>
                     <div class="card-body">
                         <h5 class="card-title">Author</h5>
@@ -68,13 +85,20 @@ const ArticleSubmission = ({data,role}) => {
                         )}
                     </div>
                 </div>
-                <div class="card mb-3">
-                    <div class="card-header">
-                        Submission File
+                <div class="card container-fluid mb-3">
+                    <ArticleUploadFile/>
+                    <div class="card-header row">
+                        <p class="card-text col">Submission File</p>
+                        <button class="col-2 btn btn-primary" data-bs-toggle="modal" data-bs-target="#uploadFile">Upload New Files</button>
                     </div>
-                    <div class="card-body row">
-                        <p  class="card-text col">{data.title}.pdf</p>
-                        <Link class="btn btn-outline-primary col-2 me-3" to={data.article_path} target="_blank" download>Download</Link>
+                    <div class="card-body">
+                        {articleFile.map((file) => (
+                            <div className='row mb-2'>
+                                <p  class="card-text col">{file.file_name}</p>
+                                <Link class="btn btn-outline-primary col-2 me-3" to={file.article_path} target="_blank" download>Download</Link>
+                            </div>
+                        ))}
+                        
                     </div>
                 </div>
             </div>

@@ -13,7 +13,7 @@ const Journal = () => {
       }, []);
     const getArticle = async () => {
         const response = await api.get(`http://localhost:3001/articles/${journal}`)
-        setArticle(response.data);
+        setArticle(response.data.filter((article)=> article.workflow_phase==="published"));
     };
     const getJournal= async () => {
         const response = await api.get(`http://localhost:3001/journal/${journal}`)

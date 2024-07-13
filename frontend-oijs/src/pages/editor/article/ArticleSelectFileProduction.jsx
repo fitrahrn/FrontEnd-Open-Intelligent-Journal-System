@@ -1,20 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import {Link,useParams} from "react-router-dom";
 import api from "../../../interceptor/axios"
-const ArticleAddReviews = ({data}) => {
-    const [listArticle,setArticle] = useState([]);
-    const [file,setFile] = useState("");
+const ArticleSelectProduction = ({phase}) => {
+    const [ArticleFiles,setArticleFiles] = useState([]);
     const [msg, setMsg] = useState("");
-    const [success,setSucces] = useState("")
+    const [file,setFile] = useState("")
     const {article_id} = useParams();
+    const [success,setSuccess] = useState("")
     const [close,setClose] = useState("")
     useEffect(() => {
-        getArticles();
+        getArticleFiles();
       }, []);
     
-    const getArticles = async () => {
+    const getArticleFiles = async () => {
         const response = await api.get(`http://localhost:3001/article_file/${article_id}`)
-        
         const listFile = response.data
         for(let i=0;i<listFile.length;i++){
             let article_path = response.data[i].article_path
@@ -22,44 +21,36 @@ const ArticleAddReviews = ({data}) => {
             let fileName = article_path_split[article_path_split.length - 1]
             listFile[i].file_name = fileName
         }
-        setArticle(listFile);
+        setArticleFiles(listFile);
     }
-    const addReviews = async (e) => {
+    const selectArticleFiles = async (e) => {
         e.preventDefault();
-        const formData = new FormData();
-        formData.append("workflow_phase","reviewing");
-        formData.append("status","reviewers assigned");
         try {
-            await api.post('http://localhost:3001/reviews', {
-                article_id: article_id,
-                article_file_path: file
+            await api.patch(`http://localhost:3001/article/${article_id}`, {
+                article_path: file,
             });
-            await api.patch(`http://localhost:3001/article/${article_id}`, formData, {
-                "Content-type": "multipart/form-data",
-            });
-            setSucces("Reviews Round Added")
+            setSuccess("Production Article File Has Been Changed")
         } catch (error) {
             if (error.response) {
                 setMsg(error.response.data.msg);
             }
         }
-        
-        setClose("modal")
+        setFile("modal")
     }
     return (
-        <div class="modal fade" id="addReview" tabindex="-1" aria-labelledby="addReviewLabel" aria-hidden="true">
+        <div class="modal fade" id="selectFileProduction" tabindex="-1" aria-labelledby="selectFileProductionLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="addReviewLabel">Add Review Round</h1>
+                        <h1 class="modal-title fs-5" id="selectFileProductionLabel">Add File</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <form  onSubmit={addReviews}>
+                    <form  onSubmit={selectArticleFiles}>
                         <div class="modal-body">
-                            <p class="card-title">Choose File to Review</p>
-                            <p className="error" style={{color: "red"}}>{msg}</p>
                             <p className="text-success" >{success}</p>
-                            {listArticle.map((article) => (
+                            <p class="card-title">Choose File to Add</p>
+                            <p className="error" style={{color: "red"}}>{msg}</p>
+                            {ArticleFiles.map((article) => (
                                 <ul class="list-group list-group-flush ">
                                     <li class="list-group-item ">
                                         <div class="form-check">
@@ -75,15 +66,14 @@ const ArticleAddReviews = ({data}) => {
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="mx-2 btn btn-lg btn-danger" data-bs-dismiss="modal">Cancel</button>
-                            <button type="submit" class="mx-2 btn btn-lg btn-primary" data-bs-dismiss={close}>Add Reviews Rounds</button>
+                            <button type="submit" class="mx-2 btn btn-lg btn-primary" data-bs-dismiss={close}>Add File</button>
                         </div> 
                     </form>
                 </div>
             </div>
                 
         </div>
-        
     );
 }
 
-export default ArticleAddReviews;
+export default ArticleSelectProduction;

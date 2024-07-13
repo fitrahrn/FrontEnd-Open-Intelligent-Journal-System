@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import {Link,useParams} from "react-router-dom";
+import {useNavigate,useParams} from "react-router-dom";
 import api from "../../../interceptor/axios"
-const ArticleAddReviews = ({data}) => {
+const ArticleAddNewReviews = ({data}) => {
     const [listArticle,setArticle] = useState([]);
     const [file,setFile] = useState("");
     const [msg, setMsg] = useState("");
-    const [success,setSucces] = useState("")
-    const {article_id} = useParams();
+    const {journal,article_id} = useParams();
     const [close,setClose] = useState("")
+    const navigate = useNavigate();
     useEffect(() => {
         getArticles();
       }, []);
@@ -37,7 +37,8 @@ const ArticleAddReviews = ({data}) => {
             await api.patch(`http://localhost:3001/article/${article_id}`, formData, {
                 "Content-type": "multipart/form-data",
             });
-            setSucces("Reviews Round Added")
+            setMsg("Reviews Round Added")
+            navigate(`/${journal}/submission/${article_id}`);
         } catch (error) {
             if (error.response) {
                 setMsg(error.response.data.msg);
@@ -47,18 +48,17 @@ const ArticleAddReviews = ({data}) => {
         setClose("modal")
     }
     return (
-        <div class="modal fade" id="addReview" tabindex="-1" aria-labelledby="addReviewLabel" aria-hidden="true">
+        <div class="modal fade" id="addNewReview" tabindex="-1" aria-labelledby="addNewReviewLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="addReviewLabel">Add Review Round</h1>
+                        <h1 class="modal-title fs-5" id="addNewReviewLabel">Add Review Round</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <form  onSubmit={addReviews}>
                         <div class="modal-body">
                             <p class="card-title">Choose File to Review</p>
                             <p className="error" style={{color: "red"}}>{msg}</p>
-                            <p className="text-success" >{success}</p>
                             {listArticle.map((article) => (
                                 <ul class="list-group list-group-flush ">
                                     <li class="list-group-item ">
@@ -86,4 +86,4 @@ const ArticleAddReviews = ({data}) => {
     );
 }
 
-export default ArticleAddReviews;
+export default ArticleAddNewReviews;

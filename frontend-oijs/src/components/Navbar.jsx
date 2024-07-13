@@ -1,5 +1,5 @@
 import React ,{ useState }from 'react';
-import { NavLink,useNavigate } from "react-router-dom";
+import { NavLink,useNavigate, useParams } from "react-router-dom";
 import logo from "../assets/images/itb.png"
 import profile from "../assets/images/profile.jpeg"
 import axios from 'axios';
@@ -7,6 +7,8 @@ const Navbar = () => {
   let isLogin = false;
   const navigate = useNavigate();
   const token = localStorage.getItem('accessToken');
+  const {title} = useParams();
+  const [searching,setSearching] = useState()
   if (token) {
     isLogin=true;
   }
@@ -19,6 +21,9 @@ const Navbar = () => {
     } catch (error) {
         console.log(error);
     }
+  }
+  const search = async () => {
+    navigate(`/search/${searching}`)
   }
   return (
     
@@ -44,8 +49,8 @@ const Navbar = () => {
             <a className="nav-link text-white" href="/journalfinder">Recommend Journal</a>
           </li>
         </ul>
-        <form className="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-          <input className="form-control" type="search" placeholder="Search..." aria-label="Search"/>
+        <form className="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search" onSubmit={search}>
+          <input className="form-control" type="search" placeholder={title ? title:"Search..."} aria-label="Search" onChange={(e) => setSearching(e.target.value)}/>
         </form>
         {
           isLogin ? 

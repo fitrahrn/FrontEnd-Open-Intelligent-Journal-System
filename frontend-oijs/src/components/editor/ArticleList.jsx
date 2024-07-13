@@ -8,7 +8,7 @@ const ArticleList = ({data}) => {
                 <p class="card-subtitle mb-2 text-body-secondary col-3">Title</p>
                 <p class="card-subtitle mb-2 text-body-secondary col-2">Review Status</p>
                 <p class="card-subtitle mb-2 text-body-secondary col-2">Workflow Phase</p>
-                <p class="card-subtitle mb-2 text-body-secondary col-1"></p>
+                <p class="card-subtitle mb-2 text-body-secondary col-1 m-3"></p>
             </div>
             {data.map((article) => (
                 <ul class="list-group ">

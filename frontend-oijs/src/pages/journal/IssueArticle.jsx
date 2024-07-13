@@ -12,10 +12,11 @@ const IssueArticle = () => {
         getArticle();
         getIssue();
         getJournal();
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       }, []);
     const getArticle = async () => {
         const response = await api.get(`http://localhost:3001/articles/${journal}/${volume}/${number}`)
-        setArticle(response.data);
+        setArticle(response.data.filter((article)=> article.workflow_phase==="published"));
     };
     const getIssue = async () => {
         const response = await api.get(`http://localhost:3001/issue/${journal}/${volume}/${number}`)

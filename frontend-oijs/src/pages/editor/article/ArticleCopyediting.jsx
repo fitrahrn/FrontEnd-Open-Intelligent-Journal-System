@@ -17,14 +17,28 @@ const ArticleCopyediting = ({data,role}) => {
         const response = await api.post(`http://localhost:3001/article_file/${article_id}`, {
             phase: "copyediting",
         })
-        setCopyEditing(response.data);
+        const listFile = response.data
+        for(let i=0;i<listFile.length;i++){
+            let article_path = response.data[i].article_path
+            const article_path_split = article_path.split("/");
+            let fileName = article_path_split[article_path_split.length - 1]
+            listFile[i].file_name = fileName
+        }
+        setCopyEditing(listFile);
     }
     const getCopyEditeds = async () => {
         
         const response = await api.post(`http://localhost:3001/article_file/${article_id}`, {
             phase: "copyedited",
         })
-        setCopyEdited(response.data);
+        const listFile = response.data
+        for(let i=0;i<listFile.length;i++){
+            let article_path = response.data[i].article_path
+            const article_path_split = article_path.split("/");
+            let fileName = article_path_split[article_path_split.length - 1]
+            listFile[i].file_name = fileName
+        }
+        setCopyEdited(listFile);
     }
     const answerReview = async (workflowPhase,status) => {
         const formData = new FormData();
@@ -37,6 +51,7 @@ const ArticleCopyediting = ({data,role}) => {
           } catch (error) {
             setMsg(error);
           }
+        getCopyEditings();
     };
     return (
         <div class="tab-pane fade p-3" id="copyediting"  role="tabpanel" aria-labelledby="copyediting-tab" >
@@ -48,7 +63,7 @@ const ArticleCopyediting = ({data,role}) => {
                         <ArticleSelectFilePhase data="copyediting"/>
                         <div class="card-header row">
                             <p class="card-text col">Draft File</p>
-                            <button class="col-2 btn btn-primary" data-bs-toggle="modal" data-bs-target="#selectFile">Select Files</button>
+                            <button class="col-2 btn btn-primary" data-bs-toggle="modal" data-bs-target="#addFile">Select Files</button>
                         </div>
                         <div class="card-body row">
                             {listCopyEditing.length>0? listCopyEditing.map((review) => (
@@ -62,7 +77,7 @@ const ArticleCopyediting = ({data,role}) => {
                         <ArticleSelectFilePhase data="copyedited"/>
                         <div class="card-header row">
                             <p class="card-text col">Copyedited</p>
-                            <button class="col-2 btn btn-primary" data-bs-toggle="modal" data-bs-target="#selectFile">Select Files</button>
+                            <button class="col-2 btn btn-primary" data-bs-toggle="modal" data-bs-target="#addFile">Select Files</button>
                         </div>
                         <div class="card-body row">
                             {listCopyEdited.length>0? listCopyEdited.map((review) => (

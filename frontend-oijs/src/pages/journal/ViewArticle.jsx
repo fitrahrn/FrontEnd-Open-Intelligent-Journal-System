@@ -50,7 +50,7 @@ const ViewArticle = () => {
                 <p className='text-secondary'>Year Published: {article.year}</p>
                     {authors.map((author) => (
                         <div className="mb-2"> 
-                            <div class="fw-bold">{author.name}</div>
+                            <a class="fw-bold" href={`/profile/${author.username}`}>{author.name}</a>
                             <p class="card-text">{author.affiliation}, {author.country}</p>
                         </div>
                     ))}
@@ -58,7 +58,7 @@ const ViewArticle = () => {
                     <p className='fw-bold mb-4'>Keywords: <span className='fw-normal'>{article.keywords}</span></p>
                     <p className='fw-bold mb-4'>Cite :
                         {/* Bind our handler function to the onClick button property */}
-                        <button onClick={handleCopyClick}>
+                        <button className='btn btn-sm btn-outline-primary m-1' onClick={handleCopyClick}>
                             <span>{isCopied ? 'Copied!' : 'Copy'}</span>
                         </button>    
                         {/* <span className='fw-normal'> 
