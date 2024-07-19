@@ -9,7 +9,7 @@ const EditorBackIssue = () => {
       }, []);
     const getIssue = async () => {
         const response = await api.get(`http://localhost:3001/issue/${journal}`)
-        setIssue(response.data.filter((issue)=> !issue.appear));
+        setIssue(response.data.filter((issue)=> issue.appear===true));
     };
     return (
         <div class="tab-pane fade p-3" id="back"  role="tabpanel" aria-labelledby="back-tab" >

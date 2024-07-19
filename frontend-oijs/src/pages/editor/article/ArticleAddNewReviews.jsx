@@ -38,7 +38,7 @@ const ArticleAddNewReviews = ({data}) => {
                 "Content-type": "multipart/form-data",
             });
             setMsg("Reviews Round Added")
-            navigate(`/${journal}/submission/${article_id}`);
+            window.location.reload();
         } catch (error) {
             if (error.response) {
                 setMsg(error.response.data.msg);

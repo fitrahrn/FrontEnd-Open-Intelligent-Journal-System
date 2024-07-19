@@ -14,7 +14,7 @@ const Issue = () => {
       }, []);
     const getIssue = async () => {
         const response = await api.get(`http://localhost:3001/issue/${journal}`)
-        setIssue(response.data);
+        setIssue(response.data.filter((issue)=> issue.appear===true));
     };
     const getJournal= async () => {
         const response = await api.get(`http://localhost:3001/journal/${journal}`)

@@ -19,13 +19,11 @@ const ManageUser = () => {
                     <div class="card m-3 p-3" >
                         <div class="row card-body  ">
                             <h5 class="card-title col">Users</h5>
-                            <button class="btn btn-outline-primary col-2">Create Journal</button>
                         </div>
                         <div class="row card-body">
                             <p class="card-subtitle mb-2 text-body-secondary col-3">Name</p>
                             <p class="card-subtitle mb-2 text-body-secondary col-3">Username</p>
                             <p class="card-subtitle mb-2 text-body-secondary col-3">Email</p>
-                            
                         </div>
                         
                         {listUser.map((user) => (

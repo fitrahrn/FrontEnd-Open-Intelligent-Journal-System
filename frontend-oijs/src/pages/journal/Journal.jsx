@@ -1,5 +1,5 @@
 import React,{ useState, useEffect }  from 'react';
-import { Link,useParams  } from "react-router-dom";
+import { Link,useParams , useNavigate } from "react-router-dom";
 import api from "../../interceptor/axios"
 import Layout from '../../components/Layout';
 import NavbarJournal from '../../components/NavbarJournal';
@@ -7,17 +7,36 @@ const Journal = () => {
     const [listArticle,setArticle] = useState([]);
     const [journalData,setJournalData] = useState([]);
     const {journal} = useParams();
+    const navigate = useNavigate();
     useEffect(() => {
-        getArticle();
         getJournal();
+        getArticle();
+        
       }, []);
     const getArticle = async () => {
-        const response = await api.get(`http://localhost:3001/articles/${journal}`)
-        setArticle(response.data.filter((article)=> article.workflow_phase==="published"));
+        try {
+            const response = await api.get(`http://localhost:3001/articles/${journal}`)
+            setArticle(response.data.filter((article)=> article.workflow_phase==="published"));
+        } catch (error) {
+            if (error.response) {
+                if(error.response.status===409){
+                    navigate(`*`);
+                }
+            }
+        }
     };
     const getJournal= async () => {
-        const response = await api.get(`http://localhost:3001/journal/${journal}`)
-        setJournalData(response.data);
+        try {
+            const response = await api.get(`http://localhost:3001/journal/${journal}`)
+            setJournalData(response.data);
+        } catch (error) {
+            if (error.response) {
+                if(error.response.status===404){
+                    navigate(`*`);
+                }
+            }
+        }
+        
     };
     return (
         <Layout>

@@ -13,7 +13,7 @@ const IssueCurrent = () => {
       }, []);
     const getIssue = async () => {
         const response = await api.get(`http://localhost:3001/issue/${journal}`)
-        const issue = response.data.pop()
+        const issue = response.data.filter((issue)=> issue.appear===true).pop()
         navigate(`/${journal}/issue/${issue.volume}/${issue.number}`);
     };
 

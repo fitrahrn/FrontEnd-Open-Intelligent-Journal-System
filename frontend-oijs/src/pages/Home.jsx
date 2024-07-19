@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import Layout from '../components/Layout';
 import cover from '../assets/images/cover.png';
 import api from "../interceptor/axios"
-import { Link, useParams } from "react-router-dom";
 const Home = () => {
     const [listJournal,setJournal] = useState([]);
     

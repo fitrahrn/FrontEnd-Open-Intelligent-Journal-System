@@ -7,7 +7,7 @@ const ProfileRoles = () => {
     const [journalId,setJournalId] = useState("")
     const [journal,setJournal] = useState("")
     const [request, setRequest] = useState("");
-
+    const [success,setSuccess] = useState("")
     const [msg, setMsg] = useState("");
     useEffect(() => {
         getRoles();
@@ -34,7 +34,9 @@ const ProfileRoles = () => {
                 journal_id: journalId,
                 request: request
             });
-            setMsg("New role has been requested");
+            setSuccess("New role has been requested");
+            getRoles();
+            getJournals();
         } catch (error) {
             if (error.response) {
                 setMsg(error.response.data.msg);
@@ -47,7 +49,9 @@ const ProfileRoles = () => {
             await api.post('http://localhost:3001/role', {
                 journal_id: journal
             });
-            setMsg("Register to new jurnal has been sucessfull");
+            setSuccess("Register to new jurnal has been sucessfull");
+            getRoles();
+            getJournals();
         } catch (error) {
             if (error.response) {
                 setMsg(error.response.data.msg);
@@ -97,7 +101,8 @@ const ProfileRoles = () => {
             </div>
             <form onSubmit={requestRoles} class="box">
             <label class="form-label fw-bold">Request Roles</label>
-                <p class="has-text-centered">{msg}</p>
+                <p className="error" style={{color: "red"}}>{msg}</p>
+                <p className="text-success" >{success}</p>
                 <div className='card'>
                     <div className='card-header no-gutters'>Request New Role</div>
                     <div className='card-body'>
@@ -123,7 +128,8 @@ const ProfileRoles = () => {
             </form>
             <form onSubmit={registerToNewJournal} class="box">
             <label class="form-label fw-bold">Register to New Journal</label>
-                <p class="has-text-centered">{msg}</p>
+                <p className="error" style={{color: "red"}}>{msg}</p>
+                <p className="text-success" >{success}</p>
                 <div className='card'>
                     <div className='card-header no-gutters'>Request New Journal as Reader</div>
                     <div className='card-body'>

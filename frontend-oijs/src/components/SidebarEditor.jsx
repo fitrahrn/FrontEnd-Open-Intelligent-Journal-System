@@ -1,12 +1,22 @@
 import React ,{ useState,useEffect }from 'react';
-import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import logo from "../assets/images/itb.png"
 import api from "../interceptor/axios"
 import {Link,useParams} from "react-router-dom";
+import profile from "../assets/images/profile.jpeg"
 const SidebarAdmin = () => {
-  let isLogin = false;
   const {journal} = useParams();
   const [journalName,setJournal]= useState([]);
+  const navigate = useNavigate();
+    const Logout = async () => {
+        try {
+            await api.post('http://localhost:3001/logout');
+            localStorage.removeItem('accessToken');
+            navigate("/");
+        } catch (error) {
+            console.log(error);
+        }
+    }
     useEffect(() => {
         getJournal();
       }, []);
@@ -43,7 +53,22 @@ const SidebarAdmin = () => {
                     <li class="nav-item">
                         <a class="nav-link" href={`/${journal}/settings`}>Setting</a>
                     </li>
-                    
+                    <div className="col-md-2 text-start">
+                        <div className="nav-item dropdown">
+                            <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src={profile} alt="mdo" width="32" height="32" className="rounded-circle"/>
+                            </a>
+                            <ul className="dropdown-menu" id="dropdown">
+                            <li><a className="dropdown-item" href="/dashboard">Dashboard</a></li>
+                            <li><a className="dropdown-item" href="/profile">View Profile</a></li>
+                            <li><hr className="dropdown-divider"/></li>
+                            <li><button onClick={()=>Logout()} className="dropdown-item">
+                                    Log Out
+                                </button>
+                            </li>
+                            </ul>
+                        </div>
+                    </div>
                 </ul>
             </div>
             </div>

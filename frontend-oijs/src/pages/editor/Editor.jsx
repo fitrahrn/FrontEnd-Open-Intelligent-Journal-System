@@ -27,7 +27,7 @@ const Editor = () => {
                         <div class="tab-content" id="myTabContent">
                             <EditorSubmission  data={listArticle.filter((article)=>article.workflow_phase ==="reviewing" || article.workflow_phase ==="copyedited"||article.workflow_phase ==="production")}/>
                             <EditorUnassigned data={listArticle.filter((article)=>article.workflow_phase ==="submitted")}/>
-                            <EditorArchives  data={listArticle.filter((article)=>article.workflow_phase ==="published"||article.workflow_phase ==="scheduled")}/>
+                            <EditorArchives  data={listArticle.filter((article)=>article.workflow_phase ==="published"||article.workflow_phase ==="scheduled"||article.workflow_phase ==="declined")}/>
                         </div>
                             
                         

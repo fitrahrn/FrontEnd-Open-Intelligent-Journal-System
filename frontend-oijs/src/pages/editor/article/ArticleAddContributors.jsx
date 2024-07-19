@@ -28,6 +28,7 @@ const ArticleAddContributors = ({data}) => {
                 user_id:userId
             });
             setSucces("New Contributors Has Been Added")
+            window.location.reload();
         } catch (error) {
             if (error.response) {
                 setMsg(error.response.data.msg);

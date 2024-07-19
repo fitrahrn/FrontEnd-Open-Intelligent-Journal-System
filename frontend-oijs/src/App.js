@@ -42,11 +42,13 @@ import IssueArticle from './pages/journal/IssueArticle';
 import EditorAddIssue from './pages/editor/EditorAddIssue';
 import IssueCurrent from './pages/journal/IssueCurent';
 import Search from './pages/Search';
+import NotFound from './pages/NotFound';
 Chart.register(CategoryScale);
 function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="*" element={<NotFound />} />
         <Route path='/' element={<Home />}/>
         <Route path='/login' element = {<Login/>}/>
         <Route path='/register' element = {<Register/>}/>
@@ -82,7 +84,7 @@ function App() {
         <Route path='/:journal/submission' element={<Editor/>}/>
         <Route path='/:journal/manageIssue' element={<EditorIssue/>}/>
         <Route path='/:journal/create/issue' element={<EditorAddIssue/>}/>
-        <Route path='/:journal/settings' element={<EditJournal/>}/>
+        <Route path='/:journal/settings' element={<EditorSettings/>}/>
         <Route path='/:journal/request' element={<AuthorRequest/>}/>
         <Route path='/:journal/submission/:article_id' element={<Article/>}/>
         <Route path='/profile/:username' element={<AuthorProfile/>}/>

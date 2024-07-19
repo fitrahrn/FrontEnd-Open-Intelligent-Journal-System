@@ -29,7 +29,7 @@ const ArticleAddReviewers = ({data}) => {
                 date_due: dueDate
             });
             setSucces("New Reviewers Has Been Added")
-            
+            window.location.reload();
         } catch (error) {
             if (error.response) {
                 setMsg(error.response.data.msg);
@@ -42,7 +42,7 @@ const ArticleAddReviewers = ({data}) => {
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="addReviewersLabel">Add Reviewers in Review <h1>1</h1></h1>
+                        <h1 class="modal-title fs-5" id="addReviewersLabel">Add Reviewers in Review Rounds</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <form  onSubmit={addReviewers}>
@@ -71,7 +71,7 @@ const ArticleAddReviewers = ({data}) => {
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="mx-2 btn btn-lg btn-danger" data-bs-dismiss="modal">Cancel</button>
-                            <button type="submit" class="mx-2 btn btn-lg btn-primary" data-bs-dismiss={close}>Add Reviews Rounds</button>
+                            <button type="submit" class="mx-2 btn btn-lg btn-primary" data-bs-dismiss={close}>Add Reviewers</button>
                         </div> 
                     </form>
                 </div>

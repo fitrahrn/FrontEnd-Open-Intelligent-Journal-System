@@ -10,7 +10,7 @@ const EditorFutureIssue = () => {
       }, []);
     const getIssue = async () => {
         const response = await api.get(`http://localhost:3001/issue/${journal}` )
-        setIssue(response.data.filter((issue)=> issue.appear));
+        setIssue(response.data.filter((issue)=> issue.appear===false));
     };
     const publishIssue = async (id) => {
         try {

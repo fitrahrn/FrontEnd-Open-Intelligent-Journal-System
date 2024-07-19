@@ -177,7 +177,7 @@ const Submit = () => {
                         </div>
                         <div className="card border-light m-3 p-3">
                             <div className="row justify-content-end" >
-                                <button type="cancel" class="col-2 mx-2 btn btn-lg btn-danger">Cancel</button>
+                                <button type="cancel" onClick={() => navigate(-1)} class="col-2 mx-2 btn btn-lg btn-danger">Cancel</button>
                                 <button type="submit" class="col-2 mx-2 btn btn-lg btn-primary">Finish Submission</button>
                             </div>
 

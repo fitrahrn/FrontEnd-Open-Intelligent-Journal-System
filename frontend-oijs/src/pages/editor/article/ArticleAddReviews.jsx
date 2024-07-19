@@ -38,6 +38,7 @@ const ArticleAddReviews = ({data}) => {
                 "Content-type": "multipart/form-data",
             });
             setSucces("Reviews Round Added")
+            window.location.reload();
         } catch (error) {
             if (error.response) {
                 setMsg(error.response.data.msg);

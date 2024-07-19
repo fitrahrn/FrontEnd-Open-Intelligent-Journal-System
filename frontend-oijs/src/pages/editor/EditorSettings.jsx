@@ -1,15 +1,15 @@
-import React from 'react';
-import LayoutEditor from '../../components/LayoutEditor';
-const EditorSettings = () => {
-    return (
-        <LayoutEditor>
-            <div className="App">
-                <div className="content-container">
-                    <h1>Editor Settings</h1>
-                </div>
-            </div>
-        </LayoutEditor>
-    );
-}
+import React, { useState, useEffect } from "react";
+import api from "../../interceptor/axios"
+import { useNavigate, useParams } from "react-router-dom";
+import ChangeJournal from "../../components/editor/ChangeJournal";
+import LayoutEditor from "../../components/LayoutEditor";
+const EditorSetting = () => {
 
-export default EditorSettings;
+  return (
+    <LayoutEditor>
+        <ChangeJournal/>
+    </LayoutEditor>
+  );
+};
+
+export default EditorSetting;
