@@ -30,15 +30,15 @@ const ArticlePublication = ({data}) => {
       }, []);
     const getIssue = async () => {
         
-        const response = await api.get(`http://localhost:3001/issue/id/${issueId}`)
+        const response = await api.get(`https://oijs-429910.et.r.appspot.com/issue/id/${issueId}`)
         setIssue(response.data);
     };
     const getContributors = async () => {
-        const response = await api.get(`http://localhost:3001/contributors/article/${article_id}`)
+        const response = await api.get(`https://oijs-429910.et.r.appspot.com/contributors/article/${article_id}`)
         setContributors(response.data);
     }
     const getArticleById = async () => {
-        const article = await api.get(`http://localhost:3001/article/${article_id}`);
+        const article = await api.get(`https://oijs-429910.et.r.appspot.com/article/${article_id}`);
         
         setPrefix(article.data.prefix);
         setTitle(article.data.title);
@@ -66,7 +66,7 @@ const ArticlePublication = ({data}) => {
     formData.append("status",status);
     formData.append("file",file)
     try {
-        await api.patch(`http://localhost:3001/article/${article_id}`, formData, {
+        await api.patch(`https://oijs-429910.et.r.appspot.com/article/${article_id}`, formData, {
             "Content-type": "multipart/form-data",
         });
         } catch (error) {
@@ -78,7 +78,7 @@ const ArticlePublication = ({data}) => {
         formData.append("workflow_phase",workflowPhase);
         formData.append("status",status);
         try {
-            await api.patch(`http://localhost:3001/article/${article_id}`, formData, {
+            await api.patch(`https://oijs-429910.et.r.appspot.com/article/${article_id}`, formData, {
               "Content-type": "multipart/form-data",
             });
           } catch (error) {

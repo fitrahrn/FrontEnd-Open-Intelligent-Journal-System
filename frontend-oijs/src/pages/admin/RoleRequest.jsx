@@ -7,13 +7,13 @@ const RoleRequest = () => {
         getRoleRequests();
       }, []);
     const getRoleRequests = async () => {
-        const response = await api.get(`http://localhost:3001/role/request`)
+        const response = await api.get(`https://oijs-429910.et.r.appspot.com/role/request`)
         setRoleRequest(response.data);
     };
     
     const acceptRequest = async (role_id) => {
         try {
-            await api.post('http://localhost:3001/role/request/answer', {
+            await api.post('https://oijs-429910.et.r.appspot.com/role/request/answer', {
                 role_id: role_id,
                 accept: true
             });
@@ -24,7 +24,7 @@ const RoleRequest = () => {
     };
     const rejectRequest = async (role_id) => {
         try {
-            await api.post('http://localhost:3001/role/request/answer', {
+            await api.post('https://oijs-429910.et.r.appspot.com/role/request/answer', {
                 role_id: role_id,
                 accept: false
             });

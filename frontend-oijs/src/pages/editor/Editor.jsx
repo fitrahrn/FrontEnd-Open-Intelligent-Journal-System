@@ -14,7 +14,7 @@ const Editor = () => {
       }, []);
     const getArticles = async () => {
         
-        const response = await api.get(`http://localhost:3001/articles/${journal}`)
+        const response = await api.get(`https://oijs-429910.et.r.appspot.com/articles/${journal}`)
         setArticle(response.data);
     };
     

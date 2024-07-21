@@ -13,7 +13,7 @@ const ArticleSelectProduction = ({phase}) => {
       }, []);
     
     const getArticleFiles = async () => {
-        const response = await api.get(`http://localhost:3001/article_file/${article_id}`)
+        const response = await api.get(`https://oijs-429910.et.r.appspot.com/article_file/${article_id}`)
         const listFile = response.data
         for(let i=0;i<listFile.length;i++){
             let article_path = response.data[i].article_path
@@ -26,7 +26,7 @@ const ArticleSelectProduction = ({phase}) => {
     const selectArticleFiles = async (e) => {
         e.preventDefault();
         try {
-            await api.patch(`http://localhost:3001/article/${article_id}`, {
+            await api.patch(`https://oijs-429910.et.r.appspot.com/article/${article_id}`, {
                 article_path: file,
             });
             setSuccess("Production Article File Has Been Changed")

@@ -8,7 +8,7 @@ const EditorBackIssue = () => {
         getIssue();
       }, []);
     const getIssue = async () => {
-        const response = await api.get(`http://localhost:3001/issue/${journal}`)
+        const response = await api.get(`https://oijs-429910.et.r.appspot.com/issue/${journal}`)
         setIssue(response.data.filter((issue)=> issue.appear===true));
     };
     return (

@@ -35,7 +35,7 @@ const CreateJournal = () => {
         formData.append("reg_number",regNumber);
         formData.append("file",file)
         try {
-            await api.post('http://localhost:3001/journal',formData, {
+            await api.post('https://oijs-429910.et.r.appspot.com/journal',formData, {
                 "Content-type" : "multipart/form-data"
               });
             navigate("/admin/journal");

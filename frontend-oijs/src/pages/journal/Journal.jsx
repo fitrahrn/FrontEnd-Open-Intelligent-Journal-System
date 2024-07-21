@@ -15,7 +15,7 @@ const Journal = () => {
       }, []);
     const getArticle = async () => {
         try {
-            const response = await api.get(`http://localhost:3001/articles/${journal}`)
+            const response = await api.get(`https://oijs-429910.et.r.appspot.com/articles/${journal}`)
             setArticle(response.data.filter((article)=> article.workflow_phase==="published"));
         } catch (error) {
             if (error.response) {
@@ -27,7 +27,7 @@ const Journal = () => {
     };
     const getJournal= async () => {
         try {
-            const response = await api.get(`http://localhost:3001/journal/${journal}`)
+            const response = await api.get(`https://oijs-429910.et.r.appspot.com/journal/${journal}`)
             setJournalData(response.data);
         } catch (error) {
             if (error.response) {

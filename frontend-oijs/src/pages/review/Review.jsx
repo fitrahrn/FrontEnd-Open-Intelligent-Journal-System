@@ -10,7 +10,7 @@ const Review = () => {
       }, []);
     const getReviews = async () => {
         api.defaults.withCredentials=true;
-        const response = await api.get(`http://localhost:3001/reviewers/review`)
+        const response = await api.get(`https://oijs-429910.et.r.appspot.com/reviewers/review`)
         setReview(response.data);
         console.log(response.data)
     };

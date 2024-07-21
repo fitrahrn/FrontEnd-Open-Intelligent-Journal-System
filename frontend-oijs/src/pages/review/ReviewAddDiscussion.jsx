@@ -22,7 +22,7 @@ const ReviewAddDiscussion = ({data}) => {
         formData.append("date_send",new Date());
         formData.append("file",file)
         try {
-            await api.post(`http://localhost:3001/discussion`,formData, {
+            await api.post(`https://oijs-429910.et.r.appspot.com/discussion`,formData, {
                 "Content-type" : "multipart/form-data"
             });
             setClose("modal")

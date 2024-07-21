@@ -13,7 +13,7 @@ const ArticleAddNewReviews = ({data}) => {
       }, []);
     
     const getArticles = async () => {
-        const response = await api.get(`http://localhost:3001/article_file/${article_id}`)
+        const response = await api.get(`https://oijs-429910.et.r.appspot.com/article_file/${article_id}`)
         
         const listFile = response.data
         for(let i=0;i<listFile.length;i++){
@@ -30,11 +30,11 @@ const ArticleAddNewReviews = ({data}) => {
         formData.append("workflow_phase","reviewing");
         formData.append("status","reviewers assigned");
         try {
-            await api.post('http://localhost:3001/reviews', {
+            await api.post('https://oijs-429910.et.r.appspot.com/reviews', {
                 article_id: article_id,
                 article_file_path: file
             });
-            await api.patch(`http://localhost:3001/article/${article_id}`, formData, {
+            await api.patch(`https://oijs-429910.et.r.appspot.com/article/${article_id}`, formData, {
                 "Content-type": "multipart/form-data",
             });
             setMsg("Reviews Round Added")

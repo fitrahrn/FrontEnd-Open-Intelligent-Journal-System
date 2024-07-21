@@ -9,7 +9,7 @@ const Search = () => {
         getArticle();
       }, []);
     const getArticle = async () => {
-        const response = await api.post(`http://localhost:3001/article/search`, {
+        const response = await api.post(`https://oijs-429910.et.r.appspot.com/article/search`, {
             title: title,
         })
         setArticle(response.data.filter((article)=> article.workflow_phase==="published"));

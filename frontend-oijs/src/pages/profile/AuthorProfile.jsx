@@ -99,23 +99,23 @@ const AuthorProfile = () => {
       getCitationCounts();
     }, []);
   const getAuthorProfiles = async () => {
-      const response = await api.get(`http://localhost:3001/user/data/${username}`)
+      const response = await api.get(`https://oijs-429910.et.r.appspot.com/user/data/${username}`)
       setName(response.data.name)
       setAffiliation(response.data.affiliation)
       setCountry(response.data.country)
       setAffiliationAddress(response.data.affiliation_address)
   };
   const getJournalCounts = async () => {
-    const response = await api.get(`http://localhost:3001/user/journal/${username}`)
+    const response = await api.get(`https://oijs-429910.et.r.appspot.com/user/journal/${username}`)
     setJournalCount(response.data)
   }; 
   const getArticleYearCounts = async () => {
-    const response = await api.get(`http://localhost:3001/user/article/${username}`)
+    const response = await api.get(`https://oijs-429910.et.r.appspot.com/user/article/${username}`)
     console.log(response.data)
     setArticleCount(response.data)
   };
   const getCitationCounts = async () => {
-    const response = await api.get(`http://localhost:3001/articles/citation/${username}`)
+    const response = await api.get(`https://oijs-429910.et.r.appspot.com/articles/citation/${username}`)
     console.log(response.data)
     setCitationCount(response.data)
   };  

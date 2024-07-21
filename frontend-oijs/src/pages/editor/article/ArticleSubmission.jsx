@@ -15,12 +15,12 @@ const ArticleSubmission = ({data,role}) => {
       }, []);
     
     const getContributors = async () => {
-        const response = await api.get(`http://localhost:3001/contributors/article/${article_id}`)
+        const response = await api.get(`https://oijs-429910.et.r.appspot.com/contributors/article/${article_id}`)
         setContributors(response.data);
     }
     const getArticleFiles = async () => {
         
-        const response = await api.get(`http://localhost:3001/article_file/${article_id}`)
+        const response = await api.get(`https://oijs-429910.et.r.appspot.com/article_file/${article_id}`)
         const listFile = response.data
         for(let i=0;i<listFile.length;i++){
             let article_path = response.data[i].article_path
@@ -35,7 +35,7 @@ const ArticleSubmission = ({data,role}) => {
         formData.append("workflow_phase",workflowPhase);
         formData.append("status",status);
         try {
-            await api.patch(`http://localhost:3001/article/${article_id}`, formData, {
+            await api.patch(`https://oijs-429910.et.r.appspot.com/article/${article_id}`, formData, {
               "Content-type": "multipart/form-data",
             });
           } catch (error) {

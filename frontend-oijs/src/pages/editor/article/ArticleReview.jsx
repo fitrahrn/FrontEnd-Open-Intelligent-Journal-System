@@ -18,7 +18,7 @@ const ArticleReview = ({data,role}) => {
     
     const getReviews = async () => {
         
-        const response = await api.get(`http://localhost:3001/reviews/${article_id}`)
+        const response = await api.get(`https://oijs-429910.et.r.appspot.com/reviews/${article_id}`)
         const listFile = response.data
         for(let i=0;i<listFile.length;i++){
             let article_path = response.data[i].article_file_path
@@ -33,11 +33,11 @@ const ArticleReview = ({data,role}) => {
         formData.append("workflow_phase",workflowPhase);
         formData.append("status",status);
         try {
-            await api.patch(`http://localhost:3001/article/${article_id}`, formData, {
+            await api.patch(`https://oijs-429910.et.r.appspot.com/article/${article_id}`, formData, {
                 "Content-type": "multipart/form-data",
             });
             for(let i=0;i<data.authors.length;i++){
-                await api.post(`http://localhost:3001/email/submission`, {
+                await api.post(`https://oijs-429910.et.r.appspot.com/email/submission`, {
                     email: data.authors[i].email,
                     author:data.authors[i].name,
                     title:data.title,

@@ -8,7 +8,7 @@ const SidebarAdmin = () => {
     const navigate = useNavigate();
     const Logout = async () => {
         try {
-            await axios.post('http://localhost:3001/logout');
+            await axios.post('https://oijs-429910.et.r.appspot.com/logout');
             localStorage.removeItem('accessToken');
             navigate("/");
         } catch (error) {

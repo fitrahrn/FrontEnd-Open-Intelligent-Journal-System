@@ -24,7 +24,7 @@ api.interceptors.response.use(
         if (error.response.status === 403 && !originalRequest._retry) {
             originalRequest._retry = true;
             try {
-                const response = await axios.get('http://localhost:3001/token',{withCredentials: true});
+                const response = await axios.get('https://oijs-429910.et.r.appspot.com/token',{withCredentials: true});
                 localStorage.setItem('accessToken', response.data.accessToken);
                 axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.accessToken}`;
                 return api(originalRequest);

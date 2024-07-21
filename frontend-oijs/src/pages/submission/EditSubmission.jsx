@@ -24,7 +24,7 @@ const EditSubmission = () => {
       }, []);
     
       const getArticleById = async () => {
-        const article = await api.get(`http://localhost:3001/article/${id}`);
+        const article = await api.get(`https://oijs-429910.et.r.appspot.com/article/${id}`);
         
         setPrefix(article.data.prefix);
         setTitle(article.data.title);
@@ -51,7 +51,7 @@ const EditSubmission = () => {
         formData.append("status",status);
         formData.append("file",file)
         try {
-            await api.patch(`http://localhost:3001/article/${id}`, formData, {
+            await api.patch(`https://oijs-429910.et.r.appspot.com/article/${id}`, formData, {
               "Content-type": "multipart/form-data",
             });
             navigate(`/submission`);

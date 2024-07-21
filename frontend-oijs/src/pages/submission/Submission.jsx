@@ -10,7 +10,7 @@ const Submission = () => {
       }, []);
     const getArticles = async () => {
         try {
-            const response = await api.get(`http://localhost:3001/articles/submission`)
+            const response = await api.get(`https://oijs-429910.et.r.appspot.com/articles/submission`)
             setArticle(response.data);
           } catch (error) {
             setMsg('Error fetching protected data:', error);
@@ -18,7 +18,7 @@ const Submission = () => {
     };
     const deleteArticle = async (id) => {
         try {
-          await api.delete(`http://localhost:3001/article/${id}`);
+          await api.delete(`https://oijs-429910.et.r.appspot.com/article/${id}`);
           getArticles();
         } catch (error) {
           console.log(error);

@@ -18,7 +18,7 @@ const Dashboard = () => {
       }, []);
     const getRoles = async () => {
         api.defaults.withCredentials=true;
-        const response = await api.get(`http://localhost:3001/role/user`)
+        const response = await api.get(`https://oijs-429910.et.r.appspot.com/role/user`)
         for(let i=0;i<response.data.length;i++){
             if(response.data[i].administrator) setAdministrator(true);
             if(response.data[i].lead_editor) setEditor(true);

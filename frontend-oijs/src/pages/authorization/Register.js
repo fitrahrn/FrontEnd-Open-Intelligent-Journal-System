@@ -21,7 +21,7 @@ const Register = () => {
         getJournals();
       }, []);
     const getJournals = async () => {
-        const response = await api.get(`http://localhost:3001/journals`)
+        const response = await api.get(`https://oijs-429910.et.r.appspot.com/journals`)
         console.log(response.data)
         setListJournal(response.data);
         setJournal(response.data[0].journal_id)
@@ -29,7 +29,7 @@ const Register = () => {
     const Register = async (e) => {
         e.preventDefault();
         try {
-            await api.post(`http://localhost:3001/register`, {
+            await api.post(`https://oijs-429910.et.r.appspot.com/register`, {
                 name: name,
                 public_name: publicName,
                 username: username,

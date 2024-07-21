@@ -7,7 +7,7 @@ const ManageUser = () => {
         getUsers();
       }, []);
     const getUsers = async () => {
-        const response = await api.get(`http://localhost:3001/users`)
+        const response = await api.get(`https://oijs-429910.et.r.appspot.com/users`)
         setUser(response.data);
     };
     

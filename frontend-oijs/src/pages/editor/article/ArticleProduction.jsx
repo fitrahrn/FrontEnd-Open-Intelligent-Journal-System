@@ -12,7 +12,7 @@ const ArticleProduction = ({data,role}) => {
     
     const getProductions = async () => {
         
-        const response = await api.get(`http://localhost:3001/article/${article_id}`)
+        const response = await api.get(`https://oijs-429910.et.r.appspot.com/article/${article_id}`)
         const listFile = response.data
         let article_path = response.data.article_path
         const article_path_split = article_path.split("/");
@@ -25,7 +25,7 @@ const ArticleProduction = ({data,role}) => {
         formData.append("workflow_phase",workflowPhase);
         formData.append("status",status);
         try {
-            await api.patch(`http://localhost:3001/article/${article_id}`, formData, {
+            await api.patch(`https://oijs-429910.et.r.appspot.com/article/${article_id}`, formData, {
               "Content-type": "multipart/form-data",
             });
           } catch (error) {

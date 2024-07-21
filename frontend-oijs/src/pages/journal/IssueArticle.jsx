@@ -15,15 +15,15 @@ const IssueArticle = () => {
       // eslint-disable-next-line react-hooks/exhaustive-deps
       }, []);
     const getArticle = async () => {
-        const response = await api.get(`http://localhost:3001/articles/${journal}/${volume}/${number}`)
+        const response = await api.get(`https://oijs-429910.et.r.appspot.com/articles/${journal}/${volume}/${number}`)
         setArticle(response.data.filter((article)=> article.workflow_phase==="published"));
     };
     const getIssue = async () => {
-        const response = await api.get(`http://localhost:3001/issue/${journal}/${volume}/${number}`)
+        const response = await api.get(`https://oijs-429910.et.r.appspot.com/issue/${journal}/${volume}/${number}`)
         setIssue(response.data);
     };
     const getJournal= async () => {
-        const response = await api.get(`http://localhost:3001/journal/${journal}`)
+        const response = await api.get(`https://oijs-429910.et.r.appspot.com/journal/${journal}`)
         setJournalData(response.data);
     };
     return (
