@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import {Link,useParams} from "react-router-dom";
 import api from "../../../interceptor/axios"
-const ArticleAddReviewers = ({data}) => {
+const ArticleAddReviewers = ({data,title,subtitle}) => {
     const [reviewers,setReviewers] = useState([]);
+    const [editor,setEditor] = useState([]);
     const [msg, setMsg] = useState("");
     const [success,setSucces] = useState("")
     const [userId, setUserId] = useState("");
@@ -11,16 +12,27 @@ const ArticleAddReviewers = ({data}) => {
     const {journal} = useParams();
     useEffect(() => {
         getReviewers();
+        getEditors();
       }, []);
     
     const getReviewers = async () => {
         const response = await api.get(`http://localhost:3001/role/reviewers/${journal}`)
         setReviewers(response.data);
+        console.log(response.data)
         if(reviewers.length>0) setUserId(reviewers[0].user_id)
+    }
+    const getEditors = async()=>{
+        const response = await api.get(`http://localhost:3001/user/get/username`)
+        setEditor(response.data);
+        
     }
     const addReviewers = async (e) => {
         e.preventDefault();
         console.log(data.reviews_id)
+
+        const email = reviewers.find((user)=>user.user_id==userId);
+        console.log(dueDate)
+        setSucces("New Reviewers Has Been Added")
         try {
             await api.post('http://localhost:3001/reviewers', {
                 reviews_id: data.reviews_id,
@@ -28,7 +40,16 @@ const ArticleAddReviewers = ({data}) => {
                 date_assigned:new Date(),
                 date_due: dueDate
             });
-            setSucces("New Reviewers Has Been Added")
+            await api.post(`http://localhost:3001/email/reviewer`, {
+                email: email.user.email,
+                title:title,
+                subtitle:subtitle,
+                editor_name:editor.name,
+                editor_email:editor.email,
+                website:`https://localhost:3001/${journal}/submission/${data.article_id}`,
+                due_date:dueDate,
+            });
+            
             window.location.reload();
         } catch (error) {
             if (error.response) {

@@ -36,6 +36,17 @@ const ArticleReview = ({data,role}) => {
             await api.patch(`http://localhost:3001/article/${article_id}`, formData, {
                 "Content-type": "multipart/form-data",
             });
+            for(let i=0;i<data.authors.length;i++){
+                await api.post(`http://localhost:3001/email/submission`, {
+                    email: data.authors[i].email,
+                    author:data.authors[i].name,
+                    title:data.title,
+                    subtitle:data.subtitle,
+                    decision:"Submission "+ status,
+                    journal: data.journal.title,
+                });
+            }
+            
         } catch (error) {
             setMsg(error);
         }
@@ -91,7 +102,7 @@ const ArticleReview = ({data,role}) => {
                                 </div>
                             </div>
                             <div class="card container-fluid mb-3">
-                            {role ==="editor" && review.review_rounds===listReviews.length?<ArticleAddReviewers data={review}/> :<div></div>}
+                            {role ==="editor" && review.review_rounds===listReviews.length?<ArticleAddReviewers data={review} title={data.title} subtitle={data.subtitle}/> :<div></div>}
                                 <div class="row no-gutters card-header ">
                                     <p class="card-text col">Reviewers</p>
                                     {role ==="editor"  && review.review_rounds===listReviews.length?<button class="col-2 btn btn-primary" data-bs-toggle="modal" data-bs-target="#addReviewers">Add Reviewers</button> :<div></div>}

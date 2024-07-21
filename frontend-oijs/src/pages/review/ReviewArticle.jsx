@@ -37,7 +37,6 @@ const ReviewArticle = () => {
         setReviewer(responseReviewer.data)
         const responseDiscussion = await api.get(`http://localhost:3001/discussion/${listFile.reviews_id}`)
         setDiscusssions(responseDiscussion.data);
-        console.log(listFile)
     };
     const getArticles = async() =>{
         const response = await api.get(`http://localhost:3001/article/${article_id}`)
@@ -54,10 +53,13 @@ const ReviewArticle = () => {
         formData.append("recommendation",recommendation);
         formData.append("date_completed",new Date());
         formData.append("file",file)
-        console.log(formData)
         try {
             await api.patch(`http://localhost:3001/reviewers`,formData, {
                 "Content-type" : "multipart/form-data"
+            });
+            await api.post(`http://localhost:3001/email/certificate`, {
+                email: reviewer.user.email,
+                reviewer: reviewer.user.name
             });
             navigate("/review");
         } catch (error) {
@@ -65,6 +67,7 @@ const ReviewArticle = () => {
                 setMsg(error.response.data.msg);
             }
         }
+        
     }
     const loadDocument = (event) => {
         const document = event.target.files[0];
