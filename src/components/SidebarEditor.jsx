@@ -10,7 +10,7 @@ const SidebarAdmin = () => {
   const navigate = useNavigate();
     const Logout = async () => {
         try {
-            await api.post('https://oijs-429910.et.r.appspot.com/logout');
+            await api.post('https://backend-dot-oijs-429910.et.r.appspot.com/logout');
             localStorage.removeItem('accessToken');
             navigate("/");
         } catch (error) {
@@ -21,7 +21,7 @@ const SidebarAdmin = () => {
         getJournal();
       }, []);
     const getJournal = async () => {
-        const response = await api.get(`https://oijs-429910.et.r.appspot.com/journal/${journal}`)
+        const response = await api.get(`https://backend-dot-oijs-429910.et.r.appspot.com/journal/${journal}`)
         setJournal(response.data);
     };
   return (

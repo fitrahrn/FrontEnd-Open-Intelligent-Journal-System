@@ -15,13 +15,13 @@ const ProfileRoles = () => {
       }, []);
     const getRoles = async () => {
         api.defaults.withCredentials=true;
-        const response = await api.get(`https://oijs-429910.et.r.appspot.com/role/user`)
+        const response = await api.get(`https://backend-dot-oijs-429910.et.r.appspot.com/role/user`)
         setRoles(response.data)
         setJournalId(response.data[0].journal.journal_id)
     };
     const getJournals = async () => {
         api.defaults.withCredentials=true;
-        const response = await api.get(`https://oijs-429910.et.r.appspot.com/journals`)
+        const response = await api.get(`https://backend-dot-oijs-429910.et.r.appspot.com/journals`)
         console.log(response.data)
         setListJournal(response.data);
         setJournal(response.data[0].path)
@@ -30,7 +30,7 @@ const ProfileRoles = () => {
         e.preventDefault();
         console.log(journalId)
         try {
-            await api.post('https://oijs-429910.et.r.appspot.com/role/request', {
+            await api.post('https://backend-dot-oijs-429910.et.r.appspot.com/role/request', {
                 journal_id: journalId,
                 request: request
             });
@@ -46,7 +46,7 @@ const ProfileRoles = () => {
     const registerToNewJournal = async (e) => {
         e.preventDefault();
         try {
-            await api.post('https://oijs-429910.et.r.appspot.com/role', {
+            await api.post('https://backend-dot-oijs-429910.et.r.appspot.com/role', {
                 journal_id: journal
             });
             setSuccess("Register to new jurnal has been sucessfull");

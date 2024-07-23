@@ -11,7 +11,7 @@ const ViewArticle = () => {
         getArticle();
       }, []);
     const getArticle = async () => {
-        const response = await api.get(`https://oijs-429910.et.r.appspot.com/article/${article_id}`)
+        const response = await api.get(`https://backend-dot-oijs-429910.et.r.appspot.com/article/${article_id}`)
         setArticle(response.data);
         setAuthors(response.data.authors)
         console.log(response.data)
@@ -38,7 +38,7 @@ const ViewArticle = () => {
           .catch((err) => {
             console.log(err);
           });
-        await api.patch(`https://oijs-429910.et.r.appspot.com/article/cite/${article_id}`)
+        await api.patch(`https://backend-dot-oijs-429910.et.r.appspot.com/article/cite/${article_id}`)
       }
     
     return (

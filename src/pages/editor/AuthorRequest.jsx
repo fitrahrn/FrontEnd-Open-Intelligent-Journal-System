@@ -7,7 +7,7 @@ const AuthorRequest = () => {
         getAuthorRequests();
       }, []);
     const getAuthorRequests = async () => {
-        const response = await api.get(`https://oijs-429910.et.r.appspot.com/role/request`)
+        const response = await api.get(`https://backend-dot-oijs-429910.et.r.appspot.com/role/request`)
         const authorOnly = response.data.filter((role) =>  role.request ==="author" || role.request ==="reviewer")
         console.log(authorOnly)
         setAuthorRequest(authorOnly);
@@ -15,7 +15,7 @@ const AuthorRequest = () => {
     
     const acceptRequest = async (role_id) => {
         try {
-            await api.post(`https://oijs-429910.et.r.appspot.com/role/request/answer`, {
+            await api.post(`https://backend-dot-oijs-429910.et.r.appspot.com/role/request/answer`, {
                 role_id: role_id,
                 accept: true
             });
@@ -26,7 +26,7 @@ const AuthorRequest = () => {
     };
     const rejectRequest = async (role_id) => {
         try {
-            await api.post(`https://oijs-429910.et.r.appspot.com/role/request/answer`, {
+            await api.post(`https://backend-dot-oijs-429910.et.r.appspot.com/role/request/answer`, {
                 role_id: role_id,
                 accept: false
             });

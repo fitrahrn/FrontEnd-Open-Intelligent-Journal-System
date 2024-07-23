@@ -8,12 +8,12 @@ const HostJournal = () => {
         getJournals();
       }, []);
     const getJournals = async () => {
-        const response = await api.get(`https://oijs-429910.et.r.appspot.com/journals`)
+        const response = await api.get(`https://backend-dot-oijs-429910.et.r.appspot.com/journals`)
         setJournal(response.data);
     };
     const deleteJournal = async (path) => {
         try {
-          await api.delete(`https://oijs-429910.et.r.appspot.com/journal/${path}`);
+          await api.delete(`https://backend-dot-oijs-429910.et.r.appspot.com/journal/${path}`);
           getJournals();
         } catch (error) {
           console.log(error);

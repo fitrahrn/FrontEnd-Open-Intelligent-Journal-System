@@ -28,7 +28,7 @@ const ChangeJournal = () => {
   }, []);
 
   const getJournalById = async () => {
-    const journalData = await api.get(`https://oijs-429910.et.r.appspot.com/journal/${journal}`);
+    const journalData = await api.get(`https://backend-dot-oijs-429910.et.r.appspot.com/journal/${journal}`);
     
     setId(journalData.data.id);
     setTitle(journalData.data.title);
@@ -66,7 +66,7 @@ const ChangeJournal = () => {
     formData.append("file",file)
 
     try {
-      await api.patch(`https://oijs-429910.et.r.appspot.com/journal/${journal}`, formData, {
+      await api.patch(`https://backend-dot-oijs-429910.et.r.appspot.com/journal/${journal}`, formData, {
         "Content-type": "multipart/form-data",
       });
       navigate(`/admin/journal`);

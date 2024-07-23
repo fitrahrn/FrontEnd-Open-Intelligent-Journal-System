@@ -26,20 +26,20 @@ const ReviewArticle = () => {
         getArticles();
       }, []);
     const getReviews = async () => {
-        const response = await api.get(`https://oijs-429910.et.r.appspot.com/reviews/${article_id}`)
+        const response = await api.get(`https://backend-dot-oijs-429910.et.r.appspot.com/reviews/${article_id}`)
         const listFile = response.data[0]
         let article_path = response.data[0].article_file_path
         const article_path_split = article_path.split("/");
         let fileName = article_path_split[article_path_split.length - 1]
         listFile.file_name = fileName
         setReview(listFile);
-        const responseReviewer = await api.get(`https://oijs-429910.et.r.appspot.com/reviewers/user/${listFile.reviews_id}`)
+        const responseReviewer = await api.get(`https://backend-dot-oijs-429910.et.r.appspot.com/reviewers/user/${listFile.reviews_id}`)
         setReviewer(responseReviewer.data)
-        const responseDiscussion = await api.get(`https://oijs-429910.et.r.appspot.com/discussion/${listFile.reviews_id}`)
+        const responseDiscussion = await api.get(`https://backend-dot-oijs-429910.et.r.appspot.com/discussion/${listFile.reviews_id}`)
         setDiscusssions(responseDiscussion.data);
     };
     const getArticles = async() =>{
-        const response = await api.get(`https://oijs-429910.et.r.appspot.com/article/${article_id}`)
+        const response = await api.get(`https://backend-dot-oijs-429910.et.r.appspot.com/article/${article_id}`)
         setArticle(response.data)
     }
 
@@ -54,10 +54,10 @@ const ReviewArticle = () => {
         formData.append("date_completed",new Date());
         formData.append("file",file)
         try {
-            await api.patch(`https://oijs-429910.et.r.appspot.com/reviewers`,formData, {
+            await api.patch(`https://backend-dot-oijs-429910.et.r.appspot.com/reviewers`,formData, {
                 "Content-type" : "multipart/form-data"
             });
-            await api.post(`https://oijs-429910.et.r.appspot.com/email/certificate`, {
+            await api.post(`https://backend-dot-oijs-429910.et.r.appspot.com/email/certificate`, {
                 email: reviewer.user.email,
                 reviewer: reviewer.user.name
             });

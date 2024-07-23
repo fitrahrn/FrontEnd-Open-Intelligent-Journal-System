@@ -14,7 +14,7 @@ const ArticleDetailReviews = ({data}) => {
       }, []);
     
     const getReviewers = async () => {
-        const response = await api.get(`https://oijs-429910.et.r.appspot.com/reviewers/${data.reviewers_id}`)
+        const response = await api.get(`https://backend-dot-oijs-429910.et.r.appspot.com/reviewers/${data.reviewers_id}`)
         console.log(response.data)
         setReviewers(response.data);
     }

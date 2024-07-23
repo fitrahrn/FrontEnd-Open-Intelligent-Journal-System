@@ -13,7 +13,7 @@ const ArticleSelectFilePhase = ({phase}) => {
       }, []);
     
     const getArticleFiles = async () => {
-        const response = await api.get(`https://oijs-429910.et.r.appspot.com/article_file/${article_id}`)
+        const response = await api.get(`https://backend-dot-oijs-429910.et.r.appspot.com/article_file/${article_id}`)
         const listFile = response.data
         for(let i=0;i<listFile.length;i++){
             let article_path = response.data[i].article_path
@@ -26,7 +26,7 @@ const ArticleSelectFilePhase = ({phase}) => {
     const selectArticleFiles = async (e) => {
         e.preventDefault();
         try {
-            await api.patch(`https://oijs-429910.et.r.appspot.com/article_file/${file}`, {
+            await api.patch(`https://backend-dot-oijs-429910.et.r.appspot.com/article_file/${file}`, {
                 phase:"copyediting"
             });
             setSuccess("New Files Has Been Added")

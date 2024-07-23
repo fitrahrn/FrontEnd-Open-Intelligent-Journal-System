@@ -17,7 +17,7 @@ const ProfileContact = () => {
       }, []);
     const getProfiles = async () => {
         api.defaults.withCredentials=true;
-        const response = await api.get(`https://oijs-429910.et.r.appspot.com/user/get/username`)
+        const response = await api.get(`https://backend-dot-oijs-429910.et.r.appspot.com/user/get/username`)
         setName(response.data.name)
         setPublicName(response.data.public_name)
         setEmail(response.data.email)
@@ -46,7 +46,7 @@ const ProfileContact = () => {
         formData.append("country",country);
         formData.append("file","")
         try {
-            await api.patch(`https://oijs-429910.et.r.appspot.com/user/update`, formData, {
+            await api.patch(`https://backend-dot-oijs-429910.et.r.appspot.com/user/update`, formData, {
             "Content-type": "multipart/form-data",
             });
         } catch (error) {

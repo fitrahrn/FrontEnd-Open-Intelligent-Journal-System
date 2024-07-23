@@ -11,7 +11,7 @@ const AboutJournal = () => {
       }, []);
     
     const getJournals = async () => {
-        const response = await api.get(`https://oijs-429910.et.r.appspot.com/journal/${journal}`)
+        const response = await api.get(`https://backend-dot-oijs-429910.et.r.appspot.com/journal/${journal}`)
         setJournalData(response.data);
     };
     return (

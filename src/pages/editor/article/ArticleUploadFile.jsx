@@ -15,7 +15,7 @@ const ArticleUploadFile = ({phase}) => {
         formData.append("article_id",article_id);
         formData.append("file",file)
         try {
-            await api.post(`https://oijs-429910.et.r.appspot.com/article_file`,formData);
+            await api.post(`https://backend-dot-oijs-429910.et.r.appspot.com/article_file`,formData);
             setSuccess("New Files Has Been Uploaded")
         } catch (error) {
             if (error.response) {

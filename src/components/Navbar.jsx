@@ -14,7 +14,7 @@ const Navbar = () => {
   }
   const Logout = async () => {
     try {
-        await axios.post('https://oijs-429910.et.r.appspot.com/logout');
+        await axios.post('https://backend-dot-oijs-429910.et.r.appspot.com/logout');
         isLogin = false;
         localStorage.removeItem('accessToken');
         navigate("/");

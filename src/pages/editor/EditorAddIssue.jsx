@@ -14,7 +14,7 @@ const EditorAddIssue = () => {
     const addIssue = async (e) => {
         e.preventDefault();
         try {
-            await api.post(`https://oijs-429910.et.r.appspot.com/issue/${journal}`,{
+            await api.post(`https://backend-dot-oijs-429910.et.r.appspot.com/issue/${journal}`,{
                 volume:volume,
                 number:number,
                 year:year,
