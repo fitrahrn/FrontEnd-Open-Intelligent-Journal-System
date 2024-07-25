@@ -16,13 +16,13 @@ const ArticleAddReviewers = ({data,title,subtitle}) => {
       }, []);
     
     const getReviewers = async () => {
-        const response = await api.get(`https://backend-dot-oijs-429910.et.r.appspot.com/role/reviewers/${journal}`)
+        const response = await api.get(`https://backend-oijs-77pyv5kz2q-et.a.run.app/role/reviewers/${journal}`)
         setReviewers(response.data);
         console.log(response.data)
         if(reviewers.length>0) setUserId(reviewers[0].user_id)
     }
     const getEditors = async()=>{
-        const response = await api.get(`https://backend-dot-oijs-429910.et.r.appspot.com/user/get/username`)
+        const response = await api.get(`https://backend-oijs-77pyv5kz2q-et.a.run.app/user/get/username`)
         setEditor(response.data);
         
     }
@@ -34,13 +34,13 @@ const ArticleAddReviewers = ({data,title,subtitle}) => {
         console.log(dueDate)
         setSucces("New Reviewers Has Been Added")
         try {
-            await api.post('https://backend-dot-oijs-429910.et.r.appspot.com/reviewers', {
+            await api.post('https://backend-oijs-77pyv5kz2q-et.a.run.app/reviewers', {
                 reviews_id: data.reviews_id,
                 user_id:userId,
                 date_assigned:new Date(),
                 date_due: dueDate
             });
-            await api.post(`https://backend-dot-oijs-429910.et.r.appspot.com/email/reviewer`, {
+            await api.post(`https://backend-oijs-77pyv5kz2q-et.a.run.app/email/reviewer`, {
                 email: email.user.email,
                 title:title,
                 subtitle:subtitle,

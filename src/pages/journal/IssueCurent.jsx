@@ -12,7 +12,7 @@ const IssueCurrent = () => {
         getIssue();
       }, []);
     const getIssue = async () => {
-        const response = await api.get(`https://backend-dot-oijs-429910.et.r.appspot.com/issue/${journal}`)
+        const response = await api.get(`https://backend-oijs-77pyv5kz2q-et.a.run.app/issue/${journal}`)
         const issue = response.data.filter((issue)=> issue.appear===true).pop()
         navigate(`/${journal}/issue/${issue.volume}/${issue.number}`);
     };

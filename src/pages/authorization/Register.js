@@ -21,7 +21,7 @@ const Register = () => {
         getJournals();
       }, []);
     const getJournals = async () => {
-        const response = await api.get(`https://backend-dot-oijs-429910.et.r.appspot.com/journals`)
+        const response = await api.get(`https://backend-oijs-77pyv5kz2q-et.a.run.app/journals`)
         console.log(response.data)
         setListJournal(response.data);
         setJournal(response.data[0].journal_id)
@@ -29,7 +29,7 @@ const Register = () => {
     const Register = async (e) => {
         e.preventDefault();
         try {
-            await api.post(`https://backend-dot-oijs-429910.et.r.appspot.com/register`, {
+            await api.post(`https://backend-oijs-77pyv5kz2q-et.a.run.app/register`, {
                 name: name,
                 public_name: publicName,
                 username: username,

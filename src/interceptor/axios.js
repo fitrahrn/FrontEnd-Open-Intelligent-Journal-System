@@ -24,7 +24,7 @@ api.interceptors.response.use(
         if (error.response.status === 403 && !originalRequest._retry) {
             originalRequest._retry = true;
             try {
-                const response = await axios.get('https://backend-dot-oijs-429910.et.r.appspot.com/token',{withCredentials: true});
+                const response = await axios.get('https://backend-oijs-77pyv5kz2q-et.a.run.app/token',{withCredentials: true});
                 localStorage.setItem('accessToken', response.data.accessToken);
                 axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.accessToken}`;
                 return api(originalRequest);

@@ -7,7 +7,7 @@ const ManageUser = () => {
         getUsers();
       }, []);
     const getUsers = async () => {
-        const response = await api.get(`https://backend-dot-oijs-429910.et.r.appspot.com/users`)
+        const response = await api.get(`https://backend-oijs-77pyv5kz2q-et.a.run.app/users`)
         setUser(response.data);
     };
     

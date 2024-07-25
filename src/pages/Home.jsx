@@ -10,7 +10,7 @@ const Home = () => {
       }, []);
     
     const getJournals = async () => {
-        const response = await api.get(`https://backend-dot-oijs-429910.et.r.appspot.com/journals`)
+        const response = await api.get(`https://backend-oijs-77pyv5kz2q-et.a.run.app/journals`)
         setJournal(response.data);
     };
     return (

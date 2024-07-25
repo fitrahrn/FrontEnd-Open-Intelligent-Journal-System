@@ -10,7 +10,7 @@ const Login = () => {
     const Login = async (e) => {
         e.preventDefault();
         try {
-            const response = await api.post(`https://backend-dot-oijs-429910.et.r.appspot.com/login`, {
+            const response = await api.post(`https://backend-oijs-77pyv5kz2q-et.a.run.app/login`, {
                 email: email,
                 password: password
             },{ withCredentials: true });

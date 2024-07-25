@@ -31,13 +31,13 @@ const Submit = () => {
         getUsers();
       }, []);
     const getJournals = async () => {
-        const response = await api.get(`https://backend-dot-oijs-429910.et.r.appspot.com/journal`)
+        const response = await api.get(`https://backend-oijs-77pyv5kz2q-et.a.run.app/journal`)
         console.log(response.data)
         setListJournal(response.data);
         setJournal(response.data[0].journal.path)
     };
     const getUsers = async () => {
-        const response = await api.get(`https://backend-dot-oijs-429910.et.r.appspot.com/get/contributors`)
+        const response = await api.get(`https://backend-oijs-77pyv5kz2q-et.a.run.app/get/contributors`)
         setListUser(response.data);
     };
 
@@ -53,7 +53,7 @@ const Submit = () => {
         formData.append("date_published",new Date())
         formData.append("file",file)
         try {
-            await api.post(`https://backend-dot-oijs-429910.et.r.appspot.com/article/${journal}`,formData, {
+            await api.post(`https://backend-oijs-77pyv5kz2q-et.a.run.app/article/${journal}`,formData, {
                 "Content-type" : "multipart/form-data"
             });
             navigate("/submission");

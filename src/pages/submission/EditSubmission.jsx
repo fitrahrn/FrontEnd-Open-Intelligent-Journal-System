@@ -24,7 +24,7 @@ const EditSubmission = () => {
       }, []);
     
       const getArticleById = async () => {
-        const article = await api.get(`https://backend-dot-oijs-429910.et.r.appspot.com/article/${id}`);
+        const article = await api.get(`https://backend-oijs-77pyv5kz2q-et.a.run.app/article/${id}`);
         
         setPrefix(article.data.prefix);
         setTitle(article.data.title);
@@ -51,7 +51,7 @@ const EditSubmission = () => {
         formData.append("status",status);
         formData.append("file",file)
         try {
-            await api.patch(`https://backend-dot-oijs-429910.et.r.appspot.com/article/${id}`, formData, {
+            await api.patch(`https://backend-oijs-77pyv5kz2q-et.a.run.app/article/${id}`, formData, {
               "Content-type": "multipart/form-data",
             });
             navigate(`/submission`);

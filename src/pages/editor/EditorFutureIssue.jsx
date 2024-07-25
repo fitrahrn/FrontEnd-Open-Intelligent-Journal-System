@@ -9,12 +9,12 @@ const EditorFutureIssue = () => {
         getIssue();
       }, []);
     const getIssue = async () => {
-        const response = await api.get(`https://backend-dot-oijs-429910.et.r.appspot.com/issue/${journal}` )
+        const response = await api.get(`https://backend-oijs-77pyv5kz2q-et.a.run.app/issue/${journal}` )
         setIssue(response.data.filter((issue)=> issue.appear===false));
     };
     const publishIssue = async (id) => {
         try {
-          await api.patch(`https://backend-dot-oijs-429910.et.r.appspot.com/issue/${id}`,{
+          await api.patch(`https://backend-oijs-77pyv5kz2q-et.a.run.app/issue/${id}`,{
             date_published: new Date(),
             appear: true
         });

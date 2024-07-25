@@ -15,7 +15,7 @@ const Journal = () => {
       }, []);
     const getArticle = async () => {
         try {
-            const response = await api.get(`https://backend-dot-oijs-429910.et.r.appspot.com/articles/${journal}`)
+            const response = await api.get(`https://backend-oijs-77pyv5kz2q-et.a.run.app/articles/${journal}`)
             setArticle(response.data.filter((article)=> article.workflow_phase==="published"));
         } catch (error) {
             if (error.response) {
@@ -27,7 +27,7 @@ const Journal = () => {
     };
     const getJournal= async () => {
         try {
-            const response = await api.get(`https://backend-dot-oijs-429910.et.r.appspot.com/journal/${journal}`)
+            const response = await api.get(`https://backend-oijs-77pyv5kz2q-et.a.run.app/journal/${journal}`)
             setJournalData(response.data);
         } catch (error) {
             if (error.response) {

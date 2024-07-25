@@ -13,11 +13,11 @@ const Issue = () => {
       // eslint-disable-next-line react-hooks/exhaustive-deps
       }, []);
     const getIssue = async () => {
-        const response = await api.get(`https://backend-dot-oijs-429910.et.r.appspot.com/issue/${journal}`)
+        const response = await api.get(`https://backend-oijs-77pyv5kz2q-et.a.run.app/issue/${journal}`)
         setIssue(response.data.filter((issue)=> issue.appear===true));
     };
     const getJournal= async () => {
-        const response = await api.get(`https://backend-dot-oijs-429910.et.r.appspot.com/journal/${journal}`)
+        const response = await api.get(`https://backend-oijs-77pyv5kz2q-et.a.run.app/journal/${journal}`)
         setJournalData(response.data);
     };
     return (

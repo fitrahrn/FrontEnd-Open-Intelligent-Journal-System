@@ -7,13 +7,13 @@ const RoleRequest = () => {
         getRoleRequests();
       }, []);
     const getRoleRequests = async () => {
-        const response = await api.get(`https://backend-dot-oijs-429910.et.r.appspot.com/role/request`)
+        const response = await api.get(`https://backend-oijs-77pyv5kz2q-et.a.run.app/role/request`)
         setRoleRequest(response.data);
     };
     
     const acceptRequest = async (role_id) => {
         try {
-            await api.post('https://backend-dot-oijs-429910.et.r.appspot.com/role/request/answer', {
+            await api.post('https://backend-oijs-77pyv5kz2q-et.a.run.app/role/request/answer', {
                 role_id: role_id,
                 accept: true
             });
@@ -24,7 +24,7 @@ const RoleRequest = () => {
     };
     const rejectRequest = async (role_id) => {
         try {
-            await api.post('https://backend-dot-oijs-429910.et.r.appspot.com/role/request/answer', {
+            await api.post('https://backend-oijs-77pyv5kz2q-et.a.run.app/role/request/answer', {
                 role_id: role_id,
                 accept: false
             });

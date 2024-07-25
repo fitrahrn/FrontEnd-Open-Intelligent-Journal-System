@@ -13,7 +13,7 @@ const ArticleAddReviews = ({data}) => {
       }, []);
     
     const getArticles = async () => {
-        const response = await api.get(`https://backend-dot-oijs-429910.et.r.appspot.com/article_file/${article_id}`)
+        const response = await api.get(`https://backend-oijs-77pyv5kz2q-et.a.run.app/article_file/${article_id}`)
         
         const listFile = response.data
         for(let i=0;i<listFile.length;i++){
@@ -30,11 +30,11 @@ const ArticleAddReviews = ({data}) => {
         formData.append("workflow_phase","reviewing");
         formData.append("status","reviewers assigned");
         try {
-            await api.post('https://backend-dot-oijs-429910.et.r.appspot.com/reviews', {
+            await api.post('https://backend-oijs-77pyv5kz2q-et.a.run.app/reviews', {
                 article_id: article_id,
                 article_file_path: file
             });
-            await api.patch(`https://backend-dot-oijs-429910.et.r.appspot.com/article/${article_id}`, formData, {
+            await api.patch(`https://backend-oijs-77pyv5kz2q-et.a.run.app/article/${article_id}`, formData, {
                 "Content-type": "multipart/form-data",
             });
             setSucces("Reviews Round Added")

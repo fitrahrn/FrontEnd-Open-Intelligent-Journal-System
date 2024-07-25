@@ -15,7 +15,7 @@ const ArticleAddContributors = ({data}) => {
       }, []);
     
     const getUsers = async () => {
-        const response = await api.get(`https://backend-dot-oijs-429910.et.r.appspot.com/get/contributors`)
+        const response = await api.get(`https://backend-oijs-77pyv5kz2q-et.a.run.app/get/contributors`)
         setContributors(response.data);
         if(contributors.length>0) setUserId(contributors[0].user_id)
     };
@@ -23,7 +23,7 @@ const ArticleAddContributors = ({data}) => {
         e.preventDefault();
         
         try {
-            await api.post('https://backend-dot-oijs-429910.et.r.appspot.com/contributors', {
+            await api.post('https://backend-oijs-77pyv5kz2q-et.a.run.app/contributors', {
                 article_id:article_id,
                 user_id:userId
             });

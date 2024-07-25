@@ -14,7 +14,7 @@ const ArticleCopyediting = ({data,role}) => {
     
     const getCopyEditings = async () => {
         
-        const response = await api.post(`https://backend-dot-oijs-429910.et.r.appspot.com/article_file/${article_id}`, {
+        const response = await api.post(`https://backend-oijs-77pyv5kz2q-et.a.run.app/article_file/${article_id}`, {
             phase: "copyediting",
         })
         const listFile = response.data
@@ -28,7 +28,7 @@ const ArticleCopyediting = ({data,role}) => {
     }
     const getCopyEditeds = async () => {
         
-        const response = await api.post(`https://backend-dot-oijs-429910.et.r.appspot.com/article_file/${article_id}`, {
+        const response = await api.post(`https://backend-oijs-77pyv5kz2q-et.a.run.app/article_file/${article_id}`, {
             phase: "copyedited",
         })
         const listFile = response.data
@@ -45,7 +45,7 @@ const ArticleCopyediting = ({data,role}) => {
         formData.append("workflow_phase",workflowPhase);
         formData.append("status",status);
         try {
-            await api.patch(`https://backend-dot-oijs-429910.et.r.appspot.com/article/${article_id}`, formData, {
+            await api.patch(`https://backend-oijs-77pyv5kz2q-et.a.run.app/article/${article_id}`, formData, {
               "Content-type": "multipart/form-data",
             });
           } catch (error) {

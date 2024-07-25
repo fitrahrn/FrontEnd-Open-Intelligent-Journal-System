@@ -16,7 +16,7 @@ const Article = () => {
       }, []);
     const getArticles = async () => {
         
-        const response = await api.get(`https://backend-dot-oijs-429910.et.r.appspot.com/article/${article_id}`)
+        const response = await api.get(`https://backend-oijs-77pyv5kz2q-et.a.run.app/article/${article_id}`)
         setArticle(response.data);
         
     };
