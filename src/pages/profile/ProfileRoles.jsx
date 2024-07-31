@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import api from "../../interceptor/axios"
-import axios from "axios"
 const ProfileRoles = () => {
     const [roles, setRoles] = useState([]);
     const [listJournal, setListJournal] = useState([]);
@@ -22,13 +21,11 @@ const ProfileRoles = () => {
     const getJournals = async () => {
         api.defaults.withCredentials=true;
         const response = await api.get(`https://backend-oijs-77pyv5kz2q-et.a.run.app/journals`)
-        console.log(response.data)
         setListJournal(response.data);
         setJournal(response.data[0].path)
     };
     const requestRoles = async (e) => {
         e.preventDefault();
-        console.log(journalId)
         try {
             await api.post('https://backend-oijs-77pyv5kz2q-et.a.run.app/role/request', {
                 journal_id: journalId,

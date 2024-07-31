@@ -57,7 +57,7 @@ const ArticleReview = ({data,role}) => {
         formData.append("title",title);
         formData.append("abstract",abstract);
         try {
-            let response = await axios.post('http://127.0.0.1:5000/predict', formData);
+            let response = await axios.post('https://machinelearning-oijs-77pyv5kz2q-et.a.run.app/predict', formData);
             setResult1(response.data.prediction)
             setResult2(response.data.prediction2)
             setResult3(response.data.prediction3)

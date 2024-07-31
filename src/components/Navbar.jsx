@@ -7,16 +7,19 @@ const Navbar = () => {
   let isLogin = false;
   const navigate = useNavigate();
   const token = localStorage.getItem('accessToken');
+  let profilePicture =localStorage.getItem('profilePicture');
   const {title} = useParams();
   const [searching,setSearching] = useState()
   if (token) {
     isLogin=true;
   }
+  if(profilePicture === null)profilePicture=profile
   const Logout = async () => {
     try {
         await axios.post('https://backend-oijs-77pyv5kz2q-et.a.run.app/logout');
         isLogin = false;
         localStorage.removeItem('accessToken');
+        localStorage.removeItem('profilePicture');
         navigate("/");
     } catch (error) {
         console.log(error);
@@ -57,7 +60,7 @@ const Navbar = () => {
             <div className="col-md-2 text-start">
               <div className="nav-item dropdown">
                 <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  <img src={profile} alt="mdo" width="32" height="32" className="rounded-circle"/>
+                  <img src={profilePicture} alt="Profile" width="32" height="32" className="rounded-circle"/>
                 </a>
                 <ul className="dropdown-menu" id="dropdown">
                   <li><a className="dropdown-item" href="/dashboard">Dashboard</a></li>

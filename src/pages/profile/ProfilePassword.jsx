@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import api from "../../interceptor/axios"
-import axios from "axios"
 const ProfilePassword = () => {
     const [name, setName] = useState("");
     const [publicName, setPublicName] = useState("");
@@ -55,6 +54,7 @@ const ProfilePassword = () => {
         } catch (error) {
             setMsg(error);
         }
+        getProfiles();
     };
 
 

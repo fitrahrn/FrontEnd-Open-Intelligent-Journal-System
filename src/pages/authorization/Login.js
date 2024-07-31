@@ -15,7 +15,9 @@ const Login = () => {
                 password: password
             },{ withCredentials: true });
             const token = response.data.accessToken;
+            const profilePicture=response.data.profilePicture;
             localStorage.setItem('accessToken', token);
+            if(profilePicture!==null) localStorage.setItem('profilePicture', profilePicture);
             navigate(`/`);
         } catch (error) {
             if (error.response) {
