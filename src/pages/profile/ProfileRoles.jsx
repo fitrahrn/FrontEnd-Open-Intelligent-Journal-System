@@ -22,7 +22,7 @@ const ProfileRoles = () => {
         api.defaults.withCredentials=true;
         const response = await api.get(`https://backend-oijs-77pyv5kz2q-et.a.run.app/journals`)
         setListJournal(response.data);
-        setJournal(response.data[0].path)
+        setJournal(response.data[0].journal_id)
     };
     const requestRoles = async (e) => {
         e.preventDefault();
@@ -43,6 +43,7 @@ const ProfileRoles = () => {
     const registerToNewJournal = async (e) => {
         e.preventDefault();
         try {
+            console.log(journal)
             await api.post('https://backend-oijs-77pyv5kz2q-et.a.run.app/role', {
                 journal_id: journal
             });

@@ -26,10 +26,14 @@ const ArticleSelectProduction = ({phase}) => {
     const selectArticleFiles = async (e) => {
         e.preventDefault();
         try {
-            await api.patch(`https://backend-oijs-77pyv5kz2q-et.a.run.app/article/${article_id}`, {
-                article_path: file,
+            const formData = new FormData();
+            formData.append("article_path",file);
+            formData.append("file","");
+            await api.patch(`https://backend-oijs-77pyv5kz2q-et.a.run.app/article/${article_id}`, formData, {
+                "Content-type": "multipart/form-data",
             });
             setSuccess("Production Article File Has Been Changed")
+            window.location.reload();
         } catch (error) {
             if (error.response) {
                 setMsg(error.response.data.msg);

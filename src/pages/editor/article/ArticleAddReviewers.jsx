@@ -46,7 +46,7 @@ const ArticleAddReviewers = ({data,title,subtitle}) => {
                 subtitle:subtitle,
                 editor_name:editor.name,
                 editor_email:editor.email,
-                website:`https://localhost:3001/${journal}/submission/${data.article_id}`,
+                website:`https://frontend-dot-oijs-429910.et.r.appspot.com/${journal}/submission/${data.article_id}`,
                 due_date:dueDate,
             });
             

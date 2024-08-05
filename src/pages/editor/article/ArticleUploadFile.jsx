@@ -17,6 +17,7 @@ const ArticleUploadFile = ({phase}) => {
         try {
             await api.post(`https://backend-oijs-77pyv5kz2q-et.a.run.app/article_file`,formData);
             setSuccess("New Files Has Been Uploaded")
+            window.location.reload();
         } catch (error) {
             if (error.response) {
                 setMsg(error.response.data.msg);

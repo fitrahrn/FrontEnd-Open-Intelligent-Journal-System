@@ -18,7 +18,8 @@ const EditorAddIssue = () => {
                 volume:volume,
                 number:number,
                 year:year,
-                url_path:urlPath
+                url_path:urlPath,
+                date_published: new Date(),
             });
             navigate(`/${journal}/manageIssue`);
         } catch (error) {

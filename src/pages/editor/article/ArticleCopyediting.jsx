@@ -55,7 +55,7 @@ const ArticleCopyediting = ({data,role}) => {
     };
     return (
         <div class="tab-pane fade p-3" id="copyediting"  role="tabpanel" aria-labelledby="copyediting-tab" >
-            {role === "author" && data.workflow_phase !=="copyediting" ? 
+            {role === "author" && data.workflow_phase !=="copyediting"  && data.workflow_phase !=="copyedited" ? 
             <p className='card-text'>Copyediting stage has not yet been initiated.</p> 
             :
                 <div>
@@ -86,7 +86,7 @@ const ArticleCopyediting = ({data,role}) => {
                             <p class="card-text">No Files</p>}
                         </div>
                     </div>
-                    <button onClick={()=>answerReview("production","accepted")} class="btn btn-primary float-end m-3" >Send to Production</button>
+                    {data.workflow_phase !=="production"||data.workflow_phase !=="published"?<button onClick={()=>answerReview("production","accepted")} class="btn btn-primary float-end m-3" >Send to Production</button>:<div/>}
                 </div>
                 
 }

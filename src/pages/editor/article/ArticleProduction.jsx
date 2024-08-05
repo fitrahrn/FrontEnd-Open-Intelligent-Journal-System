@@ -20,7 +20,7 @@ const ArticleProduction = ({data,role}) => {
         listFile.file_name = fileName
         setProduction(listFile);
     }
-    const answerReview = async (workflowPhase,status) => {
+    const publishArticle = async (workflowPhase,status) => {
         const formData = new FormData();
         formData.append("workflow_phase",workflowPhase);
         formData.append("status",status);
@@ -51,7 +51,7 @@ const ArticleProduction = ({data,role}) => {
                         </div>
                         
                     </div>
-                    <button onClick={()=>answerReview("published","accepted")} class="btn btn-primary float-end m-3" >Schedule for Publication</button>
+                    <button onClick={()=>publishArticle("published","accepted")} class="btn btn-primary float-end m-3" >Schedule for Publication</button>
                 </div>
                 
             }

@@ -30,6 +30,7 @@ const ArticleSelectFilePhase = ({phase}) => {
                 phase:"copyediting"
             });
             setSuccess("New Files Has Been Added")
+            window.location.reload();
         } catch (error) {
             if (error.response) {
                 setMsg(error.response.data.msg);
