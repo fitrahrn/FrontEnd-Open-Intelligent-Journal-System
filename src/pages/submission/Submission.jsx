@@ -18,8 +18,10 @@ const Submission = () => {
     };
     const deleteArticle = async (id) => {
         try {
-          await api.delete(`https://backend-oijs-77pyv5kz2q-et.a.run.app/article/${id}`);
-          getArticles();
+            await api.delete(`https://backend-oijs-77pyv5kz2q-et.a.run.app/contributors/${id}`);
+            await api.delete(`https://backend-oijs-77pyv5kz2q-et.a.run.app/article_file/${id}`);
+            await api.delete(`https://backend-oijs-77pyv5kz2q-et.a.run.app/article/${id}`);
+            getArticles();
         } catch (error) {
           console.log(error);
         }
@@ -49,12 +51,15 @@ const Submission = () => {
                                         <p class="card-text col-3">{article.article.title}</p>
                                         <p class="card-text col-2">{article.article.status}</p>
                                         <p class="card-text col-2">{article.article.workflow_phase}</p>
+    
+                                        {article.article.workflow_phase==="submitted"?
                                         <div class="btn-group col-2" role="group">
                                             <button onClick={() => deleteArticle(article.article.id)} class="btn btn-outline-danger">Delete</button>
-                                            <button class="btn btn-outline-warning align-middle"><Link class="link-underline-opacity-0 link-warning" to={`edit/${article.article.article_id}`} >Edit</Link></button>    
+                                            <button class="btn btn-outline-warning align-middle"><Link class="link-underline-opacity-0 link-warning" to={`edit/${article.article.article_id}`} >Edit</Link></button>  
                                             <button class="btn btn-outline-primary align-middle"><Link class="link-underline-opacity-0 link-primary" to={`article/${article.article.article_id}`} >View</Link></button>   
                                             
                                         </div>
+                                        :<button class="btn btn-outline-primary col-2"><Link class="link-underline-opacity-0 link-primary" to={`article/${article.article.article_id}`} >View</Link></button>}
                                     </div>
                                     
                                 </li>

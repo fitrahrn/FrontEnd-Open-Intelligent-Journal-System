@@ -3,7 +3,6 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Login from './pages/authorization/Login';
 import Register from './pages/authorization/Register';
-import Archives from './pages/Archives';
 import About from './pages/About';
 import Journal from './pages/journal/Journal';
 import Editorial from './pages/journal/Editorial';
@@ -52,7 +51,6 @@ function App() {
         <Route path='/' element={<Home />}/>
         <Route path='/login' element = {<Login/>}/>
         <Route path='/register' element = {<Register/>}/>
-        <Route path='/archives' element={<Archives />}/>
         <Route path='/about' element={<About />}/>
         <Route path='/profile' element={<Profile />}/>
         <Route path='/dashboard' element={<Dashboard />}/>

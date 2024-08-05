@@ -3,16 +3,11 @@ import api from "../interceptor/axios"
 import Layout from '../components/Layout';
 const Dashboard = () => {
     const [roles, setRoles] = useState([]);
-    const [listJournal, setListJournal] = useState([]);
-    const [journalId,setJournalId] = useState("")
-    const [journal,setJournal] = useState("")
-    const [request, setRequest] = useState("");
     const [administrator,setAdministrator] = useState(false);
     const [editor,setEditor] = useState(false);
     const [reviewer,setReviewer] = useState(false);
     const [author,setAuthor] = useState(false);
     const [reader,setReader] = useState(false);
-    const [msg, setMsg] = useState("");
     useEffect(() => {
         getRoles();
       }, []);
@@ -28,7 +23,6 @@ const Dashboard = () => {
             if(response.data[i].reader) setReader(true);
         }
         setRoles(response.data)
-        setJournalId(response.data[0].journal.journal_id)
     };
     return (
         <Layout>

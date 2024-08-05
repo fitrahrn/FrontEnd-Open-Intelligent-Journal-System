@@ -19,8 +19,15 @@ const NavbarJournal = () => {
                     </ul>
                 </li>
                 <li className="nav-item">
+                    <a className="nav-link text-primary" href={`/${journal}/ethics`}>Ethics</a>
+                </li>
+                <li className="nav-item">
+                    <a className="nav-link text-primary" href={`/${journal}/guidelines`}>Guidelines</a>
+                </li>
+                <li className="nav-item">
                     <a className="nav-link text-primary" href={`/${journal}/about`}>About</a>
                 </li>
+                
             </ul>
         </div>
         </div>

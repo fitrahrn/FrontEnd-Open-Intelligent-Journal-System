@@ -28,8 +28,6 @@ const ArticleAddReviewers = ({data,title,subtitle}) => {
     }
     const addReviewers = async (e) => {
         e.preventDefault();
-        console.log(data.reviews_id)
-
         const email = reviewers.find((user)=>user.user_id==userId);
         console.log(dueDate)
         setSucces("New Reviewers Has Been Added")
