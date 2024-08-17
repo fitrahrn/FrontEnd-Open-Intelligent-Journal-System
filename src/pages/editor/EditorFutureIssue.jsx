@@ -23,6 +23,14 @@ const EditorFutureIssue = () => {
           console.log(error);
         }
     };
+    const deleteIssue = async (id) => {
+        try {
+          await api.delete(`https://backend-oijs-77pyv5kz2q-et.a.run.app/issue/${id}`);
+          getIssue();
+        } catch (error) {
+          console.log(error);
+        }
+    };
 
     return (
         <div class="tab-pane fade show active p-3" id="future"  role="tabpanel" aria-labelledby="future-tab" >
@@ -32,7 +40,7 @@ const EditorFutureIssue = () => {
                 <p class="card-subtitle mb-2 text-body-secondary col-1">Number</p>
                 <p class="card-subtitle mb-2 text-body-secondary col-2">Year</p>
                 <p class="card-subtitle mb-2 text-body-secondary col-3">Date Published</p>
-                <p class="card-subtitle mb-2 text-body-secondary col-4"></p>
+                <p class="card-subtitle mb-2 text-body-secondary col-3"></p>
             </div>
             <ul class="list-group ">
                 {listIssue.map((issue) => (
@@ -42,10 +50,13 @@ const EditorFutureIssue = () => {
                                 <p class="card-text col-1">{issue.number}</p>
                                 <p class="card-text col-2">{issue.year}</p>
                                 <p class="card-text col-3">{issue.date_published}</p>
-                                <div class="btn-group col-4 ">
-                                    <button href="#" class="btn btn-outline-primary">Preview</button>
-                                    <button onClick={() => publishIssue(issue.id)} class="btn btn-primary">Publish</button>
+                                <div class="btn-group col-3 ">
+                                    <button onClick={() => deleteIssue(issue.issue_id)} class="btn btn-outline-danger">Delete</button>
+                                    <Link to={`edit/${issue.issue_id}`} class="btn btn-outline-warning col-2">Edit</Link> 
+                                    <button onClick={() => publishIssue(issue.issue_id)} class="btn btn-primary col-2" >Publish</button>    
                                 </div>
+                                
+
                             </div>
                         </li>
                     )

@@ -51,7 +51,7 @@ const ArticleProduction = ({data,role}) => {
                         </div>
                         
                     </div>
-                    <button onClick={()=>publishArticle("published","accepted")} class="btn btn-primary float-end m-3" >Schedule for Publication</button>
+                    {role !== "author" ?<button onClick={()=>publishArticle("published","accepted")} class="btn btn-primary float-end m-3" >Schedule for Publication</button>:<div/>}
                 </div>
                 
             }

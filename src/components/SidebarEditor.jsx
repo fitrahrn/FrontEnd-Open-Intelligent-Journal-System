@@ -7,11 +7,14 @@ import profile from "../assets/images/profile.jpeg"
 const SidebarAdmin = () => {
   const {journal} = useParams();
   const [journalName,setJournal]= useState([]);
+    let profilePicture =localStorage.getItem('profilePicture');
+    if(profilePicture === null)profilePicture=profile
   const navigate = useNavigate();
     const Logout = async () => {
         try {
             await api.post('https://backend-oijs-77pyv5kz2q-et.a.run.app/logout');
             localStorage.removeItem('accessToken');
+            localStorage.removeItem('profilePicture');
             navigate("/");
         } catch (error) {
             console.log(error);
@@ -56,7 +59,7 @@ const SidebarAdmin = () => {
                     <div className="col-md-2 text-start">
                         <div className="nav-item dropdown">
                             <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src={profile} alt="mdo" width="32" height="32" className="rounded-circle"/>
+                            <img src={profilePicture} alt="mdo" width="32" height="32" className="rounded-circle"/>
                             </a>
                             <ul className="dropdown-menu" id="dropdown">
                             <li><a className="dropdown-item" href="/dashboard">Dashboard</a></li>

@@ -30,9 +30,10 @@ const HostJournal = () => {
                             <h5 class="card-title col">Hosted Journals</h5>
                             <Link class="col-2" to={`create`}><button class="btn btn-outline-primary w-100" >Create Journal</button></Link>
                         </div>
-                        <div class="row card-body">
+                        <div class="row card-body justify-content-between">
                             <p class="card-subtitle mb-2 text-body-secondary col-4">Name</p>
                             <p class="card-subtitle mb-2 text-body-secondary col-4">Path</p>
+                            <p class="card-subtitle mb-2 text-body-secondary col-3"></p>
                         </div>
                         {listJournal.map((journal) => (
                             <ul class="list-group list-group-flush">
@@ -40,10 +41,9 @@ const HostJournal = () => {
                                     <div class="row justify-content-between">
                                         <p class="card-text col-4">{journal.title}</p>
                                         <p class="card-text col-4">{journal.path}</p>
-                                        <div class="btn-group col-4 ">
+                                        <div class="btn-group col-3 ">
                                             <button onClick={() => deleteJournal(journal.path)} class="btn btn-outline-danger">Delete</button>
                                             <Link to={`edit/${journal.path}`} class="btn btn-outline-warning">Edit</Link>    
-                                            <button href="#" class="btn btn-outline-primary">Setting</button>
                                         </div>
                                     </div>
                                     

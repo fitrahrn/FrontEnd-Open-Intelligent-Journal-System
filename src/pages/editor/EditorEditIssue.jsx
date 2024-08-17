@@ -1,24 +1,36 @@
-import {useNavigate,useParams } from "react-router-dom";
-import React, { useState } from 'react';
+import {useNavigate,Link,useParams } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
 
 import api from "../../interceptor/axios"
-const EditorAddIssue = () => {
+const EditorEditIssue = () => {
     const [number,setNumber] = useState("");
     const [volume,setVolume] = useState("");
     const [year,setYear] = useState("");
     const [urlPath,setUrlPath] = useState("");
     const [msg,setMsg] =useState("")
-    const {journal} = useParams();
+    const {journal,issue_id} = useParams();
+    const [date,setDate] = useState("");
     const navigate = useNavigate();
-    const addIssue = async (e) => {
+    useEffect(() => {
+        getIssue();
+      }, []);
+    const getIssue = async () => {
+        const response = await api.get(`https://backend-oijs-77pyv5kz2q-et.a.run.app/issue/id/${issue_id}`)
+        setVolume(response.data.volume);
+        setNumber(response.data.number)
+        setYear(response.data.year)
+        setDate(response.data.date_published);
+        setUrlPath(response.data.url_path);
+    };
+    const editIssue = async (e) => {
         e.preventDefault();
         try {
-            await api.post(`https://backend-oijs-77pyv5kz2q-et.a.run.app/issue/${journal}`,{
+            await api.patch(`https://backend-oijs-77pyv5kz2q-et.a.run.app/issue/${issue_id}`,{
                 volume:volume,
                 number:number,
                 year:year,
                 url_path:urlPath,
-                date_published: new Date(),
+                date_published: date,
             });
             navigate(`/${journal}/manageIssue`);
         } catch (error) {
@@ -33,7 +45,7 @@ const EditorAddIssue = () => {
                 <div className="card-body">
                     <h1 className="h1 mb-3 fw-normal text-center mt-3">Create Issue</h1>
                     <p className="error" style={{color: "red"}}>{msg}</p>
-                    <form className="content-container" onSubmit={addIssue}>
+                    <form className="content-container" onSubmit={editIssue}>
                         <div className="mb-3">
                             <label className="form-label">Volume</label>
                             <div className="control">
@@ -60,7 +72,7 @@ const EditorAddIssue = () => {
                         </div>
                         <div className="row justify-content-end" >
                             <button type="cancel" onClick={() => navigate(-1)} class="col-2 mx-2 btn btn-lg btn-danger">Cancel</button>
-                            <button type="submit" class="col-2 mx-2 btn btn-lg btn-primary">Create Issue</button>
+                            <button type="submit" class="col-2 mx-2 btn btn-lg btn-primary">Edit Issue</button>
                         </div>
                     </form>
                 </div>
@@ -70,4 +82,4 @@ const EditorAddIssue = () => {
 
     )
 }
-export default EditorAddIssue;
+export default EditorEditIssue;

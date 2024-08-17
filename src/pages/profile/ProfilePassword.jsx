@@ -66,20 +66,20 @@ const ProfilePassword = () => {
                 <div class= "mb-3">
                     <label class="form-label fw-bold">Current Password</label>
                     <div class="controls">
-                        <input type="text" class="form-control"  value={currentPassword} onChange={(e) => setCurrentPassword(e.target.value)}/>
+                        <input type="password" class="form-control" placeholder="******" value={currentPassword} onChange={(e) => setCurrentPassword(e.target.value)}/>
                     </div>
                 </div>
                 <div class= "mb-3">
                     <label class="form-label fw-bold">New Password</label>
                     <p className='fw-light card-subtitle'>The password must be at least 6 characters.</p>
                     <div class="controls">
-                        <input type="text" class="form-control"  value={newPassword} onChange={(e) => setNewPassword(e.target.value)}/>
+                        <input type="password" class="form-control" placeholder="******" value={newPassword} onChange={(e) => setNewPassword(e.target.value)}/>
                     </div>
                 </div>
                 <div class= "mb-3">
                     <label class="form-label fw-bold">Confirm New Password</label>
                     <div class="controls">
-                        <input type="text" class="form-control"  value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)}/>
+                        <input type="password" class="form-control" placeholder="******" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)}/>
                     </div>
                 </div>
                 <div >

@@ -111,12 +111,10 @@ const AuthorProfile = () => {
   }; 
   const getArticleYearCounts = async () => {
     const response = await api.get(`https://backend-oijs-77pyv5kz2q-et.a.run.app/user/article/${username}`)
-    console.log(response.data)
     setArticleCount(response.data)
   };
   const getCitationCounts = async () => {
     const response = await api.get(`https://backend-oijs-77pyv5kz2q-et.a.run.app/articles/citation/${username}`)
-    console.log(response.data)
     setCitationCount(response.data)
   };  
   return (

@@ -1,23 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import {Link,useParams} from "react-router-dom";
-import api from "../../../interceptor/axios"
-const ArticleDetailReviews = ({data}) => {
-    const [reviewers,setReviewers] = useState([]);
-    const [msg, setMsg] = useState("");
-    const [success,setSucces] = useState("")
-    const [userId, setUserId] = useState("");
-    const [dueDate, setdueDate] = useState(new Date());
-    const [close,setClose] = useState("")
-    const {journal} = useParams();
-    useEffect(() => {
-        getReviewers();
-      }, []);
-    
-    const getReviewers = async () => {
-        const response = await api.get(`https://backend-oijs-77pyv5kz2q-et.a.run.app/reviewers/${data.reviewers_id}`)
-        setReviewers(response.data);
-    }
-
+import React from 'react';
+const ArticleDetailReviews = () => {
     return (
         <div class="modal fade" id="detailReviews" tabindex="-1" aria-labelledby="detailReviewsLabel" aria-hidden="true">
             <div class="modal-dialog">

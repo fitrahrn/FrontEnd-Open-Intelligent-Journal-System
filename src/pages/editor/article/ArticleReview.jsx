@@ -87,7 +87,7 @@ const ArticleReview = ({data,role}) => {
     }
     return (
         <div class="tab-pane fade p-3" id="review"  role="tabpanel" aria-labelledby="review-tab" >
-            
+            <p className="error" style={{color: "red"}}>{msg}</p>
             {listReviews.length>0 ?
                 listReviews.map((review) => (
                     <div class="card mb-3">
@@ -110,10 +110,11 @@ const ArticleReview = ({data,role}) => {
                                 
                                 <div class="card-body row">
                                     <div class="row card-body justify-content-between">
-                                        <p class="card-subtitle mb-2 text-body-secondary col-3">Name</p>
+                                        <p class="card-subtitle mb-2 text-body-secondary col-2">Name</p>
                                         <p class="card-subtitle mb-2 text-body-secondary col-2">Review Status</p>
                                         <p class="card-subtitle mb-2 text-body-secondary col-2">Date Due</p>
                                         <p class="card-subtitle mb-2 text-body-secondary col-2">Date Completed</p>
+                                        <p class="card-subtitle mb-2 text-body-secondary col-2"></p>
                                         <p class="card-subtitle mb-2 text-body-secondary col-2"></p>
                                     </div>
                                     {review.reviewers.map((reviewers) => (
@@ -121,10 +122,11 @@ const ArticleReview = ({data,role}) => {
                                             <ArticleDetailReviews data={reviewers}/>
                                             <li class="list-group-item">
                                                 <div class="row justify-content-between">
-                                                    <p class="card-text col-3">{reviewers.user.name}</p>
+                                                    <p class="card-text col-2">{reviewers.user.name}</p>
                                                     {reviewers.recommendation? <p class="card-text col-2">{reviewers.recommendation}</p> : <p class="card-text col-2">Not Reviewed</p>}
                                                     <p class="card-text col-2">{reviewers.date_due}</p>
                                                     <p class="card-text col-2">{reviewers.date_completed}</p>
+                                                    {reviewers.reviewers_file!=="" ? <Link class="btn btn-outline-primary col-2" to={reviewers.reviewers_file} target="_blank" download>Download Review File</Link>:<div className=' col-2'></div>}
                                                     {reviewers.author_review ? <button className='btn btn-primary col-2'data-bs-toggle="modal" data-bs-target="#detailReviews" data-bs-review-author={reviewers.author_review} data-bs-review-editor={reviewers.editor_review}>Reviews Detail</button>:<div className=' col-2'></div>}
                                                 </div>
                                             </li>

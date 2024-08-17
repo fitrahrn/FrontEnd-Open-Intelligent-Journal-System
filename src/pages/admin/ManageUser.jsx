@@ -33,10 +33,6 @@ const ManageUser = () => {
                                         <p class="card-text col-3">{user.name}</p>
                                         <p class="card-text col-3">{user.username}</p>
                                         <p class="card-text col-3">{user.email}</p>
-                                        <div class="btn-group col-2 ">
-                                                <button  class="btn btn-outline-danger">Delete</button>
-                                                <button href="#" class="btn btn-outline-warning">Edit</button>
-                                        </div>
                                     </div>
                                 </li>
 

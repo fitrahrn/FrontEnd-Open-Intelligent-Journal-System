@@ -18,7 +18,7 @@ const EditorBackIssue = () => {
                 <p class="card-subtitle mb-2 text-body-secondary col-1">Number</p>
                 <p class="card-subtitle mb-2 text-body-secondary col-2">Year</p>
                 <p class="card-subtitle mb-2 text-body-secondary col-3">Date Published</p>
-                <p class="card-subtitle mb-2 text-body-secondary col-4"></p>
+                <p class="card-subtitle mb-2 text-body-secondary col-2"></p>
             </div>
             {listIssue.map((issue) => (
                 <ul class="list-group ">
@@ -28,10 +28,7 @@ const EditorBackIssue = () => {
                             <p class="card-text col-1">{issue.number}</p>
                             <p class="card-text col-2">{issue.year}</p>
                             <p class="card-text col-3">{issue.date_published}</p>
-                            <div class="btn-group col-4 ">
-                                <Link to={`edit/${issue.id}`} class="btn btn-outline-warning">Edit</Link>    
-                                <button href="#" class="btn btn-outline-primary">Preview</button>
-                            </div>
+                            <Link to={`edit/${issue.issue_id}`} class="btn btn-outline-warning col-2">Edit</Link> 
                         </div>
                         
                     </li>

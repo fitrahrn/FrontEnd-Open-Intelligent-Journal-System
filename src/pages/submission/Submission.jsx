@@ -54,7 +54,7 @@ const Submission = () => {
     
                                         {article.article.workflow_phase==="submitted"?
                                         <div class="btn-group col-2" role="group">
-                                            <button onClick={() => deleteArticle(article.article.id)} class="btn btn-outline-danger">Delete</button>
+                                            <button onClick={() => deleteArticle(article.article_id)} class="btn btn-outline-danger">Delete</button>
                                             <button class="btn btn-outline-warning align-middle"><Link class="link-underline-opacity-0 link-warning" to={`edit/${article.article.article_id}`} >Edit</Link></button>  
                                             <button class="btn btn-outline-primary align-middle"><Link class="link-underline-opacity-0 link-primary" to={`article/${article.article.article_id}`} >View</Link></button>   
                                             

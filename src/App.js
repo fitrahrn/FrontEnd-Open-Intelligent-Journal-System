@@ -42,6 +42,7 @@ import EditorAddIssue from './pages/editor/EditorAddIssue';
 import IssueCurrent from './pages/journal/IssueCurent';
 import Search from './pages/Search';
 import NotFound from './pages/NotFound';
+import EditorEditIssue from './pages/editor/EditorEditIssue';
 Chart.register(CategoryScale);
 function App() {
   return (
@@ -82,6 +83,7 @@ function App() {
         <Route path='/:journal/submission' element={<Editor/>}/>
         <Route path='/:journal/manageIssue' element={<EditorIssue/>}/>
         <Route path='/:journal/create/issue' element={<EditorAddIssue/>}/>
+        <Route path='/:journal/manageIssue/edit/:issue_id' element={<EditorEditIssue/>}/>
         <Route path='/:journal/settings' element={<EditorSettings/>}/>
         <Route path='/:journal/request' element={<AuthorRequest/>}/>
         <Route path='/:journal/submission/:article_id' element={<Article/>}/>

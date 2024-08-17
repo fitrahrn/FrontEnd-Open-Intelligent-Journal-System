@@ -86,7 +86,7 @@ const ArticleCopyediting = ({data,role}) => {
                             <p class="card-text">No Files</p>}
                         </div>
                     </div>
-                    {data.workflow_phase !=="production"||data.workflow_phase !=="published"?<button onClick={()=>answerReview("production","accepted")} class="btn btn-primary float-end m-3" >Send to Production</button>:<div/>}
+                    {(role !== "author" && data.workflow_phase !=="production")||(role !== "author" &&data.workflow_phase !=="published")?<button onClick={()=>answerReview("production","accepted")} class="btn btn-primary float-end m-3" >Send to Production</button>:<div/>}
                 </div>
                 
 }
